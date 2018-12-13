@@ -18,8 +18,7 @@ public class Player extends GameOneObject {
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
 		
-		velX = r.nextInt(5) + 1;
-		velY = r.nextInt(5);
+		
 	}
 
 	@Override
@@ -31,7 +30,8 @@ public class Player extends GameOneObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.green);
+		if(id == ID.Player) g.setColor(Color.green);
+		if(id == ID.PlayerTwo) g.setColor(Color.white);
 		g.fillRect(x, y, 32, 32);
 	}
 	
