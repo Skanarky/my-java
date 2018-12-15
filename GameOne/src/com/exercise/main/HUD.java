@@ -16,8 +16,6 @@ public class HUD {
 	public static int HEALTH = 100;
 	
 	public void tick() {
-		HEALTH--;
-		
 		HEALTH = GameOne.clamp(HEALTH, 0, 100);
 	}
 

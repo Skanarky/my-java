@@ -4,6 +4,7 @@
 package com.exercise.main;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  * @author ILIAN Kutkurov
@@ -25,6 +26,7 @@ public abstract class GameOneObject {
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);
+	public abstract Rectangle getBounds();
 
 	public ID getId() {
 		return id;
