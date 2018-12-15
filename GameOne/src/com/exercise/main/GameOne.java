@@ -28,6 +28,7 @@ public class GameOne extends Canvas implements Runnable {
 	
 	private Random r;
 	private Handler handler;
+	private HUD hud;
 	
 	public GameOne() {
 		handler = new Handler();
@@ -36,14 +37,19 @@ public class GameOne extends Canvas implements Runnable {
 		
 		new Window(WIDTH, HEIGHT, "Building My Game One", this);
 		
+		hud = new HUD();
+		
 		r = new Random();
 		
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player));
-		handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-64, ID.PlayerTwo));
 		
-//		for(int i = 0; i < 50; ++i) {
-//			handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player));
-//		}
+		
+		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
+		
+//		for(int i = 0; i < 15; ++i) {
+//			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
+//		};
+		
 	}
 	
 	public synchronized void start() {
@@ -63,6 +69,7 @@ public class GameOne extends Canvas implements Runnable {
 	}
 	
 	public void run() {
+		this.requestFocus();
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -93,6 +100,7 @@ public class GameOne extends Canvas implements Runnable {
 	
 	private void tick() {
 		handler.tick();
+		hud.tick();
 	}
 	
 	private void render() {
@@ -109,10 +117,17 @@ public class GameOne extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
+		hud.render(g);
 		
 		g.dispose();
 		bs.show();
 		
+	}
+	
+	public static int clamp(int var, int min, int max) {
+		if(var >= max) return var = max;
+		if(var <= min) return var = min;
+		return var;
 	}
 	
 	public static void main(String args[]) {

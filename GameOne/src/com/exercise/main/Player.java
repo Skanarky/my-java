@@ -18,20 +18,18 @@ public class Player extends GameOneObject {
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
 		
-		
 	}
 
-	@Override
 	public void tick() {
 		x += velX;
 		y += velY;
 		
+		x = GameOne.clamp(x, 0, GameOne.WIDTH - 33);
+		y = GameOne.clamp(y, 0, GameOne.HEIGHT - 54);
 	}
 
-	@Override
 	public void render(Graphics g) {
-		if(id == ID.Player) g.setColor(Color.green);
-		if(id == ID.PlayerTwo) g.setColor(Color.white);
+		g.setColor(Color.MAGENTA);
 		g.fillRect(x, y, 32, 32);
 	}
 	
