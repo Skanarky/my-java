@@ -18,9 +18,13 @@ public class Player extends GameOneObject {
 	
 	private Handler handler;
 	
-	public Player(int x, int y, ID id, Handler h) {
+	public Player(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
-		handler = h;
+		this.handler = handler;
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, 32, 32);
 	}
 
 	public void tick() {
@@ -30,16 +34,18 @@ public class Player extends GameOneObject {
 		x = GameOne.clamp(x, 0, GameOne.WIDTH - 33);
 		y = GameOne.clamp(y, 0, GameOne.HEIGHT - 54);
 		
+		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, Color.white, 31, 31, 0.18f, this.handler));
+		
 		collision();
 	}
 	
 	private void collision() {
-		for(GameOneObject o : handler.gameObjects) {
-			
+		for(int i = 0; i < this.handler.gameObjects.size(); ++i) {
+			GameOneObject tempObj = this.handler.gameObjects.get(i);
 			// looking for the enemy
-			if(o.getId() == ID.BasicEnemy) {
+			if(tempObj.getId() == ID.BasicEnemy) {
 			
-				if(getBounds().intersects(o.getBounds())) {
+				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
 					HUD.HEALTH -= 1;
 				};
@@ -50,12 +56,8 @@ public class Player extends GameOneObject {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.MAGENTA);
+		g.setColor(Color.white);
 		g.fillRect(x, y, 32, 32);
-	}
-
-	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
 	}
 	
 }

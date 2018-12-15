@@ -31,9 +31,9 @@ public class GameOne extends Canvas implements Runnable {
 	private HUD hud;
 	
 	public GameOne() {
-		handler = new Handler();
+		this.handler = new Handler();
 		
-		this.addKeyListener(new KeyInput(handler));
+		this.addKeyListener(new KeyInput(this.handler));
 		
 		new Window(WIDTH, HEIGHT, "Building My Game One", this);
 		
@@ -41,9 +41,13 @@ public class GameOne extends Canvas implements Runnable {
 		
 		r = new Random();
 		
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
+		this.handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, this.handler));
 		
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
 		
 //		for(int i = 0; i < 15; ++i) {
 //			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));

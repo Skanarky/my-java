@@ -29,18 +29,24 @@ public class Handler {
 	
 //	Maybe use forEach loops instead, in the render and tick methods
 	public void tick() {
-//		for(int i = 0; i < gameObjects.size(); ++i) {
-//			GameOneObject obj = gameObjects.get(i);
-//			obj.tick();
+		// Need to use this type of loop, because there are concurrent modifications (EnemyTrail),
+		// the forEach loop throws an error
+		for(int i = 0; i < gameObjects.size(); ++i) {
+			GameOneObject obj = gameObjects.get(i);
+			obj.tick();
+		};
+//		for(GameOneObject o : this.gameObjects) {
+//			o.tick();
 //		};
-		for(GameOneObject o : gameObjects) o.tick();
 	}
 
 	public void render(Graphics g) {
-//		for(int i = 0; i < gameObjects.size(); ++i) {
-//			GameOneObject obj = gameObjects.get(i);
-//			obj.render(g);
+		for(int i = 0; i < gameObjects.size(); ++i) {
+			GameOneObject obj = gameObjects.get(i);
+			obj.render(g);
+		};
+//		for(GameOneObject o : this.gameObjects) {
+//			o.render(g);
 //		};
-		for(GameOneObject o : gameObjects) o.render(g);
 	}
 }
