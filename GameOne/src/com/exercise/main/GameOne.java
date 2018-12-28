@@ -29,6 +29,7 @@ public class GameOne extends Canvas implements Runnable {
 	private Random r;
 	private Handler handler;
 	private HUD hud;
+	private Spawner spawner;
 	
 	public GameOne() {
 		this.handler = new Handler();
@@ -37,20 +38,18 @@ public class GameOne extends Canvas implements Runnable {
 		
 		new Window(WIDTH, HEIGHT, "Building My Game One", this);
 		
-		hud = new HUD();
+		this.hud = new HUD();
+		
+		this.spawner = new Spawner(this.handler, this.hud);
 		
 		r = new Random();
 		
 		this.handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, this.handler));
 		
 		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
-		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
-		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
-		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
-		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
 		
-//		for(int i = 0; i < 15; ++i) {
-//			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
+//		for(int i = 0; i < 6; ++i) {
+//			this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
 //		};
 		
 	}
@@ -104,6 +103,7 @@ public class GameOne extends Canvas implements Runnable {
 	private void tick() {
 		handler.tick();
 		hud.tick();
+		spawner.tick();
 	}
 	
 	private void render() {

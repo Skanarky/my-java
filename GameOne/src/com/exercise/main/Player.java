@@ -43,7 +43,7 @@ public class Player extends GameOneObject {
 		for(int i = 0; i < this.handler.gameObjects.size(); ++i) {
 			GameOneObject tempObj = this.handler.gameObjects.get(i);
 			// looking for the enemy
-			if(tempObj.getId() == ID.BasicEnemy) {
+			if(tempObj.getId() == ID.BasicEnemy || tempObj.getId() == ID.FastEnemy) {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
