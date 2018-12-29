@@ -13,7 +13,7 @@ import java.util.Random;
  * 
  * @author ILIAN Kutkurov
  * SINGLE threaded game
- * 
+ * Main Class
  */
 public class GameOne extends Canvas implements Runnable {
 	
@@ -72,12 +72,14 @@ public class GameOne extends Canvas implements Runnable {
 	
 	public void run() {
 		this.requestFocus();
+		
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
+		
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -86,6 +88,7 @@ public class GameOne extends Canvas implements Runnable {
 				tick();
 				delta--;
 			}
+			
 			if(running)
 				render();
 			frames++;
@@ -128,6 +131,12 @@ public class GameOne extends Canvas implements Runnable {
 	}
 	
 	public static int clamp(int var, int min, int max) {
+		if(var >= max) return var = max;
+		if(var <= min) return var = min;
+		return var;
+	}
+	
+	public static float clampHealth(float var, float min, float max) {
 		if(var >= max) return var = max;
 		if(var <= min) return var = min;
 		return var;

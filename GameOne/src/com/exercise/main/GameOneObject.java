@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 
 /**
  * @author ILIAN Kutkurov
- * This class will be the base for all game objects (player, enemy, health, coins, etc...)  
+ * This class will be the base for AI and Players game objects  
  */
 public abstract class GameOneObject {
 	

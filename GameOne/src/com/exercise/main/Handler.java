@@ -9,9 +9,7 @@ import java.util.ArrayList;
 
 /**
  * @author ILIAN Kutkurov
- *
- * This class handles all the objects of the game (player, enemy, health, rewards, level...)  
- * which will GameOneObject abstract class for a base
+ * This class handles all of the objects in the game (player, enemy, health, rewards, levels...)
  */
 public class Handler {
 	

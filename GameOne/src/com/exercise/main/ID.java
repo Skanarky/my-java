@@ -9,6 +9,6 @@ package com.exercise.main;
  */
 public enum ID {
 
-	Player(), BasicEnemy(), EnemyTrail(), FastEnemy();
+	Player(), BasicEnemy(), EnemyTrail(), FastEnemy(), SmartEnemy();
 	
 }

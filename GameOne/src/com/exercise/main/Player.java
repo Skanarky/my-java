@@ -42,12 +42,33 @@ public class Player extends GameOneObject {
 	private void collision() {
 		for(int i = 0; i < this.handler.gameObjects.size(); ++i) {
 			GameOneObject tempObj = this.handler.gameObjects.get(i);
-			// looking for the enemy
-			if(tempObj.getId() == ID.BasicEnemy || tempObj.getId() == ID.FastEnemy) {
+	
+			// looking for Basic enemy
+			if(tempObj.getId() == ID.BasicEnemy) {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 1;
+					HUD.HEALTH -= 0.2f;
+				};
+				
+			};
+			
+			// looking for Fast enemy
+			if(tempObj.getId() == ID.FastEnemy) {
+			
+				if(getBounds().intersects(tempObj.getBounds())) {
+					// collision code
+					HUD.HEALTH -= 0.4f;
+				};
+				
+			};
+			
+			// looking for Smart enemy
+			if(tempObj.getId() == ID.SmartEnemy) {
+				
+				if(getBounds().intersects(tempObj.getBounds())) {
+					// collision code
+					HUD.HEALTH -= 0.8f;
 				};
 				
 			};
