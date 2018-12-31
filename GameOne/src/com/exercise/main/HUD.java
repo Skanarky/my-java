@@ -12,7 +12,7 @@ import java.awt.Graphics;
  */
 public class HUD {
 	
-	public static float HEALTH = 100;
+	public static float HEALTH = 100f;
 	
 	private int[] colors = new int[3];
 	
@@ -26,11 +26,11 @@ public class HUD {
 	}
 	
 	public void tick() {
-		HEALTH = GameOne.clampHealth(HEALTH, 0f, 100f);
+		HEALTH = GameOne.clamp(HEALTH, 0f, 100f);
 		
-		colors[0] = GameOne.clamp(colors[0], 0, 255);
-		colors[1] = GameOne.clamp(colors[1], 0, 255);
-		colors[2] = GameOne.clamp(colors[2], 0, 255);
+		colors[0] = (int)GameOne.clamp(colors[0], 0, 255);
+		colors[1] = (int)GameOne.clamp(colors[1], 0, 255);
+		colors[2] = (int)GameOne.clamp(colors[2], 0, 255);
 		
 		if(HEALTH <= 50) {
 			colors[0] = 244;

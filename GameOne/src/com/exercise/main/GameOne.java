@@ -44,9 +44,9 @@ public class GameOne extends Canvas implements Runnable {
 		
 		r = new Random();
 		
-		this.handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, this.handler));
+		this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
 		
-		this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
 		
 //		for(int i = 0; i < 6; ++i) {
 //			this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
@@ -130,13 +130,7 @@ public class GameOne extends Canvas implements Runnable {
 		
 	}
 	
-	public static int clamp(int var, int min, int max) {
-		if(var >= max) return var = max;
-		if(var <= min) return var = min;
-		return var;
-	}
-	
-	public static float clampHealth(float var, float min, float max) {
+	public static float clamp(float var, float min, float max) {
 		if(var >= max) return var = max;
 		if(var <= min) return var = min;
 		return var;
