@@ -48,7 +48,7 @@ public class Player extends GameOneObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.2f;
+					HUD.HEALTH -= 0.4f;
 				};
 				
 			};
@@ -58,7 +58,7 @@ public class Player extends GameOneObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.4f;
+					HUD.HEALTH -= 0.7f;
 				};
 				
 			};
@@ -68,7 +68,7 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.8f;
+					HUD.HEALTH -= 1f;
 				};
 				
 			};

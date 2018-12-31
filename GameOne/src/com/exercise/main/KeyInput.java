@@ -63,10 +63,10 @@ public class KeyInput extends KeyAdapter {
 					 
 			 if(o.getId() == ID.Player) {
 				 // events player 1
-				 if(key == KeyEvent.VK_UP) this.keyDown[0] = false; //o.setVelY(0);
-				 if(key == KeyEvent.VK_DOWN) this.keyDown[1] = false; //o.setVelY(0);
-				 if(key == KeyEvent.VK_LEFT) this.keyDown[2] = false; //o.setVelX(0);
-				 if(key == KeyEvent.VK_RIGHT) this.keyDown[3] = false; //o.setVelX(0);
+				 if(key == KeyEvent.VK_UP) this.keyDown[0] = false;
+				 if(key == KeyEvent.VK_DOWN) this.keyDown[1] = false;
+				 if(key == KeyEvent.VK_LEFT) this.keyDown[2] = false;
+				 if(key == KeyEvent.VK_RIGHT) this.keyDown[3] = false;
 				 
 				 // vertical movement
 				 if(!this.keyDown[0] && !this.keyDown[1]) o.setVelY(0);

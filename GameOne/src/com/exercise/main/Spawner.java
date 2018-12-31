@@ -33,12 +33,12 @@ public class Spawner {
 				this.handler.addObject(new BasicEnemy(r.nextInt(GameOne.WIDTH - 5), r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
 			};
 			
-			if(hud.getLevel() % 3 == 0 && hud.getLevel() % 2 != 0 && hud.getLevel() % 7 != 0) {
+			if(hud.getLevel() % 3 == 0 && hud.getLevel() % 2 != 0) {
 				this.handler.addObject(new FastEnemy(r.nextInt(GameOne.WIDTH - 10), r.nextInt(GameOne.HEIGHT - 10), ID.FastEnemy, this.handler));
 			};
-//			if(hud.getLevel() % 7 == 0) {
-//				this.handler.addObject(new SmartEnemy(r.nextInt(GameOne.WIDTH - 10), r.nextInt(GameOne.HEIGHT - 10), ID.SmartEnemy, this.handler));
-//			};
+			if(hud.getLevel() % 7 == 0) {
+				this.handler.addObject(new SmartEnemy(r.nextInt(GameOne.WIDTH - 10), r.nextInt(GameOne.HEIGHT - 10), ID.SmartEnemy, this.handler));
+			};
 			
 			
 		};
