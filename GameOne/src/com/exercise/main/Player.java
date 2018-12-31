@@ -6,15 +6,12 @@ package com.exercise.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.Random;
 
 /**
  * @author ILIAN Kutkurov
  *
  */
 public class Player extends GameOneObject {
-	
-	private Random r = new Random();
 	
 	private Handler handler;
 	
