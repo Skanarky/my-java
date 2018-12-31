@@ -7,6 +7,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -22,9 +23,12 @@ public class GameOne extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 870264530016327720L;
 	
-	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+	// started with 640px width
+	public static final int WIDTH = 1024, HEIGHT = WIDTH / 12 * 9;
+	
 	private Thread thread;
 	private boolean running = false;
+	private ArrayList<Integer> starsParams = new ArrayList<Integer>();
 	
 	private Random r;
 	private Handler handler;
@@ -34,15 +38,23 @@ public class GameOne extends Canvas implements Runnable {
 	public GameOne() {
 		this.handler = new Handler();
 		
+		r = new Random();
+		
+		for(int i = 0; i < 2000; i += 4) {
+			this.addStar(r.nextInt(WIDTH));
+			this.addStar(r.nextInt(HEIGHT));
+			this.addStar(r.nextInt(4));
+			this.addStar(r.nextInt(4));
+		};
+
+		
 		this.addKeyListener(new KeyInput(this.handler));
 		
-		new Window(WIDTH, HEIGHT, "Building My Game One", this);
+		new Window(WIDTH, HEIGHT, "Space Runner", this);
 		
 		this.hud = new HUD();
 		
 		this.spawner = new Spawner(this.handler, this.hud);
-		
-		r = new Random();
 		
 		this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
 		
@@ -52,6 +64,10 @@ public class GameOne extends Canvas implements Runnable {
 //			this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
 //		};
 		
+	}
+	
+	private void addStar(int star) {
+		this.starsParams.add(star);
 	}
 	
 	public synchronized void start() {
@@ -118,14 +134,27 @@ public class GameOne extends Canvas implements Runnable {
 		};
 		
 		Graphics g = bs.getDrawGraphics();
+		Graphics star = bs.getDrawGraphics();
 		
+		// background color
 		g.setColor(Color.black);
+		// stars color
+		star.setColor(Color.white);
+		
+		// creating background 
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		// creating stars
+		for(int i = 0; i < 2000; i += 4) {
+			star.fillOval(this.starsParams.get(i), this.starsParams.get(i + 1), this.starsParams.get(i + 2), this.starsParams.get(i + 3));
+		};
 		
 		handler.render(g);
 		hud.render(g);
 		
 		g.dispose();
+		star.dispose();
+		
 		bs.show();
 		
 	}
