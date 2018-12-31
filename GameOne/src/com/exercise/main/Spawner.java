@@ -25,7 +25,7 @@ public class Spawner {
 	public void tick() {
 		keepScore = keepScore + 0.05;
 		
-		if(keepScore >= 10) {
+		if(keepScore >= 50) {
 			keepScore = 0;
 			hud.setLevel(hud.getLevel() + 1);
 			
