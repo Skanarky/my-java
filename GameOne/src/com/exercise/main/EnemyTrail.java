@@ -16,6 +16,7 @@ import java.awt.Rectangle;
 public class EnemyTrail extends GameOneObject {
 	
 	private float alpha = 1;
+	
 	// life between 0.1 and 0.001
 	private float life;
 	
@@ -24,7 +25,7 @@ public class EnemyTrail extends GameOneObject {
 	private Color color;
 	private int width, height;
 	
-	public EnemyTrail(int x, int y, ID id, Color color, int width, int height, float life, Handler handler) {
+	public EnemyTrail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler) {
 		super(x, y, id);
 		
 		this.handler = handler;
@@ -49,7 +50,7 @@ public class EnemyTrail extends GameOneObject {
 		g2d.setComposite(this.makeTransparent(this.alpha));
 		
 		g.setColor(this.color);
-		g.fillRect(x, y, this.width, this.height);
+		g.fillRect((int)x, (int)y, this.width, this.height);
 		
 		g2d.setComposite(this.makeTransparent(1));
 	}

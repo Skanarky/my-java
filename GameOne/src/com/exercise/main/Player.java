@@ -18,13 +18,13 @@ public class Player extends GameOneObject {
 	
 	private Handler handler;
 	
-	public Player(int x, int y, ID id, Handler handler) {
+	public Player(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
 	}
 	
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle((int)x, (int)y, 32, 32);
 	}
 
 	public void tick() {
@@ -58,7 +58,7 @@ public class Player extends GameOneObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.7f;
+					HUD.HEALTH -= 0.6f;
 				};
 				
 			};
@@ -68,7 +68,7 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 1f;
+					HUD.HEALTH -= 0.1f;
 				};
 				
 			};
@@ -78,7 +78,7 @@ public class Player extends GameOneObject {
 
 	public void render(Graphics g) {
 		g.setColor(Color.white);
-		g.fillRect(x, y, 32, 32);
+		g.fillRect((int)x, (int)y, 32, 32);
 	}
 	
 }

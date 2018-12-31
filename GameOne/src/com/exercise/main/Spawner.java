@@ -30,16 +30,22 @@ public class Spawner {
 			hud.setLevel(hud.getLevel() + 1);
 				
 			if(hud.getLevel() % 2 == 0 && hud.getLevel() % 3 != 0 && hud.getLevel() % 7 != 0) {
-				this.handler.addObject(new BasicEnemy(r.nextInt(GameOne.WIDTH - 5), r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
+				this.handler.addObject(new BasicEnemy((float) r.nextInt(GameOne.WIDTH - 5), (float) r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
 			};
 			
-			if(hud.getLevel() % 3 == 0 && hud.getLevel() % 2 != 0) {
-				this.handler.addObject(new FastEnemy(r.nextInt(GameOne.WIDTH - 10), r.nextInt(GameOne.HEIGHT - 10), ID.FastEnemy, this.handler));
+			if(hud.getLevel() % 3 == 0 && hud.getLevel() % 2 != 0 && hud.getLevel() % 7 != 0) {
+				this.handler.addObject(new FastEnemy((float) r.nextInt(GameOne.WIDTH - 10), (float) r.nextInt(GameOne.HEIGHT - 10), ID.FastEnemy, this.handler));
 			};
 			if(hud.getLevel() % 7 == 0) {
-				this.handler.addObject(new SmartEnemy(r.nextInt(GameOne.WIDTH - 10), r.nextInt(GameOne.HEIGHT - 10), ID.SmartEnemy, this.handler));
+				for(int i = 0; i < this.handler.gameObjects.size(); ++i) {
+					if(this.handler.gameObjects.get(i).getId() == ID.BasicEnemy) {
+						this.handler.gameObjects.get(i).setVelX(this.handler.gameObjects.get(i).getVelX() + 1f);
+						this.handler.gameObjects.get(i).setVelY(this.handler.gameObjects.get(i).getVelY() + 1f);
+					}
+				};
+				
+				this.handler.addObject(new SmartEnemy((float) r.nextInt(GameOne.WIDTH - 10), (float) r.nextInt(GameOne.HEIGHT - 10), ID.SmartEnemy, this.handler));
 			};
-			
 			
 		};
 	}

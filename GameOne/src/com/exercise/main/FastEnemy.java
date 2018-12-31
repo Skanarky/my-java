@@ -14,13 +14,13 @@ import java.awt.Rectangle;
 public class FastEnemy extends GameOneObject {
 	private Handler handler;
 
-	public FastEnemy(int x, int y, ID id, Handler handler) {
+	public FastEnemy(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		
 		this.handler = handler;
 		
-		velX = 2;
-		velY = 9;
+		velX = 2f;
+		velY = 8f;
 		
 	}
 
@@ -37,10 +37,10 @@ public class FastEnemy extends GameOneObject {
 
 	public void render(Graphics g) {
 		g.setColor(Color.magenta);
-		g.fillRect(x, y, 8, 8);
+		g.fillRect((int)x, (int)y, 8, 8);
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 8, 8);
+		return new Rectangle((int)x, (int)y, 8, 8);
 	}
 }
