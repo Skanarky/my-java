@@ -29,17 +29,18 @@ public class Spawner {
 			keepScore = 0;
 			hud.setLevel(hud.getLevel() + 1);
 			
-			// add Basic enemy
+			/*
+			// add Basic enemy every 2 levels but not divisible by 3 and 7 levels
 			if(hud.getLevel() % 2 == 0 && hud.getLevel() % 3 != 0 && hud.getLevel() % 7 != 0) {
 				this.handler.addObject(new BasicEnemy((float) r.nextInt(GameOne.WIDTH - 5), (float) r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
 			};
 			
-			// add Fast enemy
+			// add Fast enemy every 3 levels but not divisible by 2 and 7 levels
 			if(hud.getLevel() % 3 == 0 && hud.getLevel() % 2 != 0 && hud.getLevel() % 7 != 0) {
 				this.handler.addObject(new FastEnemy((float) r.nextInt(GameOne.WIDTH - 10), (float) r.nextInt(GameOne.HEIGHT - 10), ID.FastEnemy, this.handler));
 			};
 			
-			// add increase speed every 7 levels + new Smart enemy
+			// add Smart enemy and increase speed every 7 levels
 			if(hud.getLevel() % 7 == 0) {
 				for(int i = 0; i < this.handler.gameObjects.size(); ++i) {
 					if(this.handler.gameObjects.get(i).getId() == ID.BasicEnemy) {
@@ -51,6 +52,10 @@ public class Spawner {
 				this.handler.addObject(new SmartEnemy((float) r.nextInt(GameOne.WIDTH - 10), (float) r.nextInt(GameOne.HEIGHT - 10), ID.SmartEnemy, this.handler));
 			};
 			
+			if(hud.getLevel() % 10 == 0) {
+				this.handler.addObject(new BossEnemy((float) r.nextInt(GameOne.WIDTH - 32), (float) r.nextInt(GameOne.HEIGHT - 32), ID.BossEnemy, this.handler));
+			};
+			*/
 		};
 	}
 }

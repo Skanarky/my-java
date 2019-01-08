@@ -58,7 +58,8 @@ public class GameOne extends Canvas implements Runnable {
 		
 		this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
 		
-		this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+//		this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		this.handler.addObject(new BossEnemy((float) r.nextInt(GameOne.WIDTH - 32), (float) r.nextInt(GameOne.HEIGHT - 32), ID.BossEnemy, this.handler));
 		
 //		for(int i = 0; i < 6; ++i) {
 //			this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
