@@ -47,4 +47,49 @@ public class Handler {
 //			o.render(g);
 //		};
 	}
+	
+	public void clearAllEnemies() {
+		
+		// remove all but Player
+		for(int i = 0; i < gameObjects.size(); ++i) {
+			
+			GameOneObject obj = gameObjects.get(i);
+			
+			if(obj.getId() == ID.Player) {
+				
+				this.gameObjects.clear();
+				this.addObject(new Player((float) obj.getX(), (float) obj.getY(), ID.Player, this));
+
+			};
+		};
+		
+	}
+	
+	public void addAllEnemies(ArrayList<GameOneObject> allEnemies) {
+		
+		// clear Boss enemy first
+		for(int i = 0; i < gameObjects.size(); ++i) {
+			
+			GameOneObject obj = gameObjects.get(i);
+			
+			if(obj.getId() == ID.BossEnemy) {
+				this.removeObject(obj);
+			};
+		};
+		
+		// add all enemies back
+		if(gameObjects.size() == 1) {
+			
+			for(int i = 0; i < allEnemies.size(); ++i) {
+			
+				GameOneObject obj = allEnemies.get(i);
+				
+				this.addObject(obj);
+				
+			};
+			
+		};
+		
+	}
+	
 }

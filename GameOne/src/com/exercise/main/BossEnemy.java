@@ -6,6 +6,7 @@ package com.exercise.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 /**
  * @author ILIAN Kutkurov
@@ -14,6 +15,10 @@ import java.awt.Rectangle;
 public class BossEnemy extends GameOneObject {
 	
 	private Handler handler;
+	private Random r = new Random();
+	
+	private int timerMoveDown = 60;
+	private int timerMoveSidew = 50;
 
 	public BossEnemy(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
@@ -21,7 +26,7 @@ public class BossEnemy extends GameOneObject {
 		this.handler = handler;
 		
 		velX = 0f;
-		velY = 5f;
+		velY = 2f;
 		
 	}
 
@@ -29,8 +34,28 @@ public class BossEnemy extends GameOneObject {
 		x += velX;
 		y += velY;
 		
-		if(y <= 0 || y >= GameOne.HEIGHT - 120) velY *= -1;
-		if(x <= 0 || x >= GameOne.WIDTH - 32) velX *= -1;
+		if(timerMoveDown <= 0) this.velY = 0;
+		else timerMoveDown--;
+		
+		if(timerMoveDown <= 0) this.timerMoveSidew--;
+		if(timerMoveSidew <= 0) {
+			
+			// start moving sideways
+			if(velX == 0) velX = 1;
+			
+			// increase speed of sideways move
+			if(velX < 0) velX -= 0.005f;
+			if(velX > 0) velX += 0.005f;
+			
+			velX = GameOne.clamp(velX, -10f, 10f);
+			
+			// shoot bullets
+			int spawn = r.nextInt(10);
+			if(spawn == 0) this.handler.addObject(new BossEnemyBullet((float) this.x + 48, (float) this.y + 48, ID.BossEnemyBullet, this.handler));
+			
+		};
+		
+		if(x <= 0 || x >= GameOne.WIDTH - 96) velX *= -1;
 		
 		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, Color.cyan, 96, 96, 0.1f, this.handler));
 

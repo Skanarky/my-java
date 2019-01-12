@@ -71,6 +71,26 @@ public class Player extends GameOneObject {
 				
 			};
 			
+			// looking for Boss Enemy enemy
+			if(tempObj.getId() == ID.BossEnemy) {
+				
+				if(getBounds().intersects(tempObj.getBounds())) {
+					// collision code
+					HUD.HEALTH -= 1f;
+				};
+				
+			};
+			
+			// looking for Boss Enemy Bullet enemy
+			if(tempObj.getId() == ID.BossEnemyBullet) {
+				
+				if(getBounds().intersects(tempObj.getBounds())) {
+					// collision code
+					HUD.HEALTH -= 0.6f;
+				};
+				
+			};
+			
 		};
 	}
 
