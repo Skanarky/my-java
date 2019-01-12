@@ -13,7 +13,11 @@ import java.util.Random;
 public class Spawner {
 	private Handler handler;
 	private HUD hud;
+	
+	// for today - make a copy method in the Handler and then reset the main gameObjects array
+	// use clear() and other methods on the ArrayList
 	ArrayList<GameOneObject> gameObjectsCopy = new ArrayList<GameOneObject>();
+	
 	private boolean bossMode;
 	
 	private Random r = new Random();
@@ -38,7 +42,17 @@ public class Spawner {
 		keepScore = keepScore + 0.05;
 		
 		if(keepScore >= 5) {
+			
+			// reset keepScore
 			keepScore = 0;
+			
+			// add Player and first Basic enemy
+			if(hud.getLevel() == 1) {
+				this.handler.addObject(new Player((float) GameOne.WIDTH/2-32, (float) GameOne.HEIGHT/2-32, ID.Player, this.handler));
+				this.handler.addObject(new BasicEnemy((float) r.nextInt(GameOne.WIDTH), (float) r.nextInt(GameOne.HEIGHT), ID.BasicEnemy, this.handler));
+			};
+			
+			// add a level
 			hud.setLevel(hud.getLevel() + 1);
 			
 			// remove Boss enemy and add back all enemies - up to level 42 - then maybe You Win!
