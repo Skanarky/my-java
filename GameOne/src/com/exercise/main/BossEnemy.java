@@ -38,6 +38,7 @@ public class BossEnemy extends GameOneObject {
 		else timerMoveDown--;
 		
 		if(timerMoveDown <= 0) this.timerMoveSidew--;
+		
 		if(timerMoveSidew <= 0) {
 			
 			// start moving sideways
@@ -57,7 +58,9 @@ public class BossEnemy extends GameOneObject {
 		
 		if(x <= 0 || x >= GameOne.WIDTH - 96) velX *= -1;
 		
-		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, Color.cyan, 96, 96, 0.1f, this.handler));
+		// BossEnemyTrail ID is only an id without a designated class for it, just using the EnemyTrail class
+		// -> so I can keep track of enemy objects in Handler for the copy of main array of objects
+		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.BossEnemyTrail, Color.cyan, 96, 96, 0.1f, this.handler));
 
 	}
 

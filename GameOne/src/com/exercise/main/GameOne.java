@@ -23,17 +23,21 @@ public class GameOne extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 870264530016327720L;
 	
+	private Handler handler;
+	
+	private Random r;
+	
+	private ArrayList<Integer> starsParams = new ArrayList<Integer>();
+	
 	// started with 640px width
 	public static final int WIDTH = 1024, HEIGHT = WIDTH / 12 * 9;
 	
+	private HUD hud;
+	
+	private Spawner spawner;
+	
 	private Thread thread;
 	private boolean running = false;
-	private ArrayList<Integer> starsParams = new ArrayList<Integer>();
-	
-	private Random r;
-	private Handler handler;
-	private HUD hud;
-	private Spawner spawner;
 	
 	public GameOne() {
 		this.handler = new Handler();
@@ -56,9 +60,9 @@ public class GameOne extends Canvas implements Runnable {
 		
 		this.spawner = new Spawner(this.handler, this.hud);
 		
-//		this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
-//		
-//		this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
+		
+		this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
 		
 //		for(int i = 0; i < 6; ++i) {
 //			this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
