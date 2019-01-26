@@ -32,6 +32,8 @@ public class GameOne extends Canvas implements Runnable {
 	// started with 640px width
 	public static final int WIDTH = 1024, HEIGHT = WIDTH / 12 * 9;
 	
+	private Menu menu;
+	
 	private HUD hud;
 	
 	private Spawner spawner;
@@ -39,8 +41,23 @@ public class GameOne extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
+	public enum STATE {
+		Menu,
+		Help,
+		Game
+	};
+	
+	public STATE gameState = STATE.Menu;
+	
 	public GameOne() {
 		this.handler = new Handler();
+		
+		this.addKeyListener(new KeyInput(this.handler));
+		
+		this.menu = new Menu(this, this.handler);
+		
+		this.addMouseListener(menu);
+		
 		
 		r = new Random();
 		
@@ -51,23 +68,21 @@ public class GameOne extends Canvas implements Runnable {
 			this.addStar(r.nextInt(4));
 		};
 
-		
-		this.addKeyListener(new KeyInput(this.handler));
-		
 		new Window(WIDTH, HEIGHT, "Space Runner", this);
 		
 		this.hud = new HUD();
 		
 		this.spawner = new Spawner(this.handler, this.hud);
 		
-		this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
-		
-		this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
-		
-//		for(int i = 0; i < 6; ++i) {
-//			this.handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
-//		};
-		
+	}
+	
+	public void addFirstObjects() {
+//		Instantiate first game objects -> Player and Enemy
+		if(this.gameState == STATE.Game) {
+			this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
+			
+			this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+		};
 	}
 	
 	private void addStar(int star) {
@@ -125,8 +140,14 @@ public class GameOne extends Canvas implements Runnable {
 	
 	private void tick() {
 		handler.tick();
-		hud.tick();
-		spawner.tick();
+		
+		if(this.gameState == STATE.Game) {
+			hud.tick();
+			spawner.tick();
+		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help) {
+			menu.tick();
+		};
+		
 	}
 	
 	private void render() {
@@ -154,7 +175,12 @@ public class GameOne extends Canvas implements Runnable {
 		};
 		
 		handler.render(g);
-		hud.render(g);
+		
+		if(this.gameState == STATE.Game) {
+			hud.render(g);
+		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help) {
+			menu.render(g);
+		};
 		
 		g.dispose();
 		star.dispose();

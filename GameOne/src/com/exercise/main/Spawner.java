@@ -29,7 +29,7 @@ public class Spawner {
 	public void tick() {
 		keepScore = keepScore + 0.05;
 		
-		if(keepScore >= 5) {
+		if(keepScore >= 30) {
 			
 			// reset keepScore
 			keepScore = 0;
