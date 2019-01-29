@@ -75,6 +75,10 @@ public class Handler {
 		
 	}
 	
+	public void clearAllMenuParticles() {
+		this.gameObjects.clear();
+	}
+	
 	public void clearAllEnemies() {
 		
 		this.addNewEnemy = false;

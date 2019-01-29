@@ -44,7 +44,8 @@ public class GameOne extends Canvas implements Runnable {
 	public enum STATE {
 		Menu,
 		Help,
-		Game
+		Game,
+		End
 	};
 	
 	public STATE gameState = STATE.Menu;
@@ -54,7 +55,9 @@ public class GameOne extends Canvas implements Runnable {
 		
 		this.addKeyListener(new KeyInput(this.handler));
 		
-		this.menu = new Menu(this, this.handler);
+		this.hud = new HUD();
+		
+		this.menu = new Menu(this, this.handler, this.hud);
 		
 		this.addMouseListener(menu);
 		
@@ -70,10 +73,18 @@ public class GameOne extends Canvas implements Runnable {
 
 		new Window(WIDTH, HEIGHT, "Space Runner", this);
 		
-		this.hud = new HUD();
+		this.spawner = new Spawner(this, this.handler, this.hud);
 		
-		this.spawner = new Spawner(this.handler, this.hud);
+		if(this.gameState == STATE.Menu || this.gameState == STATE.End) {
+			this.addMenuParticles();
+		};
 		
+	}
+	
+	public void addMenuParticles() {
+		for(int i = 0; i < 30; ++i) {
+			this.handler.addObject(new MenuParticle((float) r.nextInt(WIDTH - 10), (float) r.nextInt(HEIGHT - 10), ID.MenuParticle, this.handler));
+		};
 	}
 	
 	public void addFirstObjects() {
@@ -144,7 +155,7 @@ public class GameOne extends Canvas implements Runnable {
 		if(this.gameState == STATE.Game) {
 			hud.tick();
 			spawner.tick();
-		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help) {
+		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End) {
 			menu.tick();
 		};
 		
@@ -178,7 +189,7 @@ public class GameOne extends Canvas implements Runnable {
 		
 		if(this.gameState == STATE.Game) {
 			hud.render(g);
-		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help) {
+		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End) {
 			menu.render(g);
 		};
 		

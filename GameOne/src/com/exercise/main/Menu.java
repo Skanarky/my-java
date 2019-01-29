@@ -20,12 +20,16 @@ public class Menu extends MouseAdapter {
 	
 	private GameOne game;
 	private Handler handler;
+	private HUD hud;
 	
-	private Random r;
+	private String gameEnd;
 	
-	public Menu(GameOne g, Handler h) {
+	public Menu(GameOne g, Handler h, HUD hud) {
 		this.game = g;
+		
 		this.handler = h;
+		
+		this.hud = hud;
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -37,6 +41,8 @@ public class Menu extends MouseAdapter {
 		if(this.mouseOver(mx, my, 412, 200, 200, 65)) {
 			if(this.game.gameState == STATE.Menu) {
 				this.game.gameState = STATE.Game;
+				
+				this.handler.gameObjects.clear();
 				
 				this.game.addFirstObjects();
 		
@@ -52,9 +58,9 @@ public class Menu extends MouseAdapter {
 			};
 		};
 		
-		// Back to Menu
+		// Back to Menu or Try Again
 		if(this.mouseOver(mx, my, 150, 100, 242, 65)) {
-			if(this.game.gameState == STATE.Help) {
+			if(this.game.gameState == STATE.Help || this.game.gameState == STATE.End) {
 				
 				this.game.gameState = STATE.Menu;
 				
@@ -97,7 +103,7 @@ public class Menu extends MouseAdapter {
 		if(this.game.gameState == STATE.Menu) {
 			
 			g.setFont(fntMenu);
-			g.drawString("Menu", 445, 150);
+			g.drawString("Space Runner", 340, 150);
 			
 			g.setFont(fntOption);
 			
@@ -113,7 +119,7 @@ public class Menu extends MouseAdapter {
 		} else if (this.game.gameState == STATE.Help) {
 			g.setFont(fntOption);
 			g.drawRect(150, 100, 242, 65);
-			g.drawString("Back to Menu", 160, 145);
+			g.drawString("Back to Menu", 158, 145);
 			
 			g.setFont(fntHelp);
 			g.drawString("Welcome to Space Runner!", 300, 250);
@@ -127,6 +133,22 @@ public class Menu extends MouseAdapter {
 			g.drawString("are 4 types of enemies, from which the Boss is the", 300, 465);
 			g.drawString("scariest (every 10th level) :) !", 300, 490);
 			g.drawString("Good luck!", 300, 530);
+		} else if (this.game.gameState == STATE.End) {
+			g.setFont(fntOption);
+			g.drawRect(150, 100, 242, 65);
+			g.drawString("Play Again", 182, 145);
+			
+			g.setFont(fntHelp);
+			
+			if(this.hud.getFinalHealth() > 0) {
+				this.gameEnd = "Y O U   W O N !";
+			} else {
+				this.gameEnd = "G A M E   O V E R !";
+			};
+			
+			g.drawString(this.gameEnd, 300, 250);
+			g.drawString("You reached a score of " + (int) this.hud.getFinalScore() + " points.", 300, 290);
+			
 		};
 		
 		

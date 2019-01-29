@@ -15,11 +15,12 @@ import java.util.Random;
 public class BossEnemyBullet extends GameOneObject {
 	
 	private Handler handler;
-	private Random r = new Random();
+	private Random r;
 
 	public BossEnemyBullet(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		
+		r = new Random();
 		this.handler = handler;
 		
 		velX = (r.nextInt(5 - -5) + -5);

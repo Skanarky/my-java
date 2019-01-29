@@ -14,10 +14,13 @@ public class HUD {
 	
 	public static float HEALTH = 100f;
 	
-	private int[] colors = new int[3];
+	public int[] colors = new int[3];
 	
 	private float score = 0;
 	private int level = 1;
+	
+	public int finalHealth;
+	public int finalScore;
 	
 	public HUD() {
 		colors[0] = 90;
@@ -76,5 +79,21 @@ public class HUD {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getFinalHealth() {
+		return finalHealth;
+	}
+
+	public void setFinalHealth(int finalHealth) {
+		this.finalHealth = finalHealth;
+	}
+
+	public int getFinalScore() {
+		return finalScore;
+	}
+
+	public void setFinalScore(int finalScore) {
+		this.finalScore = finalScore;
 	}
 }
