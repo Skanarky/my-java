@@ -64,6 +64,11 @@ public class GameOne extends Canvas implements Runnable {
 		
 		r = new Random();
 		
+		// music and sound FX
+		AudioPlayer.loadSoundFX();
+		AudioPlayer.getMusic("backgroundMusic").loop();
+		
+		// window and background
 		for(int i = 0; i < 2000; i += 4) {
 			this.addStar(r.nextInt(WIDTH));
 			this.addStar(r.nextInt(HEIGHT));
@@ -82,7 +87,7 @@ public class GameOne extends Canvas implements Runnable {
 	}
 	
 	public void addMenuParticles() {
-		for(int i = 0; i < 30; ++i) {
+		for(int i = 0; i < 45; ++i) {
 			this.handler.addObject(new MenuParticle((float) r.nextInt(WIDTH - 10), (float) r.nextInt(HEIGHT - 10), ID.MenuParticle, this.handler));
 		};
 	}

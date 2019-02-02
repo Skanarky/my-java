@@ -40,11 +40,14 @@ public class Menu extends MouseAdapter {
 		// Start
 		if(this.mouseOver(mx, my, 412, 200, 200, 65)) {
 			if(this.game.gameState == STATE.Menu) {
+				
 				this.game.gameState = STATE.Game;
 				
 				this.handler.gameObjects.clear();
 				
 				this.game.addFirstObjects();
+				
+				AudioPlayer.getSound("clickFX").play();
 		
 			};
 		};
@@ -54,6 +57,8 @@ public class Menu extends MouseAdapter {
 			if(this.game.gameState == STATE.Menu) {
 				
 				this.game.gameState = STATE.Help;
+				
+				AudioPlayer.getSound("clickFX").play();
 		
 			};
 		};
@@ -64,12 +69,16 @@ public class Menu extends MouseAdapter {
 				
 				this.game.gameState = STATE.Menu;
 				
+				AudioPlayer.getSound("clickFX").play();
+				
 			};
 		};
 		
 		// Quit
 		if(this.mouseOver(mx, my, 412, 430, 200, 65)) {
 			if(this.game.gameState == STATE.Menu) {
+				
+				AudioPlayer.getSound("clickFX").play();
 				
 				System.exit(1);
 		

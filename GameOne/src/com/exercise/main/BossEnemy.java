@@ -51,7 +51,7 @@ public class BossEnemy extends GameOneObject {
 			velX = GameOne.clamp(velX, -10f, 10f);
 			
 			// shoot bullets
-			int spawn = r.nextInt(10);
+			int spawn = r.nextInt(7);
 			if(spawn == 0) this.handler.addObject(new BossEnemyBullet((float) this.x + 48, (float) this.y + 48, ID.BossEnemyBullet, this.handler));
 			
 		};
