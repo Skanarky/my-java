@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  *
  */
-public class PlayerTrail extends SpaceRunnerObject {
+public class EnemyTrail extends SpaceRunnerObject {
 	
 	private float alpha = 1;
 	
@@ -25,7 +25,7 @@ public class PlayerTrail extends SpaceRunnerObject {
 	private Color color;
 	private int width, height;
 	
-	public PlayerTrail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler) {
+	public EnemyTrail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler) {
 		super(x, y, id);
 		
 		this.handler = handler;
@@ -50,7 +50,7 @@ public class PlayerTrail extends SpaceRunnerObject {
 		g2d.setComposite(this.makeTransparent(this.alpha));
 		
 		g.setColor(this.color);
-		g.fillOval((int)x, (int)y, this.width, this.height);
+		g.fillRect((int)x, (int)y, this.width, this.height);
 		
 		g2d.setComposite(this.makeTransparent(1));
 	}

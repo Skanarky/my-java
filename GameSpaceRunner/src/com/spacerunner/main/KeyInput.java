@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.exercise.main.GameSpaceRunner.STATE;
+import com.spacerunner.main.GameSpaceRunner.STATE;
 
 /**
  * @author ILIAN Kutkurov

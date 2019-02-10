@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Canvas;
 import java.awt.Color;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-import com.exercise.main.GameSpaceRunner.STATE;
+import com.spacerunner.main.GameSpaceRunner.STATE;
 
 /**
  * @author Ilian Kutkurov

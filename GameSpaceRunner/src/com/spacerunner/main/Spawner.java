@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.util.Random;
 
-import com.exercise.main.GameSpaceRunner.STATE;
+import com.spacerunner.main.GameSpaceRunner.STATE;
 
 /**
  * @author ILIAN Kutkurov

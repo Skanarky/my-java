@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
