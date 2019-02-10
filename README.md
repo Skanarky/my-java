@@ -1,2 +1,2 @@
 # my-java
-java exercises
+java games & exercises
