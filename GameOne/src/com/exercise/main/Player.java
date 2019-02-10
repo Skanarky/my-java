@@ -46,7 +46,11 @@ public class Player extends GameOneObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.3f;
+					if (GameOne.difficulty == 2) {
+						HUD.HEALTH -= 0.8f;
+					} else {
+						HUD.HEALTH -= 0.4f;
+					}
 				};
 				
 			};
@@ -56,7 +60,11 @@ public class Player extends GameOneObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.5f;
+					if (GameOne.difficulty == 2) {
+						HUD.HEALTH -= 1.2f;
+					} else {
+						HUD.HEALTH -= 0.6f;
+					}
 				};
 				
 			};
@@ -66,7 +74,11 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.15f;
+					if (GameOne.difficulty == 2) {
+						HUD.HEALTH -= 0.4f;
+					} else {
+						HUD.HEALTH -= 0.2f;
+					}
 				};
 				
 			};
@@ -76,7 +88,11 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 1f;
+					if (GameOne.difficulty == 2) {
+						HUD.HEALTH -= 3f;
+					} else {
+						HUD.HEALTH -= 1.5f;
+					}
 				};
 				
 			};
@@ -86,7 +102,11 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					HUD.HEALTH -= 0.6f;
+					if (GameOne.difficulty == 2) {
+						HUD.HEALTH -= 1.4f;
+					} else {
+						HUD.HEALTH -= 0.7f;
+					}
 				};
 				
 			};

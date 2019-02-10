@@ -6,6 +6,8 @@ package com.exercise.main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.exercise.main.GameOne.STATE;
+
 /**
  * @author ILIAN Kutkurov
  *
@@ -16,8 +18,11 @@ public class KeyInput extends KeyAdapter {
 	
 	private boolean[] keyDown = new boolean[4];
 	
-	public KeyInput(Handler handler) {
+	private GameOne game;
+	
+	public KeyInput(Handler handler, GameOne game) {
 		this.handler = handler;
+		this.game = game;
 		 
 		for(boolean b : this.keyDown) {
 			b = false;
@@ -51,6 +56,8 @@ public class KeyInput extends KeyAdapter {
 			 };
 			 
 		 }
+		 
+		 if(key == KeyEvent.VK_SPACE && game.gameState == STATE.Game) GameOne.paused = !GameOne.paused;
 		 
 		 if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}

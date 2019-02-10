@@ -41,8 +41,15 @@ public class GameOne extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
+	public static boolean paused = false;
+	
+	public static int difficulty = 1;
+	// 1 -> normal
+	// 2 -> hard
+	
 	public enum STATE {
 		Menu,
+		Select,
 		Help,
 		Game,
 		End
@@ -53,7 +60,7 @@ public class GameOne extends Canvas implements Runnable {
 	public GameOne() {
 		this.handler = new Handler();
 		
-		this.addKeyListener(new KeyInput(this.handler));
+		this.addKeyListener(new KeyInput(this.handler, this));
 		
 		this.hud = new HUD();
 		
@@ -97,7 +104,16 @@ public class GameOne extends Canvas implements Runnable {
 		if(this.gameState == STATE.Game) {
 			this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
 			
-			this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+			if (difficulty == 2) {
+
+				this.handler.addObject(new HardEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+
+			} else {
+				
+				this.handler.addObject(new BasicEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
+				
+			}
+			
 		};
 	}
 	
@@ -155,12 +171,17 @@ public class GameOne extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		handler.tick();
 		
-		if(this.gameState == STATE.Game) {
-			hud.tick();
-			spawner.tick();
-		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End) {
+		if (this.gameState == STATE.Game) {
+			
+			if (!paused) {
+				handler.tick();
+				hud.tick();
+				spawner.tick();
+			}
+			
+		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End || this.gameState == STATE.Select) {
+			handler.tick();
 			menu.tick();
 		};
 		
@@ -192,9 +213,14 @@ public class GameOne extends Canvas implements Runnable {
 		
 		handler.render(g);
 		
+		if (paused) {
+			g.setColor(Color.red);
+			g.drawString("PAUSED", 490, 360);
+		}
+		
 		if(this.gameState == STATE.Game) {
 			hud.render(g);
-		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End) {
+		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End || this.gameState == STATE.Select) {
 			menu.render(g);
 		};
 		

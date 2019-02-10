@@ -38,7 +38,7 @@ public class Spawner {
 			
 			keepScore = keepScore + 0.05;
 			
-			if(keepScore >= 5) {
+			if(keepScore >= 10) {
 				
 				// reset keepScore
 				keepScore = 0;
@@ -74,7 +74,13 @@ public class Spawner {
 				
 				// add Basic enemy every 2 levels but not divisible by 3 and 7 levels
 				if(!this.bossMode && hud.getLevel() % 2 == 0 && hud.getLevel() % 3 != 0 && hud.getLevel() % 7 != 0) {
-					this.handler.addObject(new BasicEnemy((float) r.nextInt(GameOne.WIDTH - 5), (float) r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
+
+					if (GameOne.difficulty == 2) {
+						this.handler.addObject(new HardEnemy((float) r.nextInt(GameOne.WIDTH - 5), (float) r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
+					} else {
+						this.handler.addObject(new BasicEnemy((float) r.nextInt(GameOne.WIDTH - 5), (float) r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
+					}
+
 				};
 				
 				// add Fast enemy every 3 levels but not divisible by 2 and 7 levels

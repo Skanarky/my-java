@@ -37,11 +37,20 @@ public class Menu extends MouseAdapter {
 		int mx = e.getX();
 		int my = e.getY();
 		
-		// Start
+		// Play / Normal
 		if(this.mouseOver(mx, my, 412, 200, 200, 65)) {
-			if(this.game.gameState == STATE.Menu) {
+			
+			if (this.game.gameState == STATE.Menu) {
+				
+				this.game.gameState = STATE.Select;
+				
+				AudioPlayer.getSound("clickFX").play();
+		
+			} else if (this.game.gameState == STATE.Select) {
 				
 				this.game.gameState = STATE.Game;
+				
+				GameOne.difficulty = 1;
 				
 				this.handler.gameObjects.clear();
 				
@@ -49,21 +58,49 @@ public class Menu extends MouseAdapter {
 				
 				AudioPlayer.getSound("clickFX").play();
 		
-			};
-		};
+			}
+			
+		}
 		
-		// Help
+		// Help / Hard
 		if(this.mouseOver(mx, my, 412, 315, 200, 65)) {
-			if(this.game.gameState == STATE.Menu) {
+			if (this.game.gameState == STATE.Menu) {
 				
 				this.game.gameState = STATE.Help;
 				
 				AudioPlayer.getSound("clickFX").play();
 		
-			};
-		};
+			} else if (this.game.gameState == STATE.Select) {
+				
+				this.game.gameState = STATE.Game;
+				
+				GameOne.difficulty = 2;
+				
+				this.handler.gameObjects.clear();
+				
+				this.game.addFirstObjects();
+				
+				AudioPlayer.getSound("clickFX").play();
 		
-		// Back to Menu or Try Again
+			}
+		}
+		
+		// Quit / Back
+		if(this.mouseOver(mx, my, 412, 430, 200, 65)) {
+			if(this.game.gameState == STATE.Menu) {
+				
+				System.exit(1);
+		
+			} else if(this.game.gameState == STATE.Select) {
+				
+				this.game.gameState = STATE.Menu;
+				
+				AudioPlayer.getSound("clickFX").play();
+		
+			}
+		}
+		
+		// Back to Menu / Play Again
 		if(this.mouseOver(mx, my, 150, 100, 242, 65)) {
 			if(this.game.gameState == STATE.Help || this.game.gameState == STATE.End) {
 				
@@ -71,19 +108,9 @@ public class Menu extends MouseAdapter {
 				
 				AudioPlayer.getSound("clickFX").play();
 				
-			};
-		};
+			}
+		}
 		
-		// Quit
-		if(this.mouseOver(mx, my, 412, 430, 200, 65)) {
-			if(this.game.gameState == STATE.Menu) {
-				
-				AudioPlayer.getSound("clickFX").play();
-				
-				System.exit(1);
-		
-			};
-		};
 	}
 	
 	public void mouseReleased(MouseEvent e) {
@@ -109,7 +136,7 @@ public class Menu extends MouseAdapter {
 		g.setColor(Color.white);
 		
 		
-		if(this.game.gameState == STATE.Menu) {
+		if (this.game.gameState == STATE.Menu) {
 			
 			g.setFont(fntMenu);
 			g.drawString("Space Runner", 340, 150);
@@ -153,12 +180,26 @@ public class Menu extends MouseAdapter {
 				this.gameEnd = "Y O U   W O N !";
 			} else {
 				this.gameEnd = "G A M E   O V E R !";
-			};
+			}
 			
 			g.drawString(this.gameEnd, 300, 250);
 			g.drawString("You reached a score of " + (int) this.hud.getFinalScore() + " points.", 300, 290);
 			
-		};
+		} else if (this.game.gameState == STATE.Select) {
+			
+			g.setFont(fntOption);
+			g.drawString("Select Difficulty", 380, 150);
+			
+			g.drawRect(412, 200, 200, 65);
+			g.drawString("Normal", 455, 245);
+			
+			g.drawRect(412, 315, 200, 65);
+			g.drawString("Hard", 475, 360);
+			
+			g.drawRect(412, 430, 200, 65);
+			g.drawString("Back", 475, 475);
+			
+		}
 		
 		
 	}
