@@ -51,6 +51,7 @@ public class GameOne extends Canvas implements Runnable {
 		Menu,
 		Select,
 		Help,
+		Shop,
 		Game,
 		End
 	};
