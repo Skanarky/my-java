@@ -11,7 +11,7 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  *
  */
-public class FastEnemy extends GameOneObject {
+public class FastEnemy extends SpaceRunnerObject {
 	private Handler handler;
 
 	public FastEnemy(float x, float y, ID id, Handler handler) {
@@ -28,8 +28,8 @@ public class FastEnemy extends GameOneObject {
 		x += velX;
 		y += velY;
 		
-		if(y <= 0 || y >= GameOne.HEIGHT - 16) velY *= -1;
-		if(x <= 0 || x >= GameOne.WIDTH - 8) velX *= -1;
+		if(y <= 0 || y >= GameSpaceRunner.HEIGHT - 16) velY *= -1;
+		if(x <= 0 || x >= GameSpaceRunner.WIDTH - 8) velX *= -1;
 		
 		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, Color.magenta, 7, 7, 0.15f, this.handler));
 

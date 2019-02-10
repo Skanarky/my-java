@@ -5,14 +5,14 @@ package com.exercise.main;
 
 import java.util.Random;
 
-import com.exercise.main.GameOne.STATE;
+import com.exercise.main.GameSpaceRunner.STATE;
 
 /**
  * @author ILIAN Kutkurov
  * Spawning system
  */
 public class Spawner {
-	private GameOne game;
+	private GameSpaceRunner game;
 	private Handler handler;
 	private HUD hud;
 	
@@ -22,7 +22,7 @@ public class Spawner {
 	
 	private double keepScore = 0;
 	
-	public Spawner(GameOne game, Handler handler, HUD hud) {
+	public Spawner(GameSpaceRunner game, Handler handler, HUD hud) {
 		this.bossMode = false;
 		
 		r = new Random();
@@ -66,7 +66,7 @@ public class Spawner {
 					this.handler.clearAllEnemies();
 					
 					// Boss mode :-) -> the object Boss enemy + bossMode state
-					this.handler.addObject(new BossEnemy((float) (GameOne.WIDTH / 2) - 64, (float) -102, ID.BossEnemy, this.handler));
+					this.handler.addObject(new BossEnemy((float) (GameSpaceRunner.WIDTH / 2) - 64, (float) -102, ID.BossEnemy, this.handler));
 					
 					this.bossMode = true;
 					
@@ -75,17 +75,17 @@ public class Spawner {
 				// add Basic enemy every 2 levels but not divisible by 3 and 7 levels
 				if(!this.bossMode && hud.getLevel() % 2 == 0 && hud.getLevel() % 3 != 0 && hud.getLevel() % 7 != 0) {
 
-					if (GameOne.difficulty == 2) {
-						this.handler.addObject(new HardEnemy((float) r.nextInt(GameOne.WIDTH - 5), (float) r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
+					if (GameSpaceRunner.difficulty == 2) {
+						this.handler.addObject(new HardEnemy((float) r.nextInt(GameSpaceRunner.WIDTH - 5), (float) r.nextInt(GameSpaceRunner.HEIGHT - 5), ID.BasicEnemy, this.handler));
 					} else {
-						this.handler.addObject(new BasicEnemy((float) r.nextInt(GameOne.WIDTH - 5), (float) r.nextInt(GameOne.HEIGHT - 5), ID.BasicEnemy, this.handler));
+						this.handler.addObject(new BasicEnemy((float) r.nextInt(GameSpaceRunner.WIDTH - 5), (float) r.nextInt(GameSpaceRunner.HEIGHT - 5), ID.BasicEnemy, this.handler));
 					}
 
 				};
 				
 				// add Fast enemy every 3 levels but not divisible by 2 and 7 levels
 				if(!this.bossMode && hud.getLevel() % 3 == 0 && hud.getLevel() % 2 != 0 && hud.getLevel() % 7 != 0) {
-					this.handler.addObject(new FastEnemy((float) r.nextInt(GameOne.WIDTH - 10), (float) r.nextInt(GameOne.HEIGHT - 10), ID.FastEnemy, this.handler));
+					this.handler.addObject(new FastEnemy((float) r.nextInt(GameSpaceRunner.WIDTH - 10), (float) r.nextInt(GameSpaceRunner.HEIGHT - 10), ID.FastEnemy, this.handler));
 				};
 				
 				// add Smart enemy AND increase speed every 7 levels
@@ -100,7 +100,7 @@ public class Spawner {
 					};
 					
 					// add Smart enemy
-					this.handler.addObject(new SmartEnemy((float) r.nextInt(GameOne.WIDTH - 10), (float) r.nextInt(GameOne.HEIGHT - 10), ID.SmartEnemy, this.handler));
+					this.handler.addObject(new SmartEnemy((float) r.nextInt(GameSpaceRunner.WIDTH - 10), (float) r.nextInt(GameSpaceRunner.HEIGHT - 10), ID.SmartEnemy, this.handler));
 				};
 				
 				// stop boss mode
@@ -110,7 +110,7 @@ public class Spawner {
 						
 						// adding Smart enemies, since I didn't keep them in the gameObjectsEnemies array in Handler
 						for(int i = 0; i < ((hud.getLevel() - 2) / 10); ++i) {
-							this.handler.addObject(new SmartEnemy((float) r.nextInt(GameOne.WIDTH - 10), (float) r.nextInt(GameOne.HEIGHT - 10), ID.SmartEnemy, this.handler));
+							this.handler.addObject(new SmartEnemy((float) r.nextInt(GameSpaceRunner.WIDTH - 10), (float) r.nextInt(GameSpaceRunner.HEIGHT - 10), ID.SmartEnemy, this.handler));
 						};
 						
 						// no more Boss time :-(

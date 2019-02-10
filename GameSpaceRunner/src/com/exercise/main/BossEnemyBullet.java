@@ -12,7 +12,7 @@ import java.util.Random;
  * @author ILIAN Kutkurov
  *
  */
-public class BossEnemyBullet extends GameOneObject {
+public class BossEnemyBullet extends SpaceRunnerObject {
 	
 	private Handler handler;
 	private Random r;
@@ -35,7 +35,7 @@ public class BossEnemyBullet extends GameOneObject {
 //		if(y <= 0 || y >= GameOne.HEIGHT - 32) velY *= -1;
 //		if(x <= 0 || x >= GameOne.WIDTH - 16) velX *= -1;
 		
-		if(this.y >= GameOne.HEIGHT) this.handler.removeObject(this);
+		if(this.y >= GameSpaceRunner.HEIGHT) this.handler.removeObject(this);
 		
 		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, Color.cyan, 15, 15, 0.1f, this.handler));
 

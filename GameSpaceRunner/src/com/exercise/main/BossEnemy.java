@@ -12,7 +12,7 @@ import java.util.Random;
  * @author ILIAN Kutkurov
  *
  */
-public class BossEnemy extends GameOneObject {
+public class BossEnemy extends SpaceRunnerObject {
 	
 	private Handler handler;
 	private Random r = new Random();
@@ -48,7 +48,7 @@ public class BossEnemy extends GameOneObject {
 			if(velX < 0) velX -= 0.005f;
 			if(velX > 0) velX += 0.005f;
 			
-			velX = GameOne.clamp(velX, -10f, 10f);
+			velX = GameSpaceRunner.clamp(velX, -10f, 10f);
 			
 			// shoot bullets
 			int spawn = r.nextInt(7);
@@ -56,7 +56,7 @@ public class BossEnemy extends GameOneObject {
 			
 		};
 		
-		if(x <= 0 || x >= GameOne.WIDTH - 96) velX *= -1;
+		if(x <= 0 || x >= GameSpaceRunner.WIDTH - 96) velX *= -1;
 		
 		// BossEnemyTrail ID is only an id without a designated class for it, just using the EnemyTrail class
 		// -> so I can keep track of enemy objects in Handler for the copy of main array of objects

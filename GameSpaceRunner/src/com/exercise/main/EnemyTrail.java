@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  *
  */
-public class EnemyTrail extends GameOneObject {
+public class EnemyTrail extends SpaceRunnerObject {
 	
 	private float alpha = 1;
 	

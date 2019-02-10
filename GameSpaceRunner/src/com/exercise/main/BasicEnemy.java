@@ -11,7 +11,7 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  *
  */
-public class BasicEnemy extends GameOneObject {
+public class BasicEnemy extends SpaceRunnerObject {
 	
 	private Handler handler;
 
@@ -29,8 +29,8 @@ public class BasicEnemy extends GameOneObject {
 		x += velX;
 		y += velY;
 		
-		if(y <= 0 || y >= GameOne.HEIGHT - 32) velY *= -1;
-		if(x <= 0 || x >= GameOne.WIDTH - 16) velX *= -1;
+		if(y <= 0 || y >= GameSpaceRunner.HEIGHT - 32) velY *= -1;
+		if(x <= 0 || x >= GameSpaceRunner.WIDTH - 16) velX *= -1;
 		
 		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, Color.red, 15, 15, 0.1f, this.handler));
 

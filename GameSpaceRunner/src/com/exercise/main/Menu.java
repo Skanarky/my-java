@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-import com.exercise.main.GameOne.STATE;
+import com.exercise.main.GameSpaceRunner.STATE;
 
 /**
  * @author Ilian Kutkurov
@@ -18,13 +18,13 @@ import com.exercise.main.GameOne.STATE;
  */
 public class Menu extends MouseAdapter {
 	
-	private GameOne game;
+	private GameSpaceRunner game;
 	private Handler handler;
 	private HUD hud;
 	
 	private String gameEnd;
 	
-	public Menu(GameOne g, Handler h, HUD hud) {
+	public Menu(GameSpaceRunner g, Handler h, HUD hud) {
 		this.game = g;
 		
 		this.handler = h;
@@ -50,7 +50,7 @@ public class Menu extends MouseAdapter {
 				
 				this.game.gameState = STATE.Game;
 				
-				GameOne.difficulty = 1;
+				GameSpaceRunner.difficulty = 1;
 				
 				this.handler.gameObjects.clear();
 				
@@ -74,7 +74,7 @@ public class Menu extends MouseAdapter {
 				
 				this.game.gameState = STATE.Game;
 				
-				GameOne.difficulty = 2;
+				GameSpaceRunner.difficulty = 2;
 				
 				this.handler.gameObjects.clear();
 				
