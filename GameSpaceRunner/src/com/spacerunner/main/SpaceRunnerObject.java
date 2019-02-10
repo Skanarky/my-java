@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -10,7 +10,7 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  * This class will be the base for AI and Players game objects  
  */
-public abstract class GameOneObject {
+public abstract class SpaceRunnerObject {
 	
 	protected ID id;
 	
@@ -18,7 +18,7 @@ public abstract class GameOneObject {
 	
 	protected float velX, velY;
 	
-	public GameOneObject(float x, float y, ID id) {
+	public SpaceRunnerObject(float x, float y, ID id) {
 		this.x = x;
 		this.y = y;
 		this.id = id;

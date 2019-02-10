@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,11 +29,11 @@ public class HUD {
 	}
 	
 	public void tick() {
-		HEALTH = GameOne.clamp(HEALTH, 0f, 100f);
+		HEALTH = GameSpaceRunner.clamp(HEALTH, 0f, 100f);
 		
-		colors[0] = (int)GameOne.clamp(colors[0], 0, 255);
-		colors[1] = (int)GameOne.clamp(colors[1], 0, 255);
-		colors[2] = (int)GameOne.clamp(colors[2], 0, 255);
+		colors[0] = (int)GameSpaceRunner.clamp(colors[0], 0, 255);
+		colors[1] = (int)GameSpaceRunner.clamp(colors[1], 0, 255);
+		colors[2] = (int)GameSpaceRunner.clamp(colors[2], 0, 255);
 		
 		if(HEALTH <= 50) {
 			colors[0] = 244;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -16,16 +16,16 @@ public class Handler {
 //	LinkedList<GameOneObject> gameObjects = new LinkedList<GameOneObject>();
 	
 //	Maybe use the ArrayList instead - better with index access than LinkedList
-	ArrayList<GameOneObject> gameObjects = new ArrayList<GameOneObject>();
+	ArrayList<SpaceRunnerObject> gameObjects = new ArrayList<SpaceRunnerObject>();
 	
 	// Copy of main array of enemy objects - for Boss Mode, when clearing all enemies
 	//and later bring them back
-	ArrayList<GameOneObject> gameObjectsEnemies = new ArrayList<GameOneObject>();
+	ArrayList<SpaceRunnerObject> gameObjectsEnemies = new ArrayList<SpaceRunnerObject>();
 	
 	// boolean for adding or not objects in gameObjectsEnemies
 	private boolean addNewEnemy = true;
 	
-	public void addObject(GameOneObject o) {
+	public void addObject(SpaceRunnerObject o) {
 		
 		if(this.addNewEnemy) {
 			
@@ -45,7 +45,7 @@ public class Handler {
 		
 	}
 	
-	public void removeObject(GameOneObject o) {
+	public void removeObject(SpaceRunnerObject o) {
 		this.gameObjects.remove(o);
 	}
 	
@@ -53,7 +53,7 @@ public class Handler {
 		// Need to use this type of loop, because there are concurrent modifications (EnemyTrail),
 		// the forEach loop throws an error
 		for(int i = 0; i < gameObjects.size(); ++i) {
-			GameOneObject obj = gameObjects.get(i);
+			SpaceRunnerObject obj = gameObjects.get(i);
 			obj.tick();
 		};
 		
@@ -65,7 +65,7 @@ public class Handler {
 
 	public void render(Graphics g) {
 		for(int i = 0; i < gameObjects.size(); ++i) {
-			GameOneObject obj = gameObjects.get(i);
+			SpaceRunnerObject obj = gameObjects.get(i);
 			obj.render(g);
 		};
 		
@@ -86,7 +86,7 @@ public class Handler {
 		// remove all but Player
 		for(int i = 0; i < gameObjects.size(); ++i) {
 			
-			GameOneObject obj = gameObjects.get(i);
+			SpaceRunnerObject obj = gameObjects.get(i);
 			
 			if(obj.getId() == ID.Player) {
 				
@@ -111,7 +111,7 @@ public class Handler {
 		// add all enemies back
 		for(int i = 0; i < this.gameObjectsEnemies.size(); ++i) {
 		
-			GameOneObject obj = this.gameObjectsEnemies.get(i);
+			SpaceRunnerObject obj = this.gameObjectsEnemies.get(i);
 			
 			this.addObject(obj);
 			

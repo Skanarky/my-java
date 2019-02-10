@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,7 +11,7 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  *
  */
-public class Player extends GameOneObject {
+public class Player extends SpaceRunnerObject {
 	
 	private Handler handler;
 	
@@ -28,8 +28,8 @@ public class Player extends GameOneObject {
 		x += velX;
 		y += velY;
 		
-		x = GameOne.clamp(x, 0, GameOne.WIDTH - 33);
-		y = GameOne.clamp(y, 0, GameOne.HEIGHT - 54);
+		x = GameSpaceRunner.clamp(x, 0, GameSpaceRunner.WIDTH - 33);
+		y = GameSpaceRunner.clamp(y, 0, GameSpaceRunner.HEIGHT - 54);
 		
 		this.handler.addObject(new PlayerTrail((float) (this.x + 7), (float) (this.y + 25), ID.PlayerTrail, Color.white, 7, 7, 0.18f, this.handler));
 		this.handler.addObject(new PlayerTrail((float) (this.x + 21), (float) (this.y + 25), ID.PlayerTrail, Color.white, 7, 7, 0.18f, this.handler));
@@ -39,14 +39,14 @@ public class Player extends GameOneObject {
 	
 	private void collision() {
 		for(int i = 0; i < this.handler.gameObjects.size(); ++i) {
-			GameOneObject tempObj = this.handler.gameObjects.get(i);
+			SpaceRunnerObject tempObj = this.handler.gameObjects.get(i);
 	
 			// looking for Basic enemy
 			if(tempObj.getId() == ID.BasicEnemy) {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameOne.difficulty == 2) {
+					if (GameSpaceRunner.difficulty == 2) {
 						HUD.HEALTH -= 0.8f;
 					} else {
 						HUD.HEALTH -= 0.4f;
@@ -60,7 +60,7 @@ public class Player extends GameOneObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameOne.difficulty == 2) {
+					if (GameSpaceRunner.difficulty == 2) {
 						HUD.HEALTH -= 1.2f;
 					} else {
 						HUD.HEALTH -= 0.6f;
@@ -74,7 +74,7 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameOne.difficulty == 2) {
+					if (GameSpaceRunner.difficulty == 2) {
 						HUD.HEALTH -= 0.4f;
 					} else {
 						HUD.HEALTH -= 0.2f;
@@ -88,7 +88,7 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameOne.difficulty == 2) {
+					if (GameSpaceRunner.difficulty == 2) {
 						HUD.HEALTH -= 3f;
 					} else {
 						HUD.HEALTH -= 1.5f;
@@ -102,7 +102,7 @@ public class Player extends GameOneObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameOne.difficulty == 2) {
+					if (GameSpaceRunner.difficulty == 2) {
 						HUD.HEALTH -= 1.4f;
 					} else {
 						HUD.HEALTH -= 0.7f;

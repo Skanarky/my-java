@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.exercise.main.GameOne.STATE;
+import com.spacerunner.main.GameSpaceRunner.STATE;
 
 /**
  * @author ILIAN Kutkurov
@@ -18,9 +18,9 @@ public class KeyInput extends KeyAdapter {
 	
 	private boolean[] keyDown = new boolean[4];
 	
-	private GameOne game;
+	private GameSpaceRunner game;
 	
-	public KeyInput(Handler handler, GameOne game) {
+	public KeyInput(Handler handler, GameSpaceRunner game) {
 		this.handler = handler;
 		this.game = game;
 		 
@@ -33,7 +33,7 @@ public class KeyInput extends KeyAdapter {
 		 int key = e.getKeyCode();
 		 
 		 for(int i = 0; i < handler.gameObjects.size(); ++i) {
-			 GameOneObject o = handler.gameObjects.get(i);
+			 SpaceRunnerObject o = handler.gameObjects.get(i);
 					 
 			 if(o.getId() == ID.Player) {
 				 // events player 1
@@ -57,7 +57,7 @@ public class KeyInput extends KeyAdapter {
 			 
 		 }
 		 
-		 if(key == KeyEvent.VK_SPACE && game.gameState == STATE.Game) GameOne.paused = !GameOne.paused;
+		 if(key == KeyEvent.VK_SPACE && game.gameState == STATE.Game) GameSpaceRunner.paused = !GameSpaceRunner.paused;
 		 
 		 if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}
@@ -66,7 +66,7 @@ public class KeyInput extends KeyAdapter {
 		int key = e.getKeyCode();
 		
 		for(int i = 0; i < handler.gameObjects.size(); ++i) {
-			 GameOneObject o = handler.gameObjects.get(i);
+			 SpaceRunnerObject o = handler.gameObjects.get(i);
 					 
 			 if(o.getId() == ID.Player) {
 				 // events player 1

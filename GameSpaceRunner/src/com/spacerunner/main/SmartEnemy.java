@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,9 +11,9 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  *
  */
-public class SmartEnemy extends GameOneObject {
+public class SmartEnemy extends SpaceRunnerObject {
 	private Handler handler;
-	private GameOneObject player;
+	private SpaceRunnerObject player;
 
 	public SmartEnemy(float x, float y, ID id, Handler handler) {
 		super(x, y, id);

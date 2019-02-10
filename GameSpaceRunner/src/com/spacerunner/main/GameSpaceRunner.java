@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -16,7 +16,7 @@ import java.util.Random;
  * SINGLE threaded game
  * Main Class
  */
-public class GameOne extends Canvas implements Runnable {
+public class GameSpaceRunner extends Canvas implements Runnable {
 	
 	/**
 	 * Generated Serial Version ID
@@ -58,7 +58,7 @@ public class GameOne extends Canvas implements Runnable {
 	
 	public STATE gameState = STATE.Menu;
 	
-	public GameOne() {
+	public GameSpaceRunner() {
 		this.handler = new Handler();
 		
 		this.addKeyListener(new KeyInput(this.handler, this));
@@ -239,7 +239,7 @@ public class GameOne extends Canvas implements Runnable {
 	}
 	
 	public static void main(String args[]) {
-		new GameOne();
+		new GameSpaceRunner();
 	}
 	
 }

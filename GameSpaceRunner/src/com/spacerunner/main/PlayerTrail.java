@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  * @author ILIAN Kutkurov
  *
  */
-public class PlayerTrail extends GameOneObject {
+public class PlayerTrail extends SpaceRunnerObject {
 	
 	private float alpha = 1;
 	

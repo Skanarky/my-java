@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,7 +12,7 @@ import java.util.Random;
  * @author ILIAN Kutkurov
  *
  */
-public class HardEnemy extends GameOneObject {
+public class HardEnemy extends SpaceRunnerObject {
 	
 	private Handler handler;
 	
@@ -35,7 +35,7 @@ public class HardEnemy extends GameOneObject {
 		y += velY;
 		
 		// BELOW is the difference with Basic Enemy (unpredictable bouncing of the edges)
-		if(y <= 0 || y >= GameOne.HEIGHT - 32) {
+		if(y <= 0 || y >= GameSpaceRunner.HEIGHT - 32) {
 //			velY *= -1;
 			if (velY < 0) {
 				velY = -(r.nextInt(7) + 1) * -1;
@@ -43,7 +43,7 @@ public class HardEnemy extends GameOneObject {
 				velY = (r.nextInt(7) + 1) * -1;
 			}
 		}
-		if(x <= 0 || x >= GameOne.WIDTH - 16) {
+		if(x <= 0 || x >= GameSpaceRunner.WIDTH - 16) {
 //			velX *= -1;
 			if (velX < 0) {
 				velX = -(r.nextInt(7) + 1) * -1;

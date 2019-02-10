@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.exercise.main;
+package com.spacerunner.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,7 +12,7 @@ import java.util.Random;
  * @author Ilian Kutkurov
  *
  */
-public class MenuParticle extends GameOneObject {
+public class MenuParticle extends SpaceRunnerObject {
 	private Handler handler;
 	
 	private Random r;
@@ -47,8 +47,8 @@ public class MenuParticle extends GameOneObject {
 		x += velX;
 		y += velY;
 		
-		if(y <= 0 || y >= GameOne.HEIGHT - 16) velY *= -1;
-		if(x <= 0 || x >= GameOne.WIDTH - 8) velX *= -1;
+		if(y <= 0 || y >= GameSpaceRunner.HEIGHT - 16) velY *= -1;
+		if(x <= 0 || x >= GameSpaceRunner.WIDTH - 8) velX *= -1;
 		
 		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, this.col, 7, 7, 0.15f, this.handler));
 
