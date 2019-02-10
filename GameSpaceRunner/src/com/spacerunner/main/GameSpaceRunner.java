@@ -34,6 +34,8 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 	
 	private Menu menu;
 	
+	private Shop shop;
+	
 	private HUD hud;
 	
 	private Spawner spawner;
@@ -66,6 +68,8 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 		this.hud = new HUD();
 		
 		this.menu = new Menu(this, this.handler, this.hud);
+		
+		this.shop = new Shop(this.handler);
 		
 		this.addMouseListener(menu);
 		
@@ -176,14 +180,14 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 		if (this.gameState == STATE.Game) {
 			
 			if (!paused) {
-				handler.tick();
-				hud.tick();
-				spawner.tick();
+				this.handler.tick();
+				this.hud.tick();
+				this.spawner.tick();
 			}
 			
 		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End || this.gameState == STATE.Select) {
-			handler.tick();
-			menu.tick();
+			this.handler.tick();
+			this.menu.tick();
 		};
 		
 	}
@@ -212,17 +216,25 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 			star.fillOval(this.starsParams.get(i), this.starsParams.get(i + 1), this.starsParams.get(i + 2), this.starsParams.get(i + 3));
 		};
 		
-		handler.render(g);
-		
 		if (paused) {
 			g.setColor(Color.red);
 			g.drawString("PAUSED", 490, 360);
 		}
 		
 		if(this.gameState == STATE.Game) {
-			hud.render(g);
+			
+			this.handler.render(g);
+			this.hud.render(g);
+			
+		} else if (this.gameState == STATE.Shop) {
+			
+			this.shop.render(g);
+			
 		} else if (this.gameState == STATE.Menu || this.gameState == STATE.Help || this.gameState == STATE.End || this.gameState == STATE.Select) {
-			menu.render(g);
+			
+			this.handler.render(g);
+			this.menu.render(g);
+			
 		};
 		
 		g.dispose();

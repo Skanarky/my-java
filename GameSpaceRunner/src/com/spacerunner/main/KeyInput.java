@@ -57,9 +57,19 @@ public class KeyInput extends KeyAdapter {
 			 
 		 }
 		 
-		 if(key == KeyEvent.VK_SPACE && game.gameState == STATE.Game) GameSpaceRunner.paused = !GameSpaceRunner.paused;
+		 if (key == KeyEvent.VK_SPACE && game.gameState == STATE.Game) GameSpaceRunner.paused = !GameSpaceRunner.paused;
 		 
-		 if(key == KeyEvent.VK_ESCAPE) System.exit(1);
+		 if (key == KeyEvent.VK_ENTER) {
+			 
+			 if (game.gameState == STATE.Game) {
+				 game.gameState = STATE.Shop;
+			 } else if (game.gameState == STATE.Shop) {
+				 game.gameState = STATE.Game;
+			 } 
+			 
+		 }
+		 
+		 if (key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}
 	
 	public void keyReleased(KeyEvent e) {

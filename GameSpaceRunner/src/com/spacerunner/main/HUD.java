@@ -62,6 +62,7 @@ public class HUD {
 		
 		g.drawString("Score: " + (int)score, 915, 20);
 		g.drawString("Level: " + level, 915, 35);
+		g.drawString("Space for Shop: ", 915, 50);
 		g.drawString((int)HEALTH + "%", 110, 27);
 	}
 
