@@ -15,6 +15,7 @@ public class Spawner {
 	private GameSpaceRunner game;
 	private Handler handler;
 	private HUD hud;
+	private Shop shop;
 	
 	private boolean bossMode;
 	
@@ -22,7 +23,7 @@ public class Spawner {
 	
 	private double keepScore = 0;
 	
-	public Spawner(GameSpaceRunner game, Handler handler, HUD hud) {
+	public Spawner(GameSpaceRunner game, Handler handler, HUD hud, Shop shop) {
 		this.bossMode = false;
 		
 		r = new Random();
@@ -30,6 +31,7 @@ public class Spawner {
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
+		this.shop = shop;
 	}
 	
 	public void tick() {
@@ -138,6 +140,7 @@ public class Spawner {
 	public void finishGame() {
 		this.handler.gameObjects.clear();
 		this.handler.gameObjectsEnemies.clear();
+		this.handler.setPlayerSpd(3);
 		
 		this.game.addMenuParticles();
 		
@@ -148,10 +151,15 @@ public class Spawner {
 		
 		this.hud.setScore(0f);
 		this.hud.setLevel(1);
+		this.hud.setBounds(0);
 		HUD.HEALTH = 100f;
 		
 		this.hud.colors[0] = 90;
 		this.hud.colors[1] = 210;
 		this.hud.colors[2] = 30;
+		
+		this.shop.setPriceUH(250);
+		this.shop.setPriceUS(250);
+		this.shop.setPriceRH(200);
 	}
 }

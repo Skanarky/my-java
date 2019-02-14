@@ -20,9 +20,12 @@ public class KeyInput extends KeyAdapter {
 	
 	private GameSpaceRunner game;
 	
-	public KeyInput(Handler handler, GameSpaceRunner game) {
+	private Shop shop;
+	
+	public KeyInput(Handler handler, GameSpaceRunner game, Shop sh) {
 		this.handler = handler;
 		this.game = game;
+		this.shop = sh;
 		 
 		for(boolean b : this.keyDown) {
 			b = false;
@@ -38,19 +41,19 @@ public class KeyInput extends KeyAdapter {
 			 if(o.getId() == ID.Player) {
 				 // events player 1
 				 if(key == KeyEvent.VK_UP) {
-					 o.setVelY(-5);
+					 o.setVelY(-this.handler.getPlayerSpd());
 					 this.keyDown[0] = true;
 				 };
 				 if(key == KeyEvent.VK_DOWN) {
-					 o.setVelY(5);
+					 o.setVelY(this.handler.getPlayerSpd());
 					 this.keyDown[1] = true;
 				 };
 				 if(key == KeyEvent.VK_LEFT) {
-					 o.setVelX(-5);
+					 o.setVelX(-this.handler.getPlayerSpd());
 					 this.keyDown[2] = true;
 				 };
 				 if(key == KeyEvent.VK_RIGHT) {
-					 o.setVelX(5);
+					 o.setVelX(this.handler.getPlayerSpd());
 					 this.keyDown[3] = true;
 				 };
 			 };
@@ -65,6 +68,7 @@ public class KeyInput extends KeyAdapter {
 				 game.gameState = STATE.Shop;
 			 } else if (game.gameState == STATE.Shop) {
 				 game.gameState = STATE.Game;
+				 this.shop.setEnoughOrNot("");
 			 } 
 			 
 		 }

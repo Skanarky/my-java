@@ -63,16 +63,16 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 	public GameSpaceRunner() {
 		this.handler = new Handler();
 		
-		this.addKeyListener(new KeyInput(this.handler, this));
-		
 		this.hud = new HUD();
 		
 		this.menu = new Menu(this, this.handler, this.hud);
 		
-		this.shop = new Shop(this.handler);
+		this.shop = new Shop(this, this.handler, this.hud);
+		
+		this.addKeyListener(new KeyInput(this.handler, this, this.shop));
 		
 		this.addMouseListener(menu);
-		
+		this.addMouseListener(shop);
 		
 		r = new Random();
 		
@@ -90,7 +90,7 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 
 		new Window(WIDTH, HEIGHT, "Space Runner", this);
 		
-		this.spawner = new Spawner(this, this.handler, this.hud);
+		this.spawner = new Spawner(this, this.handler, this.hud, this.shop);
 		
 		if(this.gameState == STATE.Menu || this.gameState == STATE.End) {
 			this.addMenuParticles();

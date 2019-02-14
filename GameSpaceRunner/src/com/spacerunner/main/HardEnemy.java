@@ -35,21 +35,37 @@ public class HardEnemy extends SpaceRunnerObject {
 		y += velY;
 		
 		// BELOW is the difference with Basic Enemy (unpredictable bouncing of the edges)
-		if(y <= 0 || y >= GameSpaceRunner.HEIGHT - 32) {
+		if(y <= 16 || y >= GameSpaceRunner.HEIGHT - 32) {
 //			velY *= -1;
+			
 			if (velY < 0) {
-				velY = -(r.nextInt(7) + 1) * -1;
+				velY = 1.5f + (float) r.nextInt(7);
 			} else {
-				velY = (r.nextInt(7) + 1) * -1;
+				velY = -1.5f - (float) r.nextInt(7);
 			}
+			
+			// unstable
+//			if (velY < 0) {
+//				velY = (float)(-(r.nextInt(7) + 1) * -1);
+//			} else {
+//				velY = (float)((r.nextInt(7) + 1) * -1);
+//			}
 		}
-		if(x <= 0 || x >= GameSpaceRunner.WIDTH - 16) {
+		if(x <= 16 || x >= GameSpaceRunner.WIDTH - 32) {
 //			velX *= -1;
+			
 			if (velX < 0) {
-				velX = -(r.nextInt(7) + 1) * -1;
+				velX = 1.5f + (float) r.nextInt(7);
 			} else {
-				velX = (r.nextInt(7) + 1) * -1;
+				velX = -1.5f - (float) r.nextInt(7);
 			}
+			
+			// unstable
+//			if (velX < 0) {
+//				velX = (float)(-(r.nextInt(7) + 1) * -1);
+//			} else {
+//				velX = (float)((r.nextInt(7) + 1) * -1);
+//			}
 		}
 		
 		this.handler.addObject(new EnemyTrail(this.x, this.y, ID.EnemyTrail, Color.red, 15, 15, 0.1f, this.handler));

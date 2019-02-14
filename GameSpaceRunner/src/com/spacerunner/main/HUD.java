@@ -14,6 +14,8 @@ public class HUD {
 	
 	public static float HEALTH = 100f;
 	
+	public int bounds = 0;
+
 	public int[] colors = new int[3];
 	
 	private float score = 0;
@@ -29,7 +31,7 @@ public class HUD {
 	}
 	
 	public void tick() {
-		HEALTH = GameSpaceRunner.clamp(HEALTH, 0f, 100f);
+		HEALTH = GameSpaceRunner.clamp(HEALTH, 0f, 100f  + (float)this.bounds);
 		
 		colors[0] = (int)GameSpaceRunner.clamp(colors[0], 0, 255);
 		colors[1] = (int)GameSpaceRunner.clamp(colors[1], 0, 255);
@@ -52,18 +54,26 @@ public class HUD {
 
 	public void render(Graphics g) {
 		g.setColor(Color.gray);
-		g.fillRect(20, 10, 204, 24);
+		g.fillRect(20, 10, 204 + this.bounds, 24);
 		
 		g.setColor(new Color(colors[0], colors[1], colors[2]));
 		g.fillRect(22, 12, (int)HEALTH * 2, 20);
 		
 		g.setColor(Color.white);
-		g.drawRect(20, 10, 204, 24);
+		g.drawRect(20, 10, 204 + this.bounds, 24);
 		
 		g.drawString("Score: " + (int)score, 915, 20);
 		g.drawString("Level: " + level, 915, 35);
 		g.drawString("Space for Shop: ", 915, 50);
 		g.drawString((int)HEALTH + "%", 110, 27);
+	}
+	
+	public int getBounds() {
+		return bounds;
+	}
+
+	public void setBounds(int bounds) {
+		this.bounds = bounds;
 	}
 
 	public float getScore() {

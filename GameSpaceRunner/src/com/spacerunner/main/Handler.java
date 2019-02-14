@@ -25,6 +25,9 @@ public class Handler {
 	// boolean for adding or not objects in gameObjectsEnemies
 	private boolean addNewEnemy = true;
 	
+	// speed of Player
+	public int playerSpd = 3;
+	
 	public void addObject(SpaceRunnerObject o) {
 		
 		if(this.addNewEnemy) {
@@ -45,6 +48,14 @@ public class Handler {
 		
 	}
 	
+	public int getPlayerSpd() {
+		return playerSpd;
+	}
+
+	public void setPlayerSpd(int playerSpd) {
+		this.playerSpd = playerSpd;
+	}
+
 	public void removeObject(SpaceRunnerObject o) {
 		this.gameObjects.remove(o);
 	}
