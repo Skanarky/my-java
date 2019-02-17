@@ -208,7 +208,7 @@ public class Shop extends MouseAdapter {
 	}
 
 	public void setEnoughOrNot(String enoughOrNot) {
-		this.enoughOrNot = enoughOrNot;
+		Shop.enoughOrNot = enoughOrNot;
 	}
 
 	private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
