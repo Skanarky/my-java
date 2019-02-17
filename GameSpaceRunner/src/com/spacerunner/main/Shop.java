@@ -96,7 +96,7 @@ public class Shop extends MouseAdapter {
 		g.setFont(fntOption);
 		g.drawString("Score: " + (int)this.hud.getScore(), 375, 560);
 		g.setColor(Color.orange);
-		g.drawString(this.enoughOrNot, 375, 630);
+		g.drawString(this.getEnoughOrNot(), 375, 630);
 		
 		g.setColor(Color.white);
 		g.setFont(fntSmall);

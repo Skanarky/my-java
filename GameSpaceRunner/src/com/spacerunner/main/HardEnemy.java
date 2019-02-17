@@ -6,7 +6,7 @@ package com.spacerunner.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.Random;
+//import java.util.Random;
 
 /**
  * @author ILIAN Kutkurov
@@ -16,14 +16,14 @@ public class HardEnemy extends SpaceRunnerObject {
 	
 	private Handler handler;
 	
-	private Random r;
+//	private Random r;
 
 	public HardEnemy(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		
 		this.handler = handler;
 		
-		r = new Random();
+//		r = new Random();
 		
 		// the only difference with the Basic Enemy is the initial speed for now
 		velX = 3.5f;

@@ -16,7 +16,7 @@ public class KeyInput extends KeyAdapter {
 	
 	private Handler handler;
 	
-	private boolean[] keyDown = new boolean[4];
+	private boolean[] keysDown = new boolean[4];
 	
 	private GameSpaceRunner game;
 	
@@ -27,7 +27,7 @@ public class KeyInput extends KeyAdapter {
 		this.game = game;
 		this.shop = sh;
 		 
-		for(boolean b : this.keyDown) {
+		for(@SuppressWarnings("unused") boolean b : this.keysDown) {
 			b = false;
 		};
 	}
@@ -42,19 +42,19 @@ public class KeyInput extends KeyAdapter {
 				 // events player 1
 				 if(key == KeyEvent.VK_UP) {
 					 o.setVelY(-this.handler.getPlayerSpd());
-					 this.keyDown[0] = true;
+					 this.keysDown[0] = true;
 				 };
 				 if(key == KeyEvent.VK_DOWN) {
 					 o.setVelY(this.handler.getPlayerSpd());
-					 this.keyDown[1] = true;
+					 this.keysDown[1] = true;
 				 };
 				 if(key == KeyEvent.VK_LEFT) {
 					 o.setVelX(-this.handler.getPlayerSpd());
-					 this.keyDown[2] = true;
+					 this.keysDown[2] = true;
 				 };
 				 if(key == KeyEvent.VK_RIGHT) {
 					 o.setVelX(this.handler.getPlayerSpd());
-					 this.keyDown[3] = true;
+					 this.keysDown[3] = true;
 				 };
 			 };
 			 
@@ -84,15 +84,15 @@ public class KeyInput extends KeyAdapter {
 					 
 			 if(o.getId() == ID.Player) {
 				 // events player 1
-				 if(key == KeyEvent.VK_UP) this.keyDown[0] = false;
-				 if(key == KeyEvent.VK_DOWN) this.keyDown[1] = false;
-				 if(key == KeyEvent.VK_LEFT) this.keyDown[2] = false;
-				 if(key == KeyEvent.VK_RIGHT) this.keyDown[3] = false;
+				 if(key == KeyEvent.VK_UP) this.keysDown[0] = false;
+				 if(key == KeyEvent.VK_DOWN) this.keysDown[1] = false;
+				 if(key == KeyEvent.VK_LEFT) this.keysDown[2] = false;
+				 if(key == KeyEvent.VK_RIGHT) this.keysDown[3] = false;
 				 
 				 // vertical movement
-				 if(!this.keyDown[0] && !this.keyDown[1]) o.setVelY(0);
+				 if(!this.keysDown[0] && !this.keysDown[1]) o.setVelY(0);
 				 // horizontal movement
-				 if(!this.keyDown[2] && !this.keyDown[3]) o.setVelX(0);
+				 if(!this.keysDown[2] && !this.keysDown[3]) o.setVelX(0);
 			 };
 			 
 		 }
