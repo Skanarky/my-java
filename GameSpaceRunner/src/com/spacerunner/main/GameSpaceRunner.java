@@ -29,7 +29,7 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 	
 	private ArrayList<Integer> starsParams = new ArrayList<Integer>();
 	
-	// started with 640px width
+	// started with 640px width, now 1024
 	public static final int WIDTH = 1024, HEIGHT = WIDTH / 12 * 9;
 	
 	private Menu menu;
