@@ -168,7 +168,9 @@ public class Menu extends MouseAdapter {
 			g.drawString("All enemies have different damage levels and there", 300, 440);
 			g.drawString("are 4 types of enemies, from which the Boss is the", 300, 465);
 			g.drawString("scariest (every 10th level) :) !", 300, 490);
-			g.drawString("Good luck!", 300, 530);
+			g.drawString("Hit 'Enter' to enter the shop.", 300, 535);
+			g.drawString("Hit 'Space' to pause the game.", 300, 560);
+			g.drawString("Good luck!", 300, 600);
 		} else if (this.game.gameState == STATE.End) {
 			g.setFont(fntOption);
 			g.drawRect(150, 100, 242, 65);

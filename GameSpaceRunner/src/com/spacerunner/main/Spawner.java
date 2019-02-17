@@ -40,7 +40,7 @@ public class Spawner {
 			
 			keepScore = keepScore + 0.05;
 			
-			if(keepScore >= 10) {
+			if(keepScore >= 25) {
 				
 				// reset keepScore
 				keepScore = 0;
