@@ -1,4 +1,4 @@
 # my-java
 games & exercises
 
-[Download SpaceRunnerVer1.0](https://drive.google.com/open?id=1MkhVFxce0PXg9cnnf2Ym-vOldZJXxm05)
+Download SpaceRunnerVer1.0 [Jar](https://drive.google.com/open?id=1i8qaXQfMLuroxWF7OGWqCB3cPs5lBjkB) [Windows](https://drive.google.com/open?id=1pe--rFhLfdcuKL6YZqgFXysxrVTXOuQM)
