@@ -1,40 +1,40 @@
 package binarysearch;
 
 public class BinaryTree {
-	
+
 	SoccerNode root;
-	
+
 	public void addSoccerNode(int jerseyNum, String position) {
-		
+
 		SoccerNode newNode = new SoccerNode(jerseyNum, position);
-		
+
 		if (this.root == null) {
-			
+
 			this.root = newNode;
-			
+
 		} else {
-			
+
 			// the focusNode is a key for this algorithm 
 			// we use is to have 'focus' and dig deeper so we can 
 			// determine parents and children against its value
 			SoccerNode focusNode = this.root;
-			
+
 			SoccerNode parent;
-			
+
 			while(true) {
 				parent = focusNode;
-				
+
 				if (jerseyNum < focusNode.jerseyNumber) {
-					
+
 					focusNode = focusNode.leftChild;
-					
+
 					if (focusNode == null) {
-						
+
 						parent.leftChild = newNode;
 						return;
-						
+
 					}
-					
+
 				} else {
 					
 					focusNode = focusNode.rightChild;
@@ -45,10 +45,13 @@ public class BinaryTree {
 						return;
 						
 					}
+
 				}
+
 			}
+
 		}
-				
+
 	}
 	
 	public SoccerNode findSoccerNode(int jerseyNum) {
@@ -109,19 +112,19 @@ public class BinaryTree {
 	public void postOrderTraverseTree(SoccerNode focusNode) {
 		
 		if (focusNode != null) {
-			
+
 			this.postOrderTraverseTree(focusNode.leftChild);
-			
+
 			this.postOrderTraverseTree(focusNode.rightChild);
-			
+
 			System.out.println(focusNode);
-			
+
 		}
-		
+
 	}
 	
 	public static void main(String[] args) {
-		
+	
 		BinaryTree soccerTeam = new BinaryTree();
 
 		soccerTeam.addSoccerNode(12, "Goalie");
