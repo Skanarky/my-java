@@ -27,7 +27,7 @@ public class Shop extends MouseAdapter {
 	private int priceUS = 250;
 	private int priceRH = 200;
 	
-	public static String enoughOrNot = "";
+	private static String enoughOrNot = "";
 	
 	public Shop(GameSpaceRunner g, Handler h, HUD hd) {
 		this.game = g;
@@ -124,9 +124,7 @@ public class Shop extends MouseAdapter {
 					
 					HUD.HEALTH = (100f + ((float) this.hud.getBounds() / 2));
 					
-					this.hud.colors[0] = 90;
-					this.hud.colors[1] = 210;
-					this.hud.colors[2] = 30;
+					this.hud.setColorsArr(90, 210, 30);
 					
 					this.setEnoughOrNot("You upgraded HEALTH!");
 					
@@ -182,9 +180,7 @@ public class Shop extends MouseAdapter {
 					
 					HUD.HEALTH = (100f + ((float) this.hud.getBounds() / 2));
 					
-					this.hud.colors[0] = 90;
-					this.hud.colors[1] = 210;
-					this.hud.colors[2] = 30;
+					this.hud.setColorsArr(90, 210, 30);
 					
 					this.setEnoughOrNot("You refilled HEALTH!");
 					

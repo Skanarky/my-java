@@ -35,33 +35,45 @@ public class KeyInput extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
 		 int key = e.getKeyCode();
 		 
-		 for(int i = 0; i < handler.gameObjects.size(); ++i) {
-			 SpaceRunnerObject o = handler.gameObjects.get(i);
+		 // player controls
+		 if (handler.gameObjects.size() > 0) {
+
+			 for(int i = 0; i < handler.gameObjects.size(); ++i) {
+
+				 SpaceRunnerObject o = handler.gameObjects.get(i);
+						 
+				 if(o.getId() == ID.Player && game.gameState == STATE.Game) {
+					 // events player 1
+					 if(key == KeyEvent.VK_UP) {
+						 o.setVelY(- this.handler.getPlayerSpd());
+						 this.keysDown[0] = true;
+					 };
+					 if(key == KeyEvent.VK_DOWN) {
+						 o.setVelY(this.handler.getPlayerSpd());
+						 this.keysDown[1] = true;
+					 };
+					 if(key == KeyEvent.VK_LEFT) {
+						 o.setVelX(- this.handler.getPlayerSpd());
+						 this.keysDown[2] = true;
+					 };
+					 if(key == KeyEvent.VK_RIGHT) {
+						 o.setVelX(this.handler.getPlayerSpd());
+						 this.keysDown[3] = true;
+					 };
 					 
-			 if(o.getId() == ID.Player) {
-				 // events player 1
-				 if(key == KeyEvent.VK_UP) {
-					 o.setVelY(-this.handler.getPlayerSpd());
-					 this.keysDown[0] = true;
+					 // avoiding Null Pointer exception
+					 break;
+
 				 };
-				 if(key == KeyEvent.VK_DOWN) {
-					 o.setVelY(this.handler.getPlayerSpd());
-					 this.keysDown[1] = true;
-				 };
-				 if(key == KeyEvent.VK_LEFT) {
-					 o.setVelX(-this.handler.getPlayerSpd());
-					 this.keysDown[2] = true;
-				 };
-				 if(key == KeyEvent.VK_RIGHT) {
-					 o.setVelX(this.handler.getPlayerSpd());
-					 this.keysDown[3] = true;
-				 };
-			 };
-			 
+				 
+			 }
+
 		 }
 		 
-		 if (key == KeyEvent.VK_SPACE && game.gameState == STATE.Game) GameSpaceRunner.paused = !GameSpaceRunner.paused;
+		 // pausing; leaving it able to pause first and then shop -> no change of game STATE
+		 if (key == KeyEvent.VK_SPACE && game.gameState == STATE.Game) GameSpaceRunner.PAUSED = !GameSpaceRunner.PAUSED;
 		 
+		// shopping
 		 if (key == KeyEvent.VK_ENTER) {
 			 
 			 if (game.gameState == STATE.Game) {
@@ -73,29 +85,40 @@ public class KeyInput extends KeyAdapter {
 			 
 		 }
 		 
+		 // quit game
 		 if (key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}
 	
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		for(int i = 0; i < handler.gameObjects.size(); ++i) {
-			 SpaceRunnerObject o = handler.gameObjects.get(i);
+		// player controls
+		if (handler.gameObjects.size() > 0) {
+
+			for(int i = 0; i < handler.gameObjects.size(); ++i) {
+
+				 SpaceRunnerObject o = handler.gameObjects.get(i);
+						 
+				 if(o.getId() == ID.Player && game.gameState == STATE.Game) {
+					 // events player 1
+					 if(key == KeyEvent.VK_UP) this.keysDown[0] = false;
+					 if(key == KeyEvent.VK_DOWN) this.keysDown[1] = false;
+					 if(key == KeyEvent.VK_LEFT) this.keysDown[2] = false;
+					 if(key == KeyEvent.VK_RIGHT) this.keysDown[3] = false;
 					 
-			 if(o.getId() == ID.Player) {
-				 // events player 1
-				 if(key == KeyEvent.VK_UP) this.keysDown[0] = false;
-				 if(key == KeyEvent.VK_DOWN) this.keysDown[1] = false;
-				 if(key == KeyEvent.VK_LEFT) this.keysDown[2] = false;
-				 if(key == KeyEvent.VK_RIGHT) this.keysDown[3] = false;
-				 
-				 // vertical movement
-				 if(!this.keysDown[0] && !this.keysDown[1]) o.setVelY(0);
-				 // horizontal movement
-				 if(!this.keysDown[2] && !this.keysDown[3]) o.setVelX(0);
-			 };
-			 
-		 }
+					 // vertical movement
+					 if(!this.keysDown[0] && !this.keysDown[1]) o.setVelY(0);
+					 // horizontal movement
+					 if(!this.keysDown[2] && !this.keysDown[3]) o.setVelX(0);
+					 
+					 // avoiding Null Pointer exception
+					 break;
+					 
+				 };
+
+			}
+
+		}
 	}
 	
 }

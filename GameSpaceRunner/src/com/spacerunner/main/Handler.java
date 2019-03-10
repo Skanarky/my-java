@@ -26,7 +26,7 @@ public class Handler {
 	private boolean addNewEnemy = true;
 	
 	// speed of Player
-	public int playerSpd = 3;
+	private int playerSpd = 3;
 	
 	public void addObject(SpaceRunnerObject o) {
 		
@@ -94,6 +94,8 @@ public class Handler {
 		
 		this.addNewEnemy = false;
 		
+		Player pl = null;
+		
 		// remove all but Player
 		for(int i = 0; i < gameObjects.size(); ++i) {
 			
@@ -103,10 +105,13 @@ public class Handler {
 				
 				this.gameObjects.clear();
 				this.addObject(new Player((float) obj.getX(), (float) obj.getY(), ID.Player, this));
+				
+				// for speed and avoiding Null Pointer exceptions
+				break;
 
 			};
 			
-			// this below doesn't work
+			// the below doesn't work
 //			if(obj.getId() != ID.Player && obj.getId() != ID.PlayerTrail) {
 //				
 //				this.removeObject(obj);

@@ -14,39 +14,35 @@ public class HUD {
 	
 	public static float HEALTH = 100f;
 	
-	public int bounds = 0;
+	private int bounds = 0;
 
-	public int[] colors = new int[3];
+	private int[] colors = new int[3];
 	
 	private float score = 0;
 	private int level = 1;
 	
-	public int finalHealth;
-	public int finalScore;
+	private int finalHealth;
+	private int finalScore;
 	
 	public HUD() {
-		colors[0] = 90;
-		colors[1] = 210;
-		colors[2] = 30;
+		this.setColorsArr(90, 210, 30);
 	}
 	
 	public void tick() {
 		HEALTH = GameSpaceRunner.clamp(HEALTH, 0f, 100f  + (float)this.bounds);
 		
-		colors[0] = (int)GameSpaceRunner.clamp(colors[0], 0, 255);
-		colors[1] = (int)GameSpaceRunner.clamp(colors[1], 0, 255);
-		colors[2] = (int)GameSpaceRunner.clamp(colors[2], 0, 255);
+		this.setColorsArr(
+			(int)GameSpaceRunner.clamp(colors[0], 0, 255),
+			(int)GameSpaceRunner.clamp(colors[1], 0, 255),
+			(int)GameSpaceRunner.clamp(colors[2], 0, 255)
+		);
 		
 		if(HEALTH <= 50) {
-			colors[0] = 244;
-			colors[1] = 194;
-			colors[2] = 13;
+			this.setColorsArr(244, 194, 13);
 		};
 		
 		if(HEALTH <= 20) {
-			colors[0] = 219;
-			colors[1] = 50;
-			colors[2] = 54;
+			this.setColorsArr(219, 50, 54);
 		};
 		
 		score = (score + 0.05f);
@@ -66,6 +62,12 @@ public class HUD {
 		g.drawString("Level: " + level, 915, 35);
 		g.drawString("Hit 'Enter' for Shop", 25, 55);
 		g.drawString((int)HEALTH + "%", 110, 27);
+	}
+	
+	public void setColorsArr(int vOne, int vTwo, int vThree) {
+		this.colors[0] = vOne;
+		this.colors[1] = vTwo;
+		this.colors[2] = vThree;
 	}
 	
 	public int getBounds() {

@@ -43,9 +43,9 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
-	public static boolean paused = false;
+	public static boolean PAUSED = false;
 	
-	public static int difficulty = 1;
+	public static int DIFFICULTY = 1;
 	// 1 -> normal
 	// 2 -> hard
 	
@@ -109,7 +109,7 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 		if(this.gameState == STATE.Game) {
 			this.handler.addObject(new Player((float) WIDTH/2-32, (float) HEIGHT/2-32, ID.Player, this.handler));
 			
-			if (difficulty == 2) {
+			if (DIFFICULTY == 2) {
 
 				this.handler.addObject(new HardEnemy((float) r.nextInt(WIDTH), (float) r.nextInt(HEIGHT), ID.BasicEnemy, this.handler));
 
@@ -179,7 +179,7 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 		
 		if (this.gameState == STATE.Game) {
 			
-			if (!paused) {
+			if (!PAUSED) {
 				this.handler.tick();
 				this.hud.tick();
 				this.spawner.tick();
@@ -216,7 +216,7 @@ public class GameSpaceRunner extends Canvas implements Runnable {
 			star.fillOval(this.starsParams.get(i), this.starsParams.get(i + 1), this.starsParams.get(i + 2), this.starsParams.get(i + 3));
 		};
 		
-		if (paused) {
+		if (PAUSED) {
 			g.setColor(Color.red);
 			g.drawString("PAUSED", 490, 360);
 		}

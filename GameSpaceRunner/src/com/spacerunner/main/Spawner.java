@@ -12,6 +12,7 @@ import com.spacerunner.main.GameSpaceRunner.STATE;
  * Spawning system
  */
 public class Spawner {
+
 	private GameSpaceRunner game;
 	private Handler handler;
 	private HUD hud;
@@ -77,7 +78,7 @@ public class Spawner {
 				// add Basic enemy every 2 levels but not divisible by 3 and 7 levels
 				if(!this.bossMode && hud.getLevel() % 2 == 0 && hud.getLevel() % 3 != 0 && hud.getLevel() % 7 != 0) {
 
-					if (GameSpaceRunner.difficulty == 2) {
+					if (GameSpaceRunner.DIFFICULTY == 2) {
 						this.handler.addObject(new HardEnemy((float) r.nextInt(GameSpaceRunner.WIDTH - 5), (float) r.nextInt(GameSpaceRunner.HEIGHT - 5), ID.BasicEnemy, this.handler));
 					} else {
 						this.handler.addObject(new BasicEnemy((float) r.nextInt(GameSpaceRunner.WIDTH - 5), (float) r.nextInt(GameSpaceRunner.HEIGHT - 5), ID.BasicEnemy, this.handler));
@@ -154,9 +155,7 @@ public class Spawner {
 		this.hud.setBounds(0);
 		HUD.HEALTH = 100f;
 		
-		this.hud.colors[0] = 90;
-		this.hud.colors[1] = 210;
-		this.hud.colors[2] = 30;
+		this.hud.setColorsArr(90, 210, 30);
 		
 		this.shop.setPriceUH(250);
 		this.shop.setPriceUS(250);

@@ -46,7 +46,7 @@ public class Player extends SpaceRunnerObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameSpaceRunner.difficulty == 2) {
+					if (GameSpaceRunner.DIFFICULTY == 2) {
 						HUD.HEALTH -= 0.8f;
 					} else {
 						HUD.HEALTH -= 0.4f;
@@ -60,7 +60,7 @@ public class Player extends SpaceRunnerObject {
 			
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameSpaceRunner.difficulty == 2) {
+					if (GameSpaceRunner.DIFFICULTY == 2) {
 						HUD.HEALTH -= 1.2f;
 					} else {
 						HUD.HEALTH -= 0.6f;
@@ -74,7 +74,7 @@ public class Player extends SpaceRunnerObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameSpaceRunner.difficulty == 2) {
+					if (GameSpaceRunner.DIFFICULTY == 2) {
 						HUD.HEALTH -= 0.4f;
 					} else {
 						HUD.HEALTH -= 0.2f;
@@ -88,7 +88,7 @@ public class Player extends SpaceRunnerObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameSpaceRunner.difficulty == 2) {
+					if (GameSpaceRunner.DIFFICULTY == 2) {
 						HUD.HEALTH -= 3f;
 					} else {
 						HUD.HEALTH -= 1.5f;
@@ -102,7 +102,7 @@ public class Player extends SpaceRunnerObject {
 				
 				if(getBounds().intersects(tempObj.getBounds())) {
 					// collision code
-					if (GameSpaceRunner.difficulty == 2) {
+					if (GameSpaceRunner.DIFFICULTY == 2) {
 						HUD.HEALTH -= 1.4f;
 					} else {
 						HUD.HEALTH -= 0.7f;

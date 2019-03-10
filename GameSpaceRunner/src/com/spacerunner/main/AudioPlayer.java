@@ -16,8 +16,8 @@ import org.newdawn.slick.Sound;
  */
 public class AudioPlayer {
 	
-	public static Map<String, Sound> soundMap = new HashMap<String, Sound>();
-	public static Map<String, Music> musicMap = new HashMap<String, Music>();
+	private static Map<String, Sound> soundMap = new HashMap<String, Sound>();
+	private static Map<String, Music> musicMap = new HashMap<String, Music>();
 	
 	public static void loadSoundFX() {
 		

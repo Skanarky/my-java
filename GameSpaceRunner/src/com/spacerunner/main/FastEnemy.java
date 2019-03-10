@@ -12,6 +12,7 @@ import java.awt.Rectangle;
  *
  */
 public class FastEnemy extends SpaceRunnerObject {
+
 	private Handler handler;
 
 	public FastEnemy(float x, float y, ID id, Handler handler) {

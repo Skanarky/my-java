@@ -49,7 +49,7 @@ public class Menu extends MouseAdapter {
 				
 				this.game.gameState = STATE.Game;
 				
-				GameSpaceRunner.difficulty = 1;
+				GameSpaceRunner.DIFFICULTY = 1;
 				
 				this.handler.gameObjects.clear();
 				
@@ -73,7 +73,7 @@ public class Menu extends MouseAdapter {
 				
 				this.game.gameState = STATE.Game;
 				
-				GameSpaceRunner.difficulty = 2;
+				GameSpaceRunner.DIFFICULTY = 2;
 				
 				this.handler.gameObjects.clear();
 				
