@@ -1,4 +1,4 @@
-package binarysearch;
+package binarysearchtree;
 
 public class SoccerNode {
 	
