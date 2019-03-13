@@ -63,6 +63,50 @@ public class ArrayStructures {
 		
 		return tester;
 	}
+	
+	public void insValue(int val) {
+		
+		if (this.arrSize < 35) {
+			
+			this.anArray[this.arrSize] = val;
+			
+			this.arrSize++;
+			
+		} else {
+			System.out.println("The array is full");
+		}
+	}
+	
+	public int linearSearchVal(int val) {
+		int numOfValues = 0;
+		String indVal = "";
+		
+		for(int i = 0; i < this.arrSize; ++i) {
+			if (this.anArray[i] == val) {
+				numOfValues++;
+				indVal += " -" + i + "-";
+			}
+		}
+		
+		System.out.println("The value " + val + " exists " + numOfValues + " time(s) in the array, at index(s):" + indVal);
+		return numOfValues;
+		
+	}
+	
+	public void deleteFromIndex(int ind) {
+		
+		if (ind < this.arrSize && ind > -1) {
+			
+			for(int i = ind; i < (this.arrSize - 1); ++i) {
+				this.anArray[i] = this.anArray[i + 1];
+			}
+			
+			this.arrSize--;
+			
+		} else {
+			System.out.println("The index has to be between 0 and " + (this.arrSize - 1));
+		}
+	}
 
 	public static void main(String[] args) {
 		
@@ -74,11 +118,25 @@ public class ArrayStructures {
 		
 		System.out.println("");
 		
-		arr.getValByInd(5);
+//		arr.getValByInd(5);
+//		
+//		arr.getValByInd(-11);
+//		
+//		arr.containVal(8);
+//		
+//		arr.deleteFromIndex(5);
+//		
+//		System.out.println("");
+//		
+//		arr.printArr();
+//		
+//		arr.insValue(99);
+//		
+//		System.out.println("");
+//		
+//		arr.printArr();
 		
-		arr.getValByInd(-11);
-		
-		arr.containVal(8);
+		arr.linearSearchVal(5);
 
 	}
 
