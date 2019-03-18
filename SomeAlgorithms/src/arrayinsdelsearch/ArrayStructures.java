@@ -14,6 +14,18 @@ public class ArrayStructures {
 		
 	}
 	
+	private void swapVal(int indOne, int indTwo) {
+		
+		if (indOne >= 0 && indTwo <= this.arrSize - 1) {
+			int temp = this.anArray[indOne];
+			
+			this.anArray[indOne] = this.anArray[indTwo];
+			
+			this.anArray[indTwo] = temp;
+		}
+		
+	}
+	
 	public void printArr() {
 		
 		for(int i = 0; i < this.arrSize; ++i) {
@@ -44,7 +56,35 @@ public class ArrayStructures {
 		}
 	}
 	
-	public boolean containVal(int val) {
+	public void insValue(int val) {
+		
+		if (this.arrSize < 35) {
+			
+			this.anArray[this.arrSize] = val;
+			
+			this.arrSize++;
+			
+		} else {
+			System.out.println("The array is full");
+		}
+	}
+	
+	public void deleteFromIndex(int ind) {
+		
+		if (ind < this.arrSize && ind > -1) {
+			
+			for(int i = ind; i < (this.arrSize - 1); ++i) {
+				this.anArray[i] = this.anArray[i + 1];
+			}
+			
+			this.arrSize--;
+			
+		} else {
+			System.out.println("The index has to be between 0 and " + (this.arrSize - 1));
+		}
+	}
+	
+	public boolean searchVal(int val) {
 		
 		boolean tester = false;
 		
@@ -64,19 +104,6 @@ public class ArrayStructures {
 		return tester;
 	}
 	
-	public void insValue(int val) {
-		
-		if (this.arrSize < 35) {
-			
-			this.anArray[this.arrSize] = val;
-			
-			this.arrSize++;
-			
-		} else {
-			System.out.println("The array is full");
-		}
-	}
-	
 	public int linearSearchVal(int val) {
 		int numOfValues = 0;
 		String indVal = "";
@@ -93,19 +120,73 @@ public class ArrayStructures {
 		
 	}
 	
-	public void deleteFromIndex(int ind) {
+	public void bubbleSortAsc() {
+
+		for(int i = this.arrSize - 1; i > 0; --i) {
+
+			for(int j = 0; j < i; ++j) {
+
+				if (this.anArray[j] > this.anArray[j + 1]) {
+					this.swapVal(j, j + 1);
+				}
+
+			}
+
+		}
+
+	}
+	
+	// bubble sort, descending, with a while loop; worse time-complexity?!
+	public void bubbleSortDesc() {
+        boolean swap = true;
+
+        while(swap) {
+            swap = false;
+            for(int i = 0; i < this.arrSize - 1; i++) {
+                if(this.anArray[i] < this.anArray[i + 1]) {
+                    this.swapVal(i, i + 1);
+                    swap = true;
+                }
+            }
+        }
+
+    }
+	
+	// for binary search the array needs to be sorted (ascending)... duh :) :) :)
+	// won't find duplicates 
+	public boolean binarySearch(int val) {
+		boolean tester = false;
 		
-		if (ind < this.arrSize && ind > -1) {
+		int lowInd = 0;
+		int highInd = this.arrSize - 1;
+		int foundIn = 0;
+
+		while(lowInd <= highInd) {
 			
-			for(int i = ind; i < (this.arrSize - 1); ++i) {
-				this.anArray[i] = this.anArray[i + 1];
+			int middleInd = (lowInd + highInd) / 2;			
+			
+			if (val > this.anArray[middleInd]) {
+				lowInd = middleInd + 1;
+			} else if (val < this.anArray[middleInd]) {
+				highInd = middleInd - 1;
+			} else {
+
+				foundIn = middleInd;
+				tester = true;
+				lowInd = highInd + 1;
+				
 			}
 			
-			this.arrSize--;
-			
-		} else {
-			System.out.println("The index has to be between 0 and " + (this.arrSize - 1));
 		}
+		
+		if (tester) {
+			System.out.println(val + " was found in the array at index: " + foundIn);
+		} else {
+			System.out.println(val + " was not found in the array");
+		}
+		
+		return tester;
+		
 	}
 
 	public static void main(String[] args) {
@@ -122,7 +203,7 @@ public class ArrayStructures {
 //		
 //		arr.getValByInd(-11);
 //		
-//		arr.containVal(8);
+//		arr.searchVal(8);
 //		
 //		arr.deleteFromIndex(5);
 //		
@@ -137,6 +218,17 @@ public class ArrayStructures {
 //		arr.printArr();
 		
 		arr.linearSearchVal(5);
+		
+//		arr.bubbleSortAsc();
+		
+//		arr.bubbleSortDesc();
+		
+//		arr.printArr();
+		
+		// has to be sorted for binary search
+		arr.bubbleSortAsc();
+		arr.printArr();
+		arr.binarySearch(5);
 
 	}
 
