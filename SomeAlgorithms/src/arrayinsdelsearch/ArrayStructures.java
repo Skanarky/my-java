@@ -84,6 +84,9 @@ public class ArrayStructures {
 		}
 	}
 	
+	
+	// SEARCHING
+	
 	public boolean searchVal(int val) {
 		
 		boolean tester = false;
@@ -120,6 +123,50 @@ public class ArrayStructures {
 		
 	}
 	
+	// for binary search the array needs to be sorted (ascending)... duh :) :) :)
+	// won't find duplicates 
+	public boolean binarySearch(int val) {
+		boolean tester = false;
+		
+		int lowInd = 0;
+		int highInd = this.arrSize - 1;
+		int foundIn = 0;
+		
+		if (val > (this.anArray[lowInd] - 1) && val < (this.anArray[highInd] + 1)) {
+
+			while(lowInd <= highInd) {
+				
+				int middleInd = (lowInd + highInd) / 2;			
+				
+				if (val > this.anArray[middleInd]) {
+					lowInd = middleInd + 1;
+				} else if (val < this.anArray[middleInd]) {
+					highInd = middleInd - 1;
+				} else {
+
+					foundIn = middleInd;
+					tester = true;
+					lowInd = highInd + 1;
+
+				}
+
+			}
+
+		}
+		
+		if (tester) {
+			System.out.println(val + " was found in the array at index: " + foundIn);
+		} else {
+			System.out.println(val + " was not found in the array");
+		}
+		
+		return tester;
+		
+	}
+	
+	
+	// SORTING
+	
 	public void bubbleSortAsc() {
 
 		for(int i = this.arrSize - 1; i > 0; --i) {
@@ -142,7 +189,7 @@ public class ArrayStructures {
 
         while(swap) {
             swap = false;
-            for(int i = 0; i < this.arrSize - 1; i++) {
+            for(int i = 0; i < this.arrSize - 1; ++i) {
                 if(this.anArray[i] < this.anArray[i + 1]) {
                     this.swapVal(i, i + 1);
                     swap = true;
@@ -152,40 +199,47 @@ public class ArrayStructures {
 
     }
 	
-	// for binary search the array needs to be sorted (ascending)... duh :) :) :)
-	// won't find duplicates 
-	public boolean binarySearch(int val) {
-		boolean tester = false;
+	// finds minimum from beginning
+	public void selectionSort() {
+
+		for(int i = 0; i < this.arrSize; ++i) {
+			int min = i;
+
+			for(int j = i + 1; j < this.arrSize; ++j) {
+
+				if(this.anArray[min] > this.anArray[j]) {
+                    min = j;
+                }
+
+			}
+
+			if (min != i) this.swapVal(i, min);
+
+        }
+
+	}
+
+	// with the other sort algorithms the array is sorted partially at any moment
+	// not with this one
+	public void insertionSort() {
 		
-		int lowInd = 0;
-		int highInd = this.arrSize - 1;
-		int foundIn = 0;
-
-		while(lowInd <= highInd) {
+		for(int i = 1; i < this.arrSize; ++i) {
 			
-			int middleInd = (lowInd + highInd) / 2;			
+			int j = i;
+			int valToInsert = this.anArray[i];
 			
-			if (val > this.anArray[middleInd]) {
-				lowInd = middleInd + 1;
-			} else if (val < this.anArray[middleInd]) {
-				highInd = middleInd - 1;
-			} else {
-
-				foundIn = middleInd;
-				tester = true;
-				lowInd = highInd + 1;
+			while(j > 0 && this.anArray[j - 1] > valToInsert) {
+				
+				this.anArray[j] = this.anArray[j - 1];
+				// OR
+				// this.swapVal(j, j - 1);
+				--j;
 				
 			}
 			
+			this.anArray[j] = valToInsert;
+			
 		}
-		
-		if (tester) {
-			System.out.println(val + " was found in the array at index: " + foundIn);
-		} else {
-			System.out.println(val + " was not found in the array");
-		}
-		
-		return tester;
 		
 	}
 
@@ -206,29 +260,29 @@ public class ArrayStructures {
 //		arr.searchVal(8);
 //		
 //		arr.deleteFromIndex(5);
-//		
 //		System.out.println("");
-//		
 //		arr.printArr();
 //		
 //		arr.insValue(99);
-//		
 //		System.out.println("");
-//		
 //		arr.printArr();
 		
-		arr.linearSearchVal(5);
+//		arr.linearSearchVal(5);
 		
 //		arr.bubbleSortAsc();
-		
 //		arr.bubbleSortDesc();
-		
 //		arr.printArr();
 		
 		// has to be sorted for binary search
-		arr.bubbleSortAsc();
+//		arr.bubbleSortAsc();
+//		arr.printArr();
+//		arr.binarySearch(5);
+		
+//		arr.selectionSort();
+//		arr.printArr();
+		
+		arr.insertionSort();
 		arr.printArr();
-		arr.binarySearch(5);
 
 	}
 
