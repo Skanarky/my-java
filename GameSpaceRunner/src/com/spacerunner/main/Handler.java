@@ -94,8 +94,6 @@ public class Handler {
 		
 		this.addNewEnemy = false;
 		
-		Player pl = null;
-		
 		// remove all but Player
 		for(int i = 0; i < gameObjects.size(); ++i) {
 			
