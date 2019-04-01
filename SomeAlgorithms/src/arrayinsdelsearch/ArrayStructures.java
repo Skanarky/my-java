@@ -6,6 +6,8 @@ public class ArrayStructures {
 	
 	private int arrSize = 10;
 	
+	// HELPER METHODS
+	
 	public void genRandArr() {
 		
 		for(int i = 0; i < this.arrSize; ++i) {
@@ -44,6 +46,8 @@ public class ArrayStructures {
 		System.out.println("|");
 		
 	}
+	
+	// BASIC OPERATIONS - get, insert, delete
 	
 	public int getValByInd(int ind) {
 		
@@ -241,6 +245,11 @@ public class ArrayStructures {
 			
 		}
 		
+	}
+	
+	// the fastest sorting alg. -> works by partitioning the array (pivot value)
+	public void quickSort() {
+		// code here
 	}
 
 	public static void main(String[] args) {
