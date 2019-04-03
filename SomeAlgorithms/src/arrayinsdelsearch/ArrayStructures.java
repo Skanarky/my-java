@@ -127,7 +127,7 @@ public class ArrayStructures {
 		
 	}
 	
-	// for binary search the array needs to be sorted (ascending)... duh :) :) :)
+	// for binary search the array needs to be sorted
 	// won't find duplicates 
 	public boolean binarySearch(int val) {
 		boolean tester = false;
@@ -236,7 +236,7 @@ public class ArrayStructures {
 				
 				this.anArray[j] = this.anArray[j - 1];
 				// OR
-				// this.swapVal(j, j - 1);
+//				this.swapVal(j - 1, j);
 				--j;
 				
 			}
@@ -248,8 +248,45 @@ public class ArrayStructures {
 	}
 	
 	// the fastest sorting alg. -> works by partitioning the array (pivot value)
-	public void quickSort() {
-		// code here
+	public void quickSort(int left, int right) {
+		
+		if (right - left <= 0) {
+			return;
+		} else {
+			int pivot = this.anArray[right];
+			
+			int pivotLocation = this.partitionArr(left, right, pivot);
+			
+			this.quickSort(left, pivotLocation - 1);
+			this.quickSort(pivotLocation + 1, right);
+		}
+		
+	}
+	
+	public int partitionArr(int left, int right, int pivot) {
+		
+		// '- 1' because we increment directly in the while loop condition
+		int leftPointer = left - 1;
+		int rightPointer = right;
+		
+		while (true) {
+			
+			while (leftPointer < this.arrSize - 1 && this.anArray[++leftPointer] < pivot);
+			
+			while (rightPointer > 0 && this.anArray[--rightPointer] > pivot);
+			
+			if (leftPointer >= rightPointer) {
+				break;
+			} else {
+				this.swapVal(leftPointer, rightPointer);
+			}
+			
+		}
+		
+		this.swapVal(leftPointer, right);
+		
+		return leftPointer;
+		
 	}
 
 	public static void main(String[] args) {
@@ -290,7 +327,10 @@ public class ArrayStructures {
 //		arr.selectionSort();
 //		arr.printArr();
 		
-		arr.insertionSort();
+//		arr.insertionSort();
+//		arr.printArr();
+		
+		arr.quickSort(0, arr.arrSize - 1);
 		arr.printArr();
 
 	}
