@@ -223,8 +223,10 @@ public class ArrayStructures {
 
 	}
 
-	// with the other sort algorithms the array is sorted partially at any moment
-	// not with this one
+	// with the other sort algorithms, after running them, the array is sorted partially at any moment
+	// not with this one.
+	// it's really fast if the input array is partially sorted, but if there's a small value
+	// at the end of the list it get's slower
 	public void insertionSort() {
 		
 		for(int i = 1; i < this.arrSize; ++i) {
@@ -244,6 +246,14 @@ public class ArrayStructures {
 			this.anArray[j] = valToInsert;
 			
 		}
+		
+	}
+	
+	// fixes problems of insertion sort, when one of the smaller values is all the way at the end (get's
+	// slower), shell sort first sorts the array roughly using "interval"
+	// and then does insertion sort
+	// Maybe most recommended, since quick sort is less efficient with smaller arrays
+	public void shellSort() {
 		
 	}
 	
@@ -330,8 +340,8 @@ public class ArrayStructures {
 //		arr.insertionSort();
 //		arr.printArr();
 		
-		arr.quickSort(0, arr.arrSize - 1);
-		arr.printArr();
+//		arr.quickSort(0, arr.arrSize - 1);
+//		arr.printArr();
 
 	}
 
