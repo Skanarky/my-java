@@ -2,16 +2,16 @@ package arrayinsdelsearch;
 
 public class ArrayStructures {
 	
-	private int[] anArray = new int[35];
+	private int[] anArray = new int[70];
 	
-	private int arrSize = 10;
+	private int arrSize = 20;
 	
 	// HELPER METHODS
 	
 	public void genRandArr() {
 		
 		for(int i = 0; i < this.arrSize; ++i) {
-			this.anArray[i] = (int)(Math.random()*10);
+			this.anArray[i] = (int)(Math.random()*89) + 10;
 		}
 		
 	}
@@ -31,12 +31,15 @@ public class ArrayStructures {
 	public void printArr() {
 		
 		for(int i = 0; i < this.arrSize; ++i) {
-			System.out.print("|" + i);
+			if (i < 10) System.out.print("| " + i);
+			else System.out.print("|" + i);
+			
 		}
 		System.out.println("|");
 		
 		for(int i = 0; i < this.arrSize; ++i) {
-			System.out.print(" v");
+//			if (i < 10) System.out.print(" v");
+			System.out.print("  v");
 		}
 		System.out.println("");
 		
@@ -207,6 +210,7 @@ public class ArrayStructures {
 	public void selectionSort() {
 
 		for(int i = 0; i < this.arrSize; ++i) {
+
 			int min = i;
 
 			for(int j = i + 1; j < this.arrSize; ++j) {
@@ -237,8 +241,8 @@ public class ArrayStructures {
 			while(j > 0 && this.anArray[j - 1] > valToInsert) {
 				
 				this.anArray[j] = this.anArray[j - 1];
-				// OR
-//				this.swapVal(j - 1, j);
+				// OR swap, because it's only the value which are next to each other
+				// this.swapVal(j - 1, j);
 				--j;
 				
 			}
@@ -250,10 +254,47 @@ public class ArrayStructures {
 	}
 	
 	// fixes problems of insertion sort, when one of the smaller values is all the way at the end (get's
-	// slower), shell sort first sorts the array roughly using "interval"
-	// and then does insertion sort
-	// Maybe most recommended, since quick sort is less efficient with smaller arrays
+	// slower), shell sort partially sorts the array  first using "interval"
+	// and then becomes insertion sort;
+	// maybe the most recommended, since quick sort is less efficient with smaller arrays
 	public void shellSort() {
+		
+		int inner, outer, valToInsert;
+		
+		// depends on array size, optimization for interval size
+		int interval = 1;
+		while (interval <= this.arrSize / 3) {
+			
+			interval = interval * 3 + 1;
+
+		}
+
+		while (interval > 0) {
+			
+			for (outer = interval; outer < this.arrSize; ++outer) {
+				
+				valToInsert = this.anArray[outer];
+				
+				inner = outer;
+				
+				while (inner > interval - 1 && this.anArray[inner - interval] >= valToInsert) {
+					
+					// can't use this.swapVal(indOne, indTwo) -> it messes the algorithm when values are 
+					// equal because these are not values 
+					// next to each other
+					this.anArray[inner] = this.anArray[inner - interval];
+					
+					inner -= interval;
+					
+				}
+				
+				this.anArray[inner] = valToInsert;
+				
+			}
+			
+			interval = (interval - 1) / 3;
+			
+		}
 		
 	}
 	
@@ -342,6 +383,9 @@ public class ArrayStructures {
 		
 //		arr.quickSort(0, arr.arrSize - 1);
 //		arr.printArr();
+		
+		arr.shellSort();
+		arr.printArr();
 
 	}
 
