@@ -7,6 +7,10 @@ public class Link {
 	
 	public Link next;
 	
+	// for doubly linked list
+	public Link previous;
+	
+	
 	public Link(String name, int years) {
 		this.teamPlayerName = name;
 		this.yearsExperience =  years;
@@ -24,24 +28,57 @@ public class Link {
 
 	public static void main(String[] args) {
 		
-		LinkList oneLinkedList = new LinkList();
-		
-		oneLinkedList.insertFirstLink("David", 3);
-		oneLinkedList.insertFirstLink("John", 1);
-		oneLinkedList.insertFirstLink("Susy", 5);
-		oneLinkedList.insertFirstLink("Jake", 4);
-		
+		// single ended
+//		LinkList oneLinkedList = new LinkList();
+//		
+//		oneLinkedList.insertFirstLink("David", 3);
+//		oneLinkedList.insertFirstLink("John", 1);
+//		oneLinkedList.insertFirstLink("Susy", 5);
+//		oneLinkedList.insertFirstLink("Jake", 4);
+//		
+////		oneLinkedList.displayLinkList();
+//		
+//		System.out.println(oneLinkedList.findALink("John"));
+//		
+//		oneLinkedList.removeFirstLink();
+////		System.out.println(oneLinkedList.findALink("Jake"));
+//		
+//		oneLinkedList.removeALink("John");
+//		System.out.println(oneLinkedList.findALink("John"));
+//		
 //		oneLinkedList.displayLinkList();
 		
-		System.out.println(oneLinkedList.findALink("John"));
 		
-		oneLinkedList.removeFirstLink();
-//		System.out.println(oneLinkedList.findALink("Jake"));
+		// double ended
+		DoubleEndedLinkedList oneDoubleEndedLinkedList = new DoubleEndedLinkedList();
 		
-		oneLinkedList.removeALink("John");
-		System.out.println(oneLinkedList.findALink("John"));
+//		oneDoubleEndedLinkedList.insertInFirstPosition("Ken", 1);
+//		oneDoubleEndedLinkedList.insertInFirstPosition("Byorg", 3);
+//		oneDoubleEndedLinkedList.insertInLastPosition("Jimmy", 5);
+//		oneDoubleEndedLinkedList.insertInFirstPosition("Laura", 2);
+//		
+//		oneDoubleEndedLinkedList.displayDELinkedList();
+
+		oneDoubleEndedLinkedList.insertInOrder("Ken", 4);
+		oneDoubleEndedLinkedList.insertInOrder("Byorg", 3);
+		oneDoubleEndedLinkedList.insertInOrder("Jimmy", 5);
+		oneDoubleEndedLinkedList.insertInOrder("Laura", 1);
+		oneDoubleEndedLinkedList.insertInOrder("Lisa", 2);
+
+		oneDoubleEndedLinkedList.insertAfterKey("Ilian", 2, 4);
+
+		oneDoubleEndedLinkedList.displayDELinkedList();
+
+		LinkIteratorDELinkList oneIteratorForDoubleELL = new LinkIteratorDELinkList(oneDoubleEndedLinkedList);
 		
-		oneLinkedList.displayLinkList();
+		oneIteratorForDoubleELL.currentLink.displayLink();
+		
+		System.out.println(oneIteratorForDoubleELL.hasNextLink());
+		
+		oneIteratorForDoubleELL.getNextLink();
+		oneIteratorForDoubleELL.currentLink.displayLink();
+		oneIteratorForDoubleELL.removeLink();
+		oneIteratorForDoubleELL.currentLink.displayLink();
 
 	}
 
