@@ -193,7 +193,7 @@ public class HashFunction {
 		for (int i = numCheck; true; i++) {
 
 			if (this.isPrime(i))
-				System.out.println(i);
+				System.out.println("In prime fn: " + i);
 				return i;
 
 		}
@@ -205,6 +205,7 @@ public class HashFunction {
 		if (this.arrSize < minSize) {
 			
 			int newSize = this.getNextPrimeNum(minSize);
+			System.out.println("newSize: " + newSize);
 
 			moveArrToDiffSize(newSize);
 			
