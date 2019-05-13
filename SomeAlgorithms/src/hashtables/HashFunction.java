@@ -29,17 +29,16 @@ public class HashFunction {
 			    "235", "802", "900", "723", "699", "1", "16", "999", "890",
 			    "725", "998", "978", "988", "990", "989", "984", "320", "321",
 			    "400", "415", "450", "50", "660", "624" };
+
 		oneHFunc.hashFStoreIdCalcByMod(strToAdd2, oneHFunc.anArray);
-//
+
 		oneHFunc.displayTheHashF();
-//		
+		
 		oneHFunc.getKey("999");
 		oneHFunc.getKey("401");
 
-//		oneHFunc.increaseArrS(31);
-//		
 //		oneHFunc.increaseArrS(30);
-		oneHFunc.increaseArrS(40);
+		oneHFunc.increaseArrS(102);
 		
 		oneHFunc.displayTheHashF();
 		
@@ -57,7 +56,15 @@ public class HashFunction {
         int numberOfRows = (this.arrSize / 10) + 1;
 
         for (int m = 0; m < numberOfRows; m++) {
-            increment += 10;
+        	
+        	int check = increment + 10;
+        	
+        	if (check < this.arrSize) {
+        		increment += 10;
+        	} else {
+        		increment += (this.arrSize - increment);
+        	}
+            
 
             for (int n = 0; n < 71; n++)
                 System.out.print("-");
@@ -153,9 +160,9 @@ public class HashFunction {
 			++indexToInsert;
 			
 			if (indexToInsert == this.arrSize) {
-				
+
 				break;
-				
+
 			}
 
 			System.out.println("Not found with regular hash, will try next index: " + indexToInsert + " instead!");
@@ -174,29 +181,31 @@ public class HashFunction {
 	// (if storing 10 items, make the size of the map 19 or 23 (prime + double the amount) - plan for double the size)
 	public boolean isPrime(int num) {
 		
-		if (num % 2 == 0)
-			return false;
-		
-		for (int i = 3; i * i <= num; i += 2) {
-			
-			if (num % i == 0)
-				return false;
-			
-		}
-		
-		return true;
+        boolean flag = true;
+        
+        // condition for non-prime number
+        for(int i = 2; i <= num/2; ++i) {
+        	
+        	if (num % i == 0) {
+                flag = false;
+                break;
+            }
+
+        }
+        
+        return flag;
 		
 	}
 	
 	public int getNextPrimeNum(int numCheck) {
 
-		for (int i = numCheck; true; i++) {
-
-			if (this.isPrime(i))
-				System.out.println("In prime fn: " + i);
-				return i;
+		while (!this.isPrime(numCheck)) {
+			
+			++numCheck;
 
 		}
+
+		return numCheck;
 
 	}
 
@@ -205,13 +214,13 @@ public class HashFunction {
 		if (this.arrSize < minSize) {
 			
 			int newSize = this.getNextPrimeNum(minSize);
-			System.out.println("newSize: " + newSize);
-
+			
+			System.out.println("NEW SIZE IS: " + newSize);
 			moveArrToDiffSize(newSize);
 			
 		} else {
 			
-			System.out.println("The array size is bigger than proposed new size!");
+			System.out.println("The array size is bigger than the proposed new size!");
 			
 		}
 
@@ -275,7 +284,7 @@ public class HashFunction {
 		}
 
 	}
-	
+
 	public String getKeyDoubleHash(String key) {
 		
 		// double hashed index
