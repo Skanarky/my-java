@@ -123,6 +123,111 @@ public class BinaryTree {
 
 	}
 	
+	public boolean removeNode(int jerseyNum) {
+		
+		SoccerNode focusNode = this.root;
+		SoccerNode parent = this.root;
+		
+		boolean isLeftChild = true;
+		
+		while (focusNode.jerseyNumber != jerseyNum) {
+			
+			parent = focusNode;
+			
+			if (jerseyNum < focusNode.jerseyNumber) {
+				
+				isLeftChild = true;
+				
+				focusNode = focusNode.leftChild;
+				
+			} else {
+				
+				isLeftChild = false;
+				
+				focusNode = focusNode.rightChild;
+				
+			}
+			
+			if (focusNode == null) {
+
+				return false;
+
+			}
+			
+		}
+		
+		if (focusNode.leftChild == null && focusNode.rightChild == null) {
+
+			if (focusNode == this.root) {
+				
+				this.root = null;
+				
+			} else {
+
+				if (isLeftChild) {
+
+					parent.leftChild = null;
+
+				} else {
+
+					parent.rightChild = null;
+
+				}
+
+			}
+
+		} else if (focusNode.rightChild == null) {
+
+			if (focusNode == this.root) {
+
+				this.root = focusNode.leftChild;
+
+			} else {
+
+				if (isLeftChild) {
+
+					parent.leftChild = focusNode.leftChild;
+
+				} else {
+
+					parent.rightChild = focusNode.leftChild;
+
+				}
+
+			}
+
+		} else if (focusNode.leftChild == null) {
+
+			if (focusNode == this.root) {
+
+				this.root = focusNode.rightChild;
+
+			} else {
+
+				if (isLeftChild) {
+
+					parent.leftChild = focusNode.rightChild;
+
+				} else {
+
+					parent.rightChild = focusNode.rightChild;
+
+				}
+
+			}
+
+		} else {
+			
+			// when both children are not null -> figure which will be replacement 
+			// +
+			// handle their children
+			
+		}
+		
+		
+		
+	}
+	
 	public static void main(String[] args) {
 	
 		BinaryTree soccerTeam = new BinaryTree();

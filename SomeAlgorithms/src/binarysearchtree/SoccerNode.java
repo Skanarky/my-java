@@ -2,6 +2,7 @@ package binarysearchtree;
 
 public class SoccerNode {
 	
+	// jersey num is the key
 	int jerseyNumber;
 	String playerPosition;
 	
