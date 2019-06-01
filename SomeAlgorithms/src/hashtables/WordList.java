@@ -83,6 +83,8 @@ public class WordList {
 			System.out.println(hashTableWords.findWord(wordLookUp));
 			
 		}
+		
+		input.close();
 
 	}
 
