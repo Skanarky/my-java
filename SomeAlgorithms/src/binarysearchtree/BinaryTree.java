@@ -149,6 +149,8 @@ public class BinaryTree {
 			}
 			
 			if (focusNode == null) {
+				
+				System.out.println("Player with jersey #" + jerseyNum + " doesn't exist so it can't be deleted");
 
 				return false;
 
@@ -217,17 +219,63 @@ public class BinaryTree {
 			}
 
 		} else {
+
+			SoccerNode replacementNode = getReplNode(focusNode);
 			
-			// when both children are not null -> figure which will be replacement 
-			// +
-			// handle their children
+			if (focusNode == this.root) {
+
+				this.root = replacementNode;
+
+			} else {
+
+				if (isLeftChild) {
+
+					parent.leftChild = replacementNode;
+
+				} else {
+
+					parent.rightChild = replacementNode;
+
+				}
+
+			}
+			
+			replacementNode.leftChild = focusNode.leftChild;
 			
 		}
 		
-		
+		return true;
 		
 	}
 	
+	public SoccerNode getReplNode(SoccerNode inputFocusNode) {
+		
+		SoccerNode replacement = inputFocusNode;
+		SoccerNode replacementParent = inputFocusNode;
+		
+		SoccerNode focusNode = inputFocusNode.rightChild;
+		
+		while (focusNode != null) {
+			
+			replacementParent = replacement;
+			
+			replacement = focusNode;
+			
+			focusNode = focusNode.leftChild;
+			
+		}
+		
+		if (replacement != inputFocusNode.rightChild) {
+			
+			replacementParent.leftChild = replacement.rightChild;
+			replacement.rightChild = inputFocusNode.rightChild;
+			
+		}
+		
+		return replacement;
+		
+	}
+
 	public static void main(String[] args) {
 	
 		BinaryTree soccerTeam = new BinaryTree();
@@ -245,12 +293,20 @@ public class BinaryTree {
 		soccerTeam.addSoccerNode(89, "Wing");
 
 //		soccerTeam.inOrderTraverseTree(soccerTeam.root);
-		soccerTeam.preOrderTraverseTree(soccerTeam.root);
+//		soccerTeam.preOrderTraverseTree(soccerTeam.root);
 //		soccerTeam.postOrderTraverseTree(soccerTeam.root);
 		
 		System.out.println("\nFind players 9 and 99: ");
 		System.out.println(soccerTeam.findSoccerNode(9));
 		System.out.println(soccerTeam.findSoccerNode(99));
+		
+		System.out.println("\nRemove players 9 and 99: ");
+		
+		soccerTeam.removeNode(9);
+		soccerTeam.removeNode(99);
+		soccerTeam.removeNode(12);
+		
+		soccerTeam.preOrderTraverseTree(soccerTeam.root);
 		
 	}
 
