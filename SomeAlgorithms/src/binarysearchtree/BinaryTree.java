@@ -288,23 +288,29 @@ public class BinaryTree {
 		soccerTeam.addSoccerNode(8, "Left Midfielder");
 		soccerTeam.addSoccerNode(47, "Right Midfielder");
 		soccerTeam.addSoccerNode(26, "Central Midfielder");
-		soccerTeam.addSoccerNode(9, "Playmaker");
+		soccerTeam.addSoccerNode(14, "Playmaker");
 		soccerTeam.addSoccerNode(3, "Central Scorer");
-		soccerTeam.addSoccerNode(89, "Wing");
+		soccerTeam.addSoccerNode(17, "Wing");
 
 //		soccerTeam.inOrderTraverseTree(soccerTeam.root);
-//		soccerTeam.preOrderTraverseTree(soccerTeam.root);
+		soccerTeam.preOrderTraverseTree(soccerTeam.root);
 //		soccerTeam.postOrderTraverseTree(soccerTeam.root);
 		
 		System.out.println("\nFind players 9 and 99: ");
 		System.out.println(soccerTeam.findSoccerNode(9));
 		System.out.println(soccerTeam.findSoccerNode(99));
 		
-		System.out.println("\nRemove players 9 and 99: ");
+		System.out.println("\nRemove players 9, 99 and 12: ");
 		
 		soccerTeam.removeNode(9);
 		soccerTeam.removeNode(99);
 		soccerTeam.removeNode(12);
+		
+		soccerTeam.preOrderTraverseTree(soccerTeam.root);
+		
+		System.out.println("\nRemove player 19: ");
+		
+		soccerTeam.removeNode(19);
 		
 		soccerTeam.preOrderTraverseTree(soccerTeam.root);
 		
