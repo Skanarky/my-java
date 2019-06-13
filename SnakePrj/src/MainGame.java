@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 /**
  * 
  */
@@ -10,12 +12,23 @@ public class MainGame {
 	
 	public MainGame() {
 		
-		// constr
+		JFrame frame = new JFrame();
+		Panel gamePanel = new Panel();
+		
+		frame.add(gamePanel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Good Ol' Snake");
+		
+		frame.pack();
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 		
 	}
 
 	public static void main(String[] args) {
-		// start main game 
+
+		new MainGame();
+
 	}
 
 }
