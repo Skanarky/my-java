@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 /**
@@ -15,13 +17,19 @@ public class MainGame {
 		JFrame frame = new JFrame();
 		Panel gamePanel = new Panel();
 		
-		frame.add(gamePanel);
+		frame.setPreferredSize(new Dimension(Panel.WIDTH, Panel.HEIGHT));
+		frame.setMaximumSize(new Dimension(Panel.WIDTH, Panel.HEIGHT));
+		frame.setMinimumSize(new Dimension(Panel.WIDTH, Panel.HEIGHT));
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Good Ol' Snake");
 		
-		frame.pack();
-		frame.setVisible(true);
+		frame.setResizable(false);
+		
+//		frame.pack();
 		frame.setLocationRelativeTo(null);
+		frame.add(gamePanel);
+		frame.setVisible(true);
 		
 	}
 
