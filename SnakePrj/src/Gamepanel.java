@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 /**
@@ -11,7 +13,7 @@ import javax.swing.JPanel;
  * @author Kutkurov
  *
  */
-public class Panel extends JPanel implements Runnable {
+public class Gamepanel extends JPanel implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,9 +21,30 @@ public class Panel extends JPanel implements Runnable {
 	
 	private Thread thread;
 	private boolean isRunning;
+	
+	private boolean right = true, left = false, up = false, down = false;
+	
+	private BodyPart bodyPart;
+	private ArrayList<BodyPart> theSnake;
+	private int xCoor = 10, yCoor = 10, size = 5;
+	
+	private int ticks = 0;
 
-	public Panel() {
+	public ArrayList<BodyPart> getTheSnake() {
+		return theSnake;
+	}
+
+	public Gamepanel() {
+
+		this.setFocusable(true);  
+		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		
+		this.bodyPart = new BodyPart(xCoor, yCoor, 10);
+
+		this.theSnake = new ArrayList<BodyPart>();
+
 		this.start();
 		
 	}
@@ -50,7 +73,28 @@ public class Panel extends JPanel implements Runnable {
 	
 	public void tick() {
 		
-		// add tick element... bodyPart
+		if (theSnake.size() == 0) {
+			theSnake.add(bodyPart);
+		}
+		
+		++ticks;
+		
+		if (ticks > 1000000) {
+			
+			if (right) ++xCoor;
+			if (left) --xCoor;
+			if (up) --yCoor;
+			if (down) ++yCoor;
+			
+			ticks = 0;
+
+			theSnake.add(bodyPart);
+			
+			if (theSnake.size() > size) {
+				theSnake.remove(0);
+			}
+			
+		}
 		
 	}
 	
@@ -72,6 +116,12 @@ public class Panel extends JPanel implements Runnable {
 			
 			g.drawLine(0, i * 10, HEIGHT, i * 10);
 			
+		}
+		
+		for(int i = 0; i < theSnake.size(); ++i) {
+
+			theSnake.get(i).draw(g);
+
 		}
 		
 	}
