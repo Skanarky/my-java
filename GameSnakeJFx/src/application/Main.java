@@ -20,12 +20,13 @@ import javafx.scene.text.Font;
 public class Main extends Application {
 	
 	// state
-	static int speed = 5;
+	static int speed = 4;
 	static int foodColor = 0;
 	static int width = 20;
 	static int height = 20;
 	static int foodX = 0;
 	static int foodY = 0;
+	// not really body part size... (it's 20 instead of 25)
 	static int bodyPartSize = 25;
 	static List<BodyPart> theSnake = new ArrayList<>();
 	static Direction direction = Direction.left;
@@ -42,7 +43,7 @@ public class Main extends Application {
 			GraphicsContext grCtxt = canvas.getGraphicsContext2D();
 			root.getChildren().add(canvas);
 			
-			// this (AnimationTimer) is the flip book
+			// the AnimationTimer is like flip book
 			new AnimationTimer() {
 
 				long lastTick = 0;
