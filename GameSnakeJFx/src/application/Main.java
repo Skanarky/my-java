@@ -10,7 +10,11 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 
 public class Main extends Application {
@@ -31,12 +35,14 @@ public class Main extends Application {
 	
 	public void start(Stage primaryStage) {
 		try {
+			makeFood();
+
 			VBox root = new VBox();
 			Canvas canvas = new Canvas(width * bodyPartSize, height * bodyPartSize);
 			GraphicsContext grCtxt = canvas.getGraphicsContext2D();
 			root.getChildren().add(canvas);
 			
-			// this is the flip book
+			// this (AnimationTimer) is the flip book
 			new AnimationTimer() {
 
 				long lastTick = 0;
@@ -46,6 +52,7 @@ public class Main extends Application {
 					if (lastTick == 0) {
 
 						lastTick = now;
+						tick(grCtxt);
 
 						return;
 
@@ -55,6 +62,7 @@ public class Main extends Application {
 					if ((now - lastTick) > (1000000000 / speed)) {
 
 						lastTick = now;
+						tick(grCtxt);
 
 					}
 
@@ -62,13 +70,160 @@ public class Main extends Application {
 
 			}.start();
 			
-			Scene scene = new Scene(root,400,400);
+			// scene
+			Scene scene = new Scene(root, (width * bodyPartSize), (height * bodyPartSize));
+
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			
+			// controls - I, J, K, L
+			scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+				
+				if (key.getCode() == KeyCode.I) {
+					direction = Direction.up;
+				}
+				if (key.getCode() == KeyCode.J) {
+					direction = Direction.left;
+				}
+				if (key.getCode() == KeyCode.K) {
+					direction = Direction.down;
+				}
+				if (key.getCode() == KeyCode.L) {
+					direction = Direction.right;
+				}
+				
+			});
+			
+			// initial creation of the snake - 3 body parts
+			theSnake.add(new BodyPart((width / 2), (height / 2)));
+			theSnake.add(new BodyPart((width / 2), (height / 2)));
+			theSnake.add(new BodyPart((width / 2), (height / 2)));
+
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("GOOD OL' SNAKE GAME");
 			primaryStage.show();
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void tick(GraphicsContext gc) {
+
+		if (gameIsOver) {
+			gc.setFill(Color.MAROON);
+			gc.setFont(new Font("", 50));
+			gc.fillText("GAME OVER", 100, 250);
+			return;
+		}
+		
+		for (int i = (theSnake.size() - 1); i >= 1; --i) {
+			
+			theSnake.get(i).x = theSnake.get(i - 1).x;
+			theSnake.get(i).y = theSnake.get(i - 1).y;
+			
+		}
+		
+		// the game will over if the snake touches the border
+		switch (direction) {
+		
+			case up:
+				--theSnake.get(0).y;
+				if (theSnake.get(0).y < 0) {
+					gameIsOver = true;
+				}
+				break;
+			case down:
+				++theSnake.get(0).y;
+				if (theSnake.get(0).y > height) {
+					gameIsOver = true;
+				}
+				break;
+			case left:
+				--theSnake.get(0).x;
+				if (theSnake.get(0).x < 0) {
+					gameIsOver = true;
+				}
+				break;
+			case right:
+				++theSnake.get(0).x;
+				if (theSnake.get(0).x > width) {
+					gameIsOver = true;
+				}
+				break;
+		
+		}
+		
+		// eating food
+		
+		if (foodX == theSnake.get(0).x && foodY == theSnake.get(0).y) {
+			
+			theSnake.add(new BodyPart(-1, -1));
+			makeFood();
+			
+		}
+		
+		// self snake collision
+		for (int i = 1; i < theSnake.size(); ++i) {
+			
+			if (theSnake.get(0).x == theSnake.get(i).x && theSnake.get(0).y == theSnake.get(i).y ) {
+				gameIsOver = true;
+			}
+			
+		}
+		
+		// fill the background
+		gc.setFill(Color.BLACK);
+		gc.fillRect(0, 0, (width * bodyPartSize), (height * bodyPartSize));
+		
+		// show score
+		gc.setFill(Color.WHITE);
+		gc.setFont(new Font("", 20));
+		gc.fillText("Score: " + (speed - 5), 10, 30);
+		
+		// food color - two colors
+		Color cF = Color.WHITESMOKE;
+		Color cFS = Color.WHITE;
+		switch (foodColor) {
+		
+			case 0:
+				cF = Color.BISQUE;
+				cFS = Color.BEIGE;
+				break;
+			case 1:
+				cF = Color.DARKORANGE;
+				cFS = Color.ORANGE;
+				break;
+			case 2:
+				cF = Color.PURPLE;
+				cFS = Color.MEDIUMPURPLE;
+				break;
+			case 3:
+				cF = Color.YELLOW;
+				cFS = Color.GREENYELLOW;
+				break;
+			case 4:
+				cF = Color.PINK;
+				cFS = Color.LIGHTPINK;
+				break;
+		}
+		gc.setFill(cFS);
+		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+		gc.setFill(cF);
+		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), (bodyPartSize - 2), (bodyPartSize - 2));
+		
+		// show the snake (2 colors - shadow and foreground)
+		for (BodyPart bp : theSnake) {
+			
+			// shadow
+			gc.setFill(Color.OLIVEDRAB);
+			gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize - 1), (bodyPartSize - 1));
+
+			// foreground
+			gc.setFill(Color.DARKOLIVEGREEN);
+			gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize - 2), (bodyPartSize - 2));
+			
+		}
+		
 	}
 	
 	public static void makeFood() {
