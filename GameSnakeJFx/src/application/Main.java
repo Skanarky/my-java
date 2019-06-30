@@ -80,16 +80,21 @@ public class Main extends Application {
 			scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 				
 				if (key.getCode() == KeyCode.I) {
-					direction = Direction.up;
+					if (direction != Direction.down)
+						direction = Direction.up;
 				}
 				if (key.getCode() == KeyCode.J) {
-					direction = Direction.left;
+					if (direction != Direction.right)
+						direction = Direction.left;
+					
 				}
 				if (key.getCode() == KeyCode.K) {
-					direction = Direction.down;
+					if (direction != Direction.up)
+						direction = Direction.down;
 				}
 				if (key.getCode() == KeyCode.L) {
-					direction = Direction.right;
+					if (direction != Direction.left)
+						direction = Direction.right;
 				}
 				
 			});
