@@ -19,6 +19,11 @@ import javafx.scene.text.Font;
 
 public class Main extends Application {
 	
+	// 3 apples
+	// ESC btn exit program
+	// Make snake go from wall to wall OR
+	// fix wall bug when snake more than 3 pcs. and GAME OVER
+	
 	// main state
 	static int speed = 4;
 	static int foodColor = 0;
