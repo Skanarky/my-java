@@ -19,15 +19,21 @@ import javafx.scene.text.Font;
 
 public class Main extends Application {
 	
-	// state
+	// main state
 	static int speed = 4;
 	static int foodColor = 0;
 	static int width = 20;
 	static int height = 20;
+
+	// food
+	Apple greenApple = new Apple("res/greenap.png");
+	Apple redApple = new Apple("res/redap.png");
+	Apple yellowApple = new Apple("res/yellowap.png");
 	static int foodX = 0;
 	static int foodY = 0;
-	// not really body part size... (it's 20 instead of 25)
-	static int bodyPartSize = 25;
+
+	// snake and controls
+	static int bodyPartSize = 25; // not really body part size... more like corner size
 	static List<BodyPart> theSnake = new ArrayList<>();
 	static Direction direction = Direction.left;
 	static boolean gameIsOver = false;
@@ -160,7 +166,6 @@ public class Main extends Application {
 		}
 		
 		// eating food
-		
 		if (foodX == theSnake.get(0).x && foodY == theSnake.get(0).y) {
 			
 			theSnake.add(new BodyPart(-1, -1));
