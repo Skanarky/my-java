@@ -26,9 +26,9 @@ public class Main extends Application {
 	static int height = 20;
 
 	// food
-	Apple greenApple = new Apple("res/greenap.png");
-	Apple redApple = new Apple("res/redap.png");
-	Apple yellowApple = new Apple("res/yellowap.png");
+	static Apple greenApple = new Apple("res/greenapSm.png");
+	static Apple redApple = new Apple("res/redapSm.png");
+	static Apple yellowApple = new Apple("res/yellowapSm.png");
 	static int foodX = 0;
 	static int foodY = 0;
 
@@ -192,36 +192,40 @@ public class Main extends Application {
 		gc.fillText("Score: " + (speed - 5), 10, 30);
 		
 		// food color - two colors
-		Color cF = Color.WHITESMOKE;
-		Color cFS = Color.WHITE;
-		switch (foodColor) {
-		
-			case 0:
-				cF = Color.BISQUE;
-				cFS = Color.BEIGE;
-				break;
-			case 1:
-				cF = Color.DARKORANGE;
-				cFS = Color.ORANGE;
-				break;
-			case 2:
-				cF = Color.PURPLE;
-				cFS = Color.MEDIUMPURPLE;
-				break;
-			case 3:
-				cF = Color.YELLOW;
-				cFS = Color.GREENYELLOW;
-				break;
-			case 4:
-				cF = Color.PINK;
-				cFS = Color.LIGHTPINK;
-				break;
-		}
-		gc.setFill(cFS);
-		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
-		gc.setFill(cF);
-		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), (bodyPartSize - 2), (bodyPartSize - 2));
-		
+//		Color cF = Color.WHITESMOKE;
+//		Color cFS = Color.WHITE;
+//		switch (foodColor) {
+//		
+//			case 0:
+//				cF = Color.BISQUE;
+//				cFS = Color.BEIGE;
+//				break;
+//			case 1:
+//				cF = Color.DARKORANGE;
+//				cFS = Color.ORANGE;
+//				break;
+//			case 2:
+//				cF = Color.PURPLE;
+//				cFS = Color.MEDIUMPURPLE;
+//				break;
+//			case 3:
+//				cF = Color.YELLOW;
+//				cFS = Color.GREENYELLOW;
+//				break;
+//			case 4:
+//				cF = Color.PINK;
+//				cFS = Color.LIGHTPINK;
+//				break;
+//		}
+//		gc.setFill(cFS);
+//		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+//		gc.setFill(cF);
+//		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), (bodyPartSize - 2), (bodyPartSize - 2));
+//		gc.drawImage(redApple.image, (foodX), (foodY));
+		gc.drawImage(redApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+//		redApple.setXPosition((foodX * bodyPartSize));
+//		redApple.setYPosition((foodY * bodyPartSize));
+
 		// show the snake (2 colors - shadow and foreground)
 		for (BodyPart bp : theSnake) {
 			
