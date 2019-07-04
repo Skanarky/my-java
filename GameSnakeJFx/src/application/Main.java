@@ -18,14 +18,12 @@ import javafx.scene.text.Font;
 
 
 public class Main extends Application {
-	
-	// 3 apples
-	// ESC btn exit program
+
 	// Make snake go from wall to wall OR
 	// fix wall bug when snake more than 3 pcs. and GAME OVER
 	
 	// main state
-	static int speed = 3;
+	static int speed = 4;
 	static int appleType = 1;
 	static int width = 20;
 	static int height = 20;
@@ -72,7 +70,7 @@ public class Main extends Application {
 					}
 
 					// frames every speed second -> more frames the snake is faster
-					if ((now - lastTick) > (1500000000 / speed)) {
+					if ((now - lastTick) > (2000000000 / speed)) {
 
 						lastTick = now;
 						tick(grCtxt);
@@ -82,18 +80,26 @@ public class Main extends Application {
 				}
 
 			}.start();
-			
+
 			// scene
 			Scene scene = new Scene(root, (width * bodyPartSize), (height * bodyPartSize));
 
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			
-			// controls - I, J, K, L
+
+			// key events
 			scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-				
+
+				// pause
 				if (key.getCode() == KeyCode.SPACE) {
 					gameIsPaused = !gameIsPaused;
 				}
+
+				// quit game
+				if (key.getCode() == KeyCode.ESCAPE) {
+					System.exit(1);
+				}
+
+				// controls - I, J, K, L
 				if (key.getCode() == KeyCode.I) {
 					if (direction != Direction.down)
 						direction = Direction.up;
@@ -200,7 +206,7 @@ public class Main extends Application {
 			}
 			
 			// fill the background
-			gc.setFill(Color.BLACK);
+			gc.setFill(Color.FLORALWHITE);
 			gc.fillRect(0, 0, (width * bodyPartSize), (height * bodyPartSize));
 			
 			// set food/Apple
@@ -231,9 +237,9 @@ public class Main extends Application {
 			}
 			
 			// show score
-			gc.setFill(Color.WHITESMOKE);
+			gc.setFill(Color.BURLYWOOD);
 			gc.setFont(new Font("", 20));
-			gc.fillText("Score: " + (speed - 4), 10, 30);
+			gc.fillText("Score: " + (speed - 5), 10, 30);
 			
 		}
 		
