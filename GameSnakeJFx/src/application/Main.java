@@ -25,7 +25,7 @@ public class Main extends Application {
 	// fix wall bug when snake more than 3 pcs. and GAME OVER
 	
 	// main state
-	static int speed = 4;
+	static int speed = 3;
 	static int appleType = 1;
 	static int width = 20;
 	static int height = 20;
@@ -151,7 +151,7 @@ public class Main extends Application {
 				break;
 			case down:
 				++theSnake.get(0).y;
-				if (theSnake.get(0).y > height) {
+				if (theSnake.get(0).y > (height - 1)) {
 					gameIsOver = true;
 				}
 				break;
@@ -163,7 +163,7 @@ public class Main extends Application {
 				break;
 			case right:
 				++theSnake.get(0).x;
-				if (theSnake.get(0).x > width) {
+				if (theSnake.get(0).x > (width - 1)) {
 					gameIsOver = true;
 				}
 				break;
@@ -194,7 +194,7 @@ public class Main extends Application {
 		// show score
 		gc.setFill(Color.WHITE);
 		gc.setFont(new Font("", 20));
-		gc.fillText("Score: " + (speed - 5), 10, 30);
+		gc.fillText("Score: " + (speed - 4), 10, 30);
 		
 		// set food/Apple
 		switch (appleType) {
