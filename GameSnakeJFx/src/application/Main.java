@@ -26,7 +26,7 @@ public class Main extends Application {
 	
 	// main state
 	static int speed = 4;
-	static int foodColor = 0;
+	static int appleType = 1;
 	static int width = 20;
 	static int height = 20;
 
@@ -196,40 +196,19 @@ public class Main extends Application {
 		gc.setFont(new Font("", 20));
 		gc.fillText("Score: " + (speed - 5), 10, 30);
 		
-		// food color - two colors
-//		Color cF = Color.WHITESMOKE;
-//		Color cFS = Color.WHITE;
-//		switch (foodColor) {
-//		
-//			case 0:
-//				cF = Color.BISQUE;
-//				cFS = Color.BEIGE;
-//				break;
-//			case 1:
-//				cF = Color.DARKORANGE;
-//				cFS = Color.ORANGE;
-//				break;
-//			case 2:
-//				cF = Color.PURPLE;
-//				cFS = Color.MEDIUMPURPLE;
-//				break;
-//			case 3:
-//				cF = Color.YELLOW;
-//				cFS = Color.GREENYELLOW;
-//				break;
-//			case 4:
-//				cF = Color.PINK;
-//				cFS = Color.LIGHTPINK;
-//				break;
-//		}
-//		gc.setFill(cFS);
-//		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
-//		gc.setFill(cF);
-//		gc.fillOval((foodX * bodyPartSize), (foodY * bodyPartSize), (bodyPartSize - 2), (bodyPartSize - 2));
-//		gc.drawImage(redApple.image, (foodX), (foodY));
-		gc.drawImage(redApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
-//		redApple.setXPosition((foodX * bodyPartSize));
-//		redApple.setYPosition((foodY * bodyPartSize));
+		// set food/Apple
+		switch (appleType) {
+		
+			case 1:
+				gc.drawImage(greenApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+				break;
+			case 2:
+				gc.drawImage(redApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+				break;
+			case 3:
+				gc.drawImage(yellowApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+				break;
+		}
 
 		// show the snake (2 colors - shadow and foreground)
 		for (BodyPart bp : theSnake) {
@@ -258,9 +237,15 @@ public class Main extends Application {
 					continue start;
 				}
 			}
-			
-			foodColor = random.nextInt(5);
+
+			if (appleType < 3) {
+				++appleType;
+			} else {
+				appleType = 1;
+			}
+
 			++speed;
+
 			break;
 
 		}
