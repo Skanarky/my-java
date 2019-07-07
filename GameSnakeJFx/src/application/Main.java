@@ -154,7 +154,7 @@ public class Main extends Application {
 			
 			gc.setFill(Color.DARKSEAGREEN);
 			gc.setFont(new Font("", 35));
-			gc.fillText("CLICK 'ENTER' TO START", 40, 230);
+			gc.fillText("PRESS 'ENTER' TO START", 33, 230);
 			
 			gc.setFill(Color.ORANGERED);
 			gc.setFont(new Font("", 20));
