@@ -70,7 +70,7 @@ public class Main extends Application {
 					}
 
 					// frames every speed second -> more frames the snake is faster
-					if ((now - lastTick) > (2000000000 / speed)) {
+					if ((now - lastTick) > (1750000000 / speed)) {
 
 						lastTick = now;
 						tick(grCtxt);
@@ -164,36 +164,40 @@ public class Main extends Application {
 				case up:
 					--theSnake.get(0).y;
 					if (theSnake.get(0).y < 0) {
-						gameIsOver = true;
+						theSnake.get(0).y = height;
+//						gameIsOver = true;
 					}
 					break;
 				case down:
 					++theSnake.get(0).y;
 					if (theSnake.get(0).y > (height - 1)) {
-						gameIsOver = true;
+						theSnake.get(0).y = 0;
+//						gameIsOver = true;
 					}
 					break;
 				case left:
 					--theSnake.get(0).x;
 					if (theSnake.get(0).x < 0) {
-						gameIsOver = true;
+						theSnake.get(0).x = width;
+//						gameIsOver = true;
 					}
 					break;
 				case right:
 					++theSnake.get(0).x;
 					if (theSnake.get(0).x > (width - 1)) {
-						gameIsOver = true;
+						theSnake.get(0).x = 0;
+//						gameIsOver = true;
 					}
 					break;
-			
+
 			}
-			
+
 			// eating food
 			if (foodX == theSnake.get(0).x && foodY == theSnake.get(0).y) {
 				
 				theSnake.add(new BodyPart(-1, -1));
 				makeFood();
-				
+
 			}
 			
 			// self snake collision
