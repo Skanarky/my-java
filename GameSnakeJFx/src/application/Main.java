@@ -144,12 +144,12 @@ public class Main extends Application {
 			gc.fillText("GAME OVER", 100, 250);
 			return;
 		}
-		
+
 		if (gameIsPaused) {
-			
+
 			gc.setFill(Color.CORNFLOWERBLUE);
-			gc.setFont(new Font("", 50));
-			gc.fillText("PAUSE", 170, 250);
+			gc.setFont(new Font("", 90));
+			gc.fillText("PAUSE", 100, 260);
 			
 		} else {
 			
@@ -234,7 +234,7 @@ public class Main extends Application {
 				
 				// shadow
 				gc.setFill(Color.OLIVEDRAB);
-				gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize - 1), (bodyPartSize - 1));
+				gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize), (bodyPartSize));
 
 				// foreground
 				gc.setFill(Color.DARKOLIVEGREEN);
