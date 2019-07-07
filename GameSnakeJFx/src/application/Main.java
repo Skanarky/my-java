@@ -39,6 +39,7 @@ public class Main extends Application {
 	static Direction direction = Direction.left;
 	static boolean gameIsOver = false;
 	static boolean gameIsPaused = false;
+	static boolean gameIsAboutToStart = true;
 	static Random random = new Random();
 	
 	
@@ -87,6 +88,10 @@ public class Main extends Application {
 			// key events
 			scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 
+				// start game
+				if (key.getCode() == KeyCode.ENTER && gameIsAboutToStart) {
+					gameIsAboutToStart = false;
+				}
 				// pause
 				if (key.getCode() == KeyCode.SPACE) {
 					gameIsPaused = !gameIsPaused;
@@ -144,108 +149,124 @@ public class Main extends Application {
 			gc.fillText("GAME OVER", 100, 250);
 			return;
 		}
-
-		if (gameIsPaused) {
-
-			gc.setFill(Color.CORNFLOWERBLUE);
-			gc.setFont(new Font("", 90));
-			gc.fillText("PAUSE", 100, 260);
+		
+		if (gameIsAboutToStart) {
+			
+			gc.setFill(Color.DARKSEAGREEN);
+			gc.setFont(new Font("", 35));
+			gc.fillText("CLICK 'ENTER' TO START", 40, 230);
+			
+			gc.setFill(Color.ORANGERED);
+			gc.setFont(new Font("", 20));
+			gc.fillText("USE 'I', 'J', 'K', 'L' FOR CONTROLS", 90, 260);
+			gc.fillText("'SPACE' TO PAUSE GAME", 130, 290);
+			gc.fillText("'ESCAPE' TO QUIT GAME", 133, 320);
 			
 		} else {
 			
-			for (int i = (theSnake.size() - 1); i >= 1; --i) {
-				
-				theSnake.get(i).x = theSnake.get(i - 1).x;
-				theSnake.get(i).y = theSnake.get(i - 1).y;
-				
-			}
-			
-			// the game will NOT be over if the snake touches the border
-			switch (direction) {
-			
-				case up:
-					--theSnake.get(0).y;
-					if (theSnake.get(0).y < 0) {
-						theSnake.get(0).y = height;
-//						gameIsOver = true;
-					}
-					break;
-				case down:
-					++theSnake.get(0).y;
-					if (theSnake.get(0).y > (height - 1)) {
-						theSnake.get(0).y = 0;
-//						gameIsOver = true;
-					}
-					break;
-				case left:
-					--theSnake.get(0).x;
-					if (theSnake.get(0).x < 0) {
-						theSnake.get(0).x = width;
-//						gameIsOver = true;
-					}
-					break;
-				case right:
-					++theSnake.get(0).x;
-					if (theSnake.get(0).x > (width - 1)) {
-						theSnake.get(0).x = 0;
-//						gameIsOver = true;
-					}
-					break;
+			if (gameIsPaused) {
 
-			}
-
-			// eating food
-			if (foodX == theSnake.get(0).x && foodY == theSnake.get(0).y) {
+				gc.setFill(Color.CORNFLOWERBLUE);
+				gc.setFont(new Font("", 90));
+				gc.fillText("PAUSE", 100, 260);
 				
-				theSnake.add(new BodyPart(-1, -1));
-				makeFood();
-
-			}
-			
-			// self snake collision
-			for (int i = 1; i < theSnake.size(); ++i) {
+			} else {
 				
-				if (theSnake.get(0).x == theSnake.get(i).x && theSnake.get(0).y == theSnake.get(i).y ) {
-					gameIsOver = true;
+				for (int i = (theSnake.size() - 1); i >= 1; --i) {
+					
+					theSnake.get(i).x = theSnake.get(i - 1).x;
+					theSnake.get(i).y = theSnake.get(i - 1).y;
+					
 				}
 				
-			}
-			
-			// fill the background
-			gc.setFill(Color.FLORALWHITE);
-			gc.fillRect(0, 0, (width * bodyPartSize), (height * bodyPartSize));
-			
-			// set food/Apple
-			switch (appleType) {
-			
-				case 1:
-					gc.drawImage(greenApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
-					break;
-				case 2:
-					gc.drawImage(redApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
-					break;
-				case 3:
-					gc.drawImage(yellowApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
-					break;
-			}
-
-			// show the snake (2 colors - shadow and foreground)
-			for (BodyPart bp : theSnake) {
+				// the game will NOT be over if the snake touches the border
+				switch (direction) {
 				
-				// shadow
-				gc.setFill(Color.OLIVEDRAB);
-				gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize), (bodyPartSize));
+					case up:
+						--theSnake.get(0).y;
+						if (theSnake.get(0).y < 0) {
+							theSnake.get(0).y = height;
+//							gameIsOver = true;
+						}
+						break;
+					case down:
+						++theSnake.get(0).y;
+						if (theSnake.get(0).y > (height - 1)) {
+							theSnake.get(0).y = 0;
+//							gameIsOver = true;
+						}
+						break;
+					case left:
+						--theSnake.get(0).x;
+						if (theSnake.get(0).x < 0) {
+							theSnake.get(0).x = width;
+//							gameIsOver = true;
+						}
+						break;
+					case right:
+						++theSnake.get(0).x;
+						if (theSnake.get(0).x > (width - 1)) {
+							theSnake.get(0).x = 0;
+//							gameIsOver = true;
+						}
+						break;
 
-				// foreground
-				gc.setFill(Color.DARKOLIVEGREEN);
-				gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize - 2), (bodyPartSize - 2));
+				}
+
+				// eating food
+				if (foodX == theSnake.get(0).x && foodY == theSnake.get(0).y) {
+					
+					theSnake.add(new BodyPart(-1, -1));
+					makeFood();
+
+				}
+				
+				// self snake collision
+				for (int i = 1; i < theSnake.size(); ++i) {
+					
+					if (theSnake.get(0).x == theSnake.get(i).x && theSnake.get(0).y == theSnake.get(i).y ) {
+						gameIsOver = true;
+					}
+					
+				}
+				
+				// fill the background
+				gc.setFill(Color.FLORALWHITE);
+				gc.fillRect(0, 0, (width * bodyPartSize), (height * bodyPartSize));
+				
+				// set food/Apple
+				switch (appleType) {
+				
+					case 1:
+						gc.drawImage(greenApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+						break;
+					case 2:
+						gc.drawImage(redApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+						break;
+					case 3:
+						gc.drawImage(yellowApple.image, (foodX * bodyPartSize), (foodY * bodyPartSize), bodyPartSize, bodyPartSize);
+						break;
+				}
+
+				// show the snake (2 colors - shadow and foreground)
+				for (BodyPart bp : theSnake) {
+					
+					// shadow
+					gc.setFill(Color.OLIVEDRAB);
+					gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize), (bodyPartSize));
+
+					// foreground
+					gc.setFill(Color.DARKOLIVEGREEN);
+					gc.fillRect((bp.x * bodyPartSize), (bp.y * bodyPartSize), (bodyPartSize - 2), (bodyPartSize - 2));
+					
+				}
+				
+				// show score
+				gc.setFill(Color.BURLYWOOD);
+				gc.setFont(new Font("", 20));
+				gc.fillText("Score: " + score, 10, 30);
 				
 			}
-			
-			// show score
-			gc.setFill(Color.BURLYWOOD);
-			gc.setFont(new Font("", 20));
-			gc.fillText("Score: " + score, 10, 30);
 			
 		}
 		
