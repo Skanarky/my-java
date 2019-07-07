@@ -18,12 +18,10 @@ import javafx.scene.text.Font;
 
 
 public class Main extends Application {
-
-	// Make snake go from wall to wall OR
-	// fix wall bug when snake more than 3 pcs. and GAME OVER
 	
 	// main state
-	static int speed = 4;
+	static double speed = 4;
+	static int score = -1;
 	static int appleType = 1;
 	static int width = 20;
 	static int height = 20;
@@ -100,22 +98,26 @@ public class Main extends Application {
 				}
 
 				// controls - I, J, K, L
-				if (key.getCode() == KeyCode.I) {
-					if (direction != Direction.down)
-						direction = Direction.up;
-				}
-				if (key.getCode() == KeyCode.J) {
-					if (direction != Direction.right)
-						direction = Direction.left;
+				if (checkBorders()) {
 					
-				}
-				if (key.getCode() == KeyCode.K) {
-					if (direction != Direction.up)
-						direction = Direction.down;
-				}
-				if (key.getCode() == KeyCode.L) {
-					if (direction != Direction.left)
-						direction = Direction.right;
+					if (key.getCode() == KeyCode.I) {
+						if (direction != Direction.down)
+							direction = Direction.up;
+					}
+					if (key.getCode() == KeyCode.J) {
+						if (direction != Direction.right)
+							direction = Direction.left;
+						
+					}
+					if (key.getCode() == KeyCode.K) {
+						if (direction != Direction.up)
+							direction = Direction.down;
+					}
+					if (key.getCode() == KeyCode.L) {
+						if (direction != Direction.left)
+							direction = Direction.right;
+					}
+					
 				}
 				
 			});
@@ -158,7 +160,7 @@ public class Main extends Application {
 				
 			}
 			
-			// the game will over if the snake touches the border
+			// the game will NOT be over if the snake touches the border
 			switch (direction) {
 			
 				case up:
@@ -243,10 +245,16 @@ public class Main extends Application {
 			// show score
 			gc.setFill(Color.BURLYWOOD);
 			gc.setFont(new Font("", 20));
-			gc.fillText("Score: " + (speed - 5), 10, 30);
+			gc.fillText("Score: " + score, 10, 30);
 			
 		}
 		
+	}
+	
+	public static boolean checkBorders() {
+		if (theSnake.get(0).y > 0 && theSnake.get(0).y < height && theSnake.get(0).x > 0 && theSnake.get(0).x < width)
+			return true;
+		return false;
 	}
 	
 	public static void makeFood() {
@@ -268,7 +276,8 @@ public class Main extends Application {
 				appleType = 1;
 			}
 
-			++speed;
+			++score;
+			speed += .25;
 
 			break;
 
