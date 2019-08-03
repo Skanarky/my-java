@@ -38,6 +38,7 @@ public class Main extends Application {
 	static List<BodyPart> theSnake = new ArrayList<>();
 	static Direction direction = Direction.left;
 	static boolean gameIsOver = false;
+	static boolean gOverBySelf = false;
 	static boolean gameIsPaused = false;
 	static boolean gameIsAboutToStart = true;
 	static Random random = new Random();
@@ -145,11 +146,21 @@ public class Main extends Application {
 
 		if (gameIsOver) {
 			gc.setFill(Color.MAROON);
-			gc.setFont(new Font("", 50));
-			gc.fillText("GAME OVER", 100, 250);
+			
+			if (gOverBySelf) {
+				gc.setFont(new Font("", 50));
+				gc.fillText("GAME OVER", 100, 250);
+				gc.setFill(Color.DARKSEAGREEN);
+				gc.setFont(new Font("", 20));
+				gc.fillText("You eated yourself!!!", 150, 280);
+				gc.setFill(Color.MAROON);
+			} else {
+				gc.setFont(new Font("", 50));
+				gc.fillText("GAME OVER", 100, 250);
+			}
 			
 			gc.setFont(new Font("", 35));
-			gc.fillText("SCORE: " + score, 170, 350);
+			gc.fillText("SCORE: " + score, 165, 350);
 			return;
 		}
 		
@@ -228,6 +239,7 @@ public class Main extends Application {
 				for (int i = 1; i < theSnake.size(); ++i) {
 					
 					if (theSnake.get(0).x == theSnake.get(i).x && theSnake.get(0).y == theSnake.get(i).y ) {
+						gOverBySelf = true;
 						gameIsOver = true;
 					}
 					
