@@ -1,0 +1,81 @@
+KW
+https://www.geeksforgeeks.org/list-of-all-java-keywords/
+
+dtypes (8):
+
+(num:)
+byte
+short
+int
+long
+(floating point num:)
+float
+double
+(others:)
+char
+boolean
+
+flow control (10):
+
+(flow:)
+if
+else
+switch
+case
+default
+break (in both flow and loops)
+(loops:)
+for
+while
+do
+continue
+
+modifiers (11):
+
+public
+private
+protected
+static
+final
+abstract
+synchronized
+native
+strictfp
+transient
+volatile
+
+exception handling (6):
+
+try
+catch
+finally
+throw
+throws
+assert
+
+class related (6):
+
+class
+package
+import
+extends
+interface
+implements
+
+object related (4):
+
+new
+instanceof
+super
+this
+
+method related (2):
+
+void
+return
+
+reserved literals (3):
+
+null
+true
+false
