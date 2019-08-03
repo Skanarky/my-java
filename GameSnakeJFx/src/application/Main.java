@@ -147,6 +147,9 @@ public class Main extends Application {
 			gc.setFill(Color.MAROON);
 			gc.setFont(new Font("", 50));
 			gc.fillText("GAME OVER", 100, 250);
+			
+			gc.setFont(new Font("", 35));
+			gc.fillText("SCORE: " + score, 170, 350);
 			return;
 		}
 		
