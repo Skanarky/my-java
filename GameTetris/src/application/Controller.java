@@ -1,5 +1,7 @@
 package application;
 
+import javafx.scene.shape.*;
+
 public class Controller {
 	
 	// getting numbers and mesh from Tetris class
@@ -28,12 +30,36 @@ public class Controller {
 	}
 	
 	public static void moveLeft(Form form) {
-		// ...
+		if ((form.a.getX() - MOVE) >= 0 && (form.b.getX() - MOVE) >= 0 &&
+				(form.c.getX() - MOVE) >= 0 && (form.d.getX() - MOVE) >= 0) {
+			int moveA = MESH[((int) form.a.getX() / SIZE) - 1 ][(int) form.a.getY() / SIZE];
+			int moveB = MESH[((int) form.b.getX() / SIZE) - 1 ][(int) form.b.getY() / SIZE];
+			int moveC = MESH[((int) form.c.getX() / SIZE) - 1 ][(int) form.c.getY() / SIZE];
+			int moveD = MESH[((int) form.d.getX() / SIZE) - 1 ][(int) form.d.getY() / SIZE];
+			
+			if (moveA == 0 && moveA == moveB && moveB == moveC && moveC == moveD) {
+				form.a.setX(form.a.getX() - MOVE);
+				form.b.setX(form.b.getX() - MOVE);
+				form.c.setX(form.c.getX() - MOVE);
+				form.d.setX(form.d.getX() - MOVE);
+			}
+		}
 	}
 
 	// create stones
 	public static Form makeRect() {
+		
+		// random color
+		int block = (int) (Math.random() * 100);
+		String name;
+		
+		Rectangle a = new Rectangle(SIZE -1, SIZE -1),
+					b = new Rectangle(SIZE -1, SIZE -1),
+					c = new Rectangle(SIZE -1, SIZE -1),
+					d = new Rectangle(SIZE -1, SIZE -1);
+
 		// ...
+
 	}
 
 }
