@@ -59,7 +59,7 @@ public class Controller {
 			c = new Rectangle(SIZE -1, SIZE -1),
 			d = new Rectangle(SIZE -1, SIZE -1);
 		
-		// I THINK THE BLOCKS ARE WRONG BELOW
+		// BLOCKS SIZES/POSITIONS MAY BE WRONG BELOW
 		
 		// "j" block
 		if (block < 15) {
