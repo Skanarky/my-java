@@ -6,6 +6,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class TheTetris extends Application {
@@ -38,6 +41,23 @@ public class TheTetris extends Application {
 		for (int[] a : MESH) {
 			Arrays.fill(a, 0);
 		}
+
+		// score and level text
+		Line line = new Line(MAXX, 0, MAXX, MAXY);
+
+		Text theScore = new Text("SCORE: ");
+		theScore.setStyle("-fx-font: 20 arials");
+		theScore.setY(50);
+		theScore.setX((MAXX + 5));
+		
+		Text theLevel = new Text("LEVEL: ");
+		theLevel.setStyle("-fx-font: 20 arials");
+		theLevel.setY(100);
+		theLevel.setX((MAXX + 5));
+		theLevel.setFill(Color.GREENYELLOW);
+		
+		groupe.getChildren().addAll(line, theScore, theLevel);
+		
 
 //		try {
 //			BorderPane root = new BorderPane();
