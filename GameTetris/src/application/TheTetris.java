@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Arrays;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -22,10 +24,20 @@ public class TheTetris extends Application {
 	private static boolean gameOn = true;
 	private static Form nextObject = Controller.makeRect();
 	private static int linesNo = 0;
+	
+	// scene and start game
+	
+	public void main(String[] args) {
+		launch(args);
+	}
 
 
 	@Override
 	public void start(Stage arg0) throws Exception {
+		
+		for (int[] a : MESH) {
+			Arrays.fill(a, 0);
+		}
 
 //		try {
 //			BorderPane root = new BorderPane();
