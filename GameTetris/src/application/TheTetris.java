@@ -1,9 +1,14 @@
 package application;
 
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -24,6 +29,7 @@ public class TheTetris extends Application {
 	private static Scene scene = new Scene(groupe, (MAXX + 150), MAXY);
 
 	public static int score = 0;
+	public static int top = 0;
 	private static boolean gameOn = true;
 	private static Form nextObject = Controller.makeRect();
 	private static int linesNo = 0;
@@ -46,12 +52,12 @@ public class TheTetris extends Application {
 		Line line = new Line(MAXX, 0, MAXX, MAXY);
 
 		Text theScore = new Text("SCORE: ");
-		theScore.setStyle("-fx-font: 20 arials;");
+		theScore.setStyle("-fx-font: 20 arial;");
 		theScore.setY(50);
 		theScore.setX((MAXX + 5));
 		
 		Text theLevel = new Text("LEVEL: ");
-		theLevel.setStyle("-fx-font: 20 arials;");
+		theLevel.setStyle("-fx-font: 20 arial;");
 		theLevel.setY(100);
 		theLevel.setX((MAXX + 5));
 		theLevel.setFill(Color.GREENYELLOW);
@@ -71,6 +77,51 @@ public class TheTetris extends Application {
 		stg.setScene(scene);
 		stg.setTitle("TETRIS IS AWESOME");
 		stg.show();
+		
+		// timer
+		
+		Timer theFall = new Timer();
+		TimerTask tTask = new TimerTask() {
+			public void run() {
+				Platform.runLater(new Runnable() {
+					public void run() {
+						if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0 || object.d.getY() == 0) {
+							top++;
+						} else {
+							top = 0;
+						}
+						
+						// game over
+						if (top == 2) {
+							Text gOver = new Text("GAME OVER");
+							gOver.setStyle("-fx-font: 70 arial;");
+							gOver.setFill(Color.DARKRED);
+							gOver.setY(250);
+							gOver.setX(10);
+							
+							groupe.getChildren().add(gOver);
+							
+							gameOn = false;
+						}
+						
+						// exit
+						if (top == 15) {
+							System.exit(0);
+						}
+						
+						// game 
+						if (gameOn) {
+							MoveDown(object);
+							theScore.setText("SCORE: " + Integer.toString(score));
+							theLevel.setText("LEVEL: " + Integer.toString(linesNo));
+							
+						}
+					}
+				});
+			}
+		};
+		
+		theFall.schedule(tTask, 0, 300);
 
 //		try {
 //			BorderPane root = new BorderPane();
@@ -82,6 +133,30 @@ public class TheTetris extends Application {
 //			e.printStackTrace();
 //		}
 
+	}
+	
+	private void moveOnKeyPress(Form theFormInp) {
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent ev) {
+				switch (ev.getCode()) {
+					case RIGHT:
+						Controller.moveRight(theFormInp);
+						break;
+					case DOWN:
+						MoveDown(theFormInp);
+						score++;
+						break;
+					case LEFT:
+						Controller.moveLeft(theFormInp);
+						break;
+					case UP:
+						MoveTurn(theFormInp);
+						break;
+					default:
+						return;
+				}
+			}
+		});
 	}
 
 }
