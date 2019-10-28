@@ -36,7 +36,7 @@ public class TheTetris extends Application {
 
 
 	@Override
-	public void start(Stage arg0) throws Exception {
+	public void start(Stage stg) throws Exception {
 		
 		for (int[] a : MESH) {
 			Arrays.fill(a, 0);
@@ -46,18 +46,31 @@ public class TheTetris extends Application {
 		Line line = new Line(MAXX, 0, MAXX, MAXY);
 
 		Text theScore = new Text("SCORE: ");
-		theScore.setStyle("-fx-font: 20 arials");
+		theScore.setStyle("-fx-font: 20 arials;");
 		theScore.setY(50);
 		theScore.setX((MAXX + 5));
 		
 		Text theLevel = new Text("LEVEL: ");
-		theLevel.setStyle("-fx-font: 20 arials");
+		theLevel.setStyle("-fx-font: 20 arials;");
 		theLevel.setY(100);
 		theLevel.setX((MAXX + 5));
 		theLevel.setFill(Color.GREENYELLOW);
 		
 		groupe.getChildren().addAll(line, theScore, theLevel);
 		
+		// first block and game stage
+		Form a = nextObject;
+		groupe.getChildren().addAll(a.a, a.b, a.c, a.d);
+		
+		moveOnKeyPress(a);
+		
+		object = a;
+		
+		nextObject = Controller.makeRect();
+		
+		stg.setScene(scene);
+		stg.setTitle("TETRIS IS AWESOME");
+		stg.show();
 
 //		try {
 //			BorderPane root = new BorderPane();
