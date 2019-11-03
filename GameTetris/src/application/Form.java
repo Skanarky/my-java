@@ -53,6 +53,9 @@ public class Form {
 			case "i":
 				color = Color.SANDYBROWN;
 				break;
+			default: 
+				color = Color.BLACK; 
+	            break; 
 		}
 		
 		this.a.setFill(color);

@@ -167,7 +167,59 @@ public class TheTetris extends Application {
 		Rectangle c = theFormInp.c;
 		Rectangle d = theFormInp.d;
 		
-		
+		switch (theFormInp.getName()) {
+			case "j":
+				if (theF == 1 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
+					MoveRight(theFormInp.a);
+					MoveDown(theFormInp.a);
+					MoveLeft(theFormInp.c);
+					MoveDown(theFormInp.c);
+					MoveLeft(theFormInp.d);
+					MoveLeft(theFormInp.d);
+					MoveDown(theFormInp.d);
+					MoveDown(theFormInp.d);
+					theFormInp.changeForm();
+					break;
+				}
+				if (theF == 2 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
+					MoveRight(theFormInp.a);
+					MoveDown(theFormInp.a);
+					MoveLeft(theFormInp.c);
+					MoveDown(theFormInp.c);
+					MoveLeft(theFormInp.d);
+					MoveLeft(theFormInp.d);
+					MoveDown(theFormInp.d);
+					MoveDown(theFormInp.d);
+					theFormInp.changeForm();
+					break;
+				}
+				if (theF == 3 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
+					MoveRight(theFormInp.a);
+					MoveDown(theFormInp.a);
+					MoveLeft(theFormInp.c);
+					MoveDown(theFormInp.c);
+					MoveLeft(theFormInp.d);
+					MoveLeft(theFormInp.d);
+					MoveDown(theFormInp.d);
+					MoveDown(theFormInp.d);
+					theFormInp.changeForm();
+					break;
+				}
+				if (theF == 4 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
+					MoveRight(theFormInp.a);
+					MoveDown(theFormInp.a);
+					MoveLeft(theFormInp.c);
+					MoveDown(theFormInp.c);
+					MoveLeft(theFormInp.d);
+					MoveLeft(theFormInp.d);
+					MoveDown(theFormInp.d);
+					MoveDown(theFormInp.d);
+					theFormInp.changeForm();
+					break;
+				}
+			// case "l": ... o, s, t, z, i
+			// ...
+		}
 	}
 	
 	private boolean checkRect(Rectangle rect, int x, int y) {
