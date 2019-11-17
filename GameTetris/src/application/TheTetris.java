@@ -25,9 +25,9 @@ public class TheTetris extends Application {
 	public static int MAXY = SIZE * 24;
 	public static int [][] MESH = new int [MAXX/SIZE][MAXY/SIZE];
 
-	private static Pane groupe = new Pane();
+	private static Pane theGroup = new Pane();
 	private static Form object;
-	private static Scene scene = new Scene(groupe, (MAXX + 150), MAXY);
+	private static Scene scene = new Scene(theGroup, (MAXX + 150), MAXY);
 
 	public static int score = 0;
 	public static int top = 0;
@@ -63,11 +63,11 @@ public class TheTetris extends Application {
 		theLevel.setX((MAXX + 5));
 		theLevel.setFill(Color.GREENYELLOW);
 		
-		groupe.getChildren().addAll(line, theScore, theLevel);
+		theGroup.getChildren().addAll(line, theScore, theLevel);
 		
 		// first block and game stage
 		Form a = nextObject;
-		groupe.getChildren().addAll(a.a, a.b, a.c, a.d);
+		theGroup.getChildren().addAll(a.a, a.b, a.c, a.d);
 		
 		moveOnKeyPress(a);
 		
@@ -100,7 +100,7 @@ public class TheTetris extends Application {
 							gOver.setY(250);
 							gOver.setX(10);
 							
-							groupe.getChildren().add(gOver);
+							theGroup.getChildren().add(gOver);
 							
 							gameOn = false;
 						}
@@ -112,7 +112,7 @@ public class TheTetris extends Application {
 						
 						// game 
 						if (gameOn) {
-							MoveDown(object);
+							moveDownForm(object);
 							theScore.setText("SCORE: " + Integer.toString(score));
 							theLevel.setText("LEVEL: " + Integer.toString(linesNo));
 							
@@ -144,14 +144,14 @@ public class TheTetris extends Application {
 						Controller.moveRight(theFormInp);
 						break;
 					case DOWN:
-						MoveDown(theFormInp);
+						moveDownForm(theFormInp);
 						score++;
 						break;
 					case LEFT:
 						Controller.moveLeft(theFormInp);
 						break;
 					case UP:
-						MoveTurn(theFormInp);
+						moveTurn(theFormInp);
 						break;
 					default:
 						return;
@@ -160,7 +160,7 @@ public class TheTetris extends Application {
 		});
 	}
 	
-	private void MoveTurn(Form theFormInp) {
+	private void moveTurn(Form theFormInp) {
 		int theF = theFormInp.form;
 		Rectangle a = theFormInp.a;
 		Rectangle b = theFormInp.b;
@@ -170,100 +170,100 @@ public class TheTetris extends Application {
 		switch (theFormInp.getName()) {
 			case "j":
 				if (theF == 1 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
-					MoveRight(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveLeft(theFormInp.d);
-					MoveLeft(theFormInp.d);
-					MoveDown(theFormInp.d);
-					MoveDown(theFormInp.d);
+					moveRight(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveLeft(theFormInp.d);
+					moveLeft(theFormInp.d);
+					moveDown(theFormInp.d);
+					moveDown(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 2 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
-					MoveRight(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveLeft(theFormInp.d);
-					MoveLeft(theFormInp.d);
-					MoveDown(theFormInp.d);
-					MoveDown(theFormInp.d);
+					moveRight(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveLeft(theFormInp.d);
+					moveLeft(theFormInp.d);
+					moveDown(theFormInp.d);
+					moveDown(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 3 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
-					MoveRight(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveLeft(theFormInp.d);
-					MoveLeft(theFormInp.d);
-					MoveDown(theFormInp.d);
-					MoveDown(theFormInp.d);
+					moveRight(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveLeft(theFormInp.d);
+					moveLeft(theFormInp.d);
+					moveDown(theFormInp.d);
+					moveDown(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 4 && checkRect(a, 1, -1) && checkRect(c, -1, -1) && checkRect(d, 2, -2)) {
-					MoveRight(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveLeft(theFormInp.d);
-					MoveLeft(theFormInp.d);
-					MoveDown(theFormInp.d);
-					MoveDown(theFormInp.d);
+					moveRight(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveLeft(theFormInp.d);
+					moveLeft(theFormInp.d);
+					moveDown(theFormInp.d);
+					moveDown(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				break;
 			case "l":
 				if (theF == 1 && checkRect(a, 1, -1) && checkRect(c, 1, 1) && checkRect(b, 2, 2)) {
-					MoveRight(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveUp(theFormInp.c);
-					MoveRight(theFormInp.c);
-					MoveUp(theFormInp.b);
-					MoveUp(theFormInp.b);
-					MoveRight(theFormInp.b);
-					MoveRight(theFormInp.b);
+					moveRight(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveUp(theFormInp.c);
+					moveRight(theFormInp.c);
+					moveUp(theFormInp.b);
+					moveUp(theFormInp.b);
+					moveRight(theFormInp.b);
+					moveRight(theFormInp.b);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 2 && checkRect(a, -1, -1) && checkRect(b, 2, -2) && checkRect(c, 1, -1)) {
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveRight(theFormInp.b);
-					MoveRight(theFormInp.b);
-					MoveDown(theFormInp.b);
-					MoveDown(theFormInp.b);
-					MoveRight(theFormInp.c);
-					MoveDown(theFormInp.c);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveRight(theFormInp.b);
+					moveRight(theFormInp.b);
+					moveDown(theFormInp.b);
+					moveDown(theFormInp.b);
+					moveRight(theFormInp.c);
+					moveDown(theFormInp.c);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 3 && checkRect(a, -1, 1) && checkRect(c, -1, -1) && checkRect(b, -2, -2)) {
-					MoveLeft(theFormInp.a);
-					MoveUp(theFormInp.a);
-					MoveDown(theFormInp.c);
-					MoveLeft(theFormInp.c);
-					MoveDown(theFormInp.b);
-					MoveDown(theFormInp.b);
-					MoveLeft(theFormInp.b);
-					MoveLeft(theFormInp.b);
+					moveLeft(theFormInp.a);
+					moveUp(theFormInp.a);
+					moveDown(theFormInp.c);
+					moveLeft(theFormInp.c);
+					moveDown(theFormInp.b);
+					moveDown(theFormInp.b);
+					moveLeft(theFormInp.b);
+					moveLeft(theFormInp.b);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 4 && checkRect(a, 1, 1) && checkRect(b, -2, 2) && checkRect(c, -1, 1)) {
-					MoveUp(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveLeft(theFormInp.b);
-					MoveLeft(theFormInp.b);
-					MoveUp(theFormInp.b);
-					MoveUp(theFormInp.b);
-					MoveLeft(theFormInp.c);
-					MoveUp(theFormInp.c);
+					moveUp(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveLeft(theFormInp.b);
+					moveLeft(theFormInp.b);
+					moveUp(theFormInp.b);
+					moveUp(theFormInp.b);
+					moveLeft(theFormInp.c);
+					moveUp(theFormInp.c);
 					theFormInp.changeForm();
 					break;
 				}
@@ -272,180 +272,251 @@ public class TheTetris extends Application {
 				break;
 			case "s":
 				if (theF == 1 && checkRect(a, -1, -1) && checkRect(c, -1, 1) && checkRect(d, 0, 2)) {
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveLeft(theFormInp.c);
-					MoveUp(theFormInp.c);
-					MoveUp(theFormInp.d);
-					MoveUp(theFormInp.d);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveLeft(theFormInp.c);
+					moveUp(theFormInp.c);
+					moveUp(theFormInp.d);
+					moveUp(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 2 && checkRect(a, 1, 1) && checkRect(c, 1, -1) && checkRect(d, 0, -2)) {
-					MoveUp(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveRight(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveDown(theFormInp.d);
-					MoveDown(theFormInp.d);
+					moveUp(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveRight(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveDown(theFormInp.d);
+					moveDown(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 3 && checkRect(a, -1, -1) && checkRect(c, -1, 1) && checkRect(d, 0, 2)) {
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveLeft(theFormInp.c);
-					MoveUp(theFormInp.c);
-					MoveUp(theFormInp.d);
-					MoveUp(theFormInp.d);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveLeft(theFormInp.c);
+					moveUp(theFormInp.c);
+					moveUp(theFormInp.d);
+					moveUp(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 4 && checkRect(a, 1, 1) && checkRect(c, 1, -1) && checkRect(d, 0, -2)) {
-					MoveUp(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveRight(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveDown(theFormInp.d);
-					MoveDown(theFormInp.d);
+					moveUp(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveRight(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveDown(theFormInp.d);
+					moveDown(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				break;
 			case "t":
 				if (theF == 1 && checkRect(a, 1, 1) && checkRect(d, -1, -1) && checkRect(c, -1, 1)) {
-					MoveUp(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveDown(theFormInp.d);
-					MoveLeft(theFormInp.d);
-					MoveLeft(theFormInp.c);
-					MoveUp(theFormInp.c);
+					moveUp(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveDown(theFormInp.d);
+					moveLeft(theFormInp.d);
+					moveLeft(theFormInp.c);
+					moveUp(theFormInp.c);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 2 && checkRect(a, 1, -1) && checkRect(d, -1, 1) && checkRect(c, 1, 1)) {
-					MoveRight(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.d);
-					MoveUp(theFormInp.d);
-					MoveUp(theFormInp.c);
-					MoveRight(theFormInp.c);
+					moveRight(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.d);
+					moveUp(theFormInp.d);
+					moveUp(theFormInp.c);
+					moveRight(theFormInp.c);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 3 && checkRect(a, -1, -1) && checkRect(d, 1, 1) && checkRect(c, 1, -1)) {
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveUp(theFormInp.d);
-					MoveRight(theFormInp.d);
-					MoveRight(theFormInp.c);
-					MoveDown(theFormInp.c);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveUp(theFormInp.d);
+					moveRight(theFormInp.d);
+					moveRight(theFormInp.c);
+					moveDown(theFormInp.c);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 4 && checkRect(a, -1, 1) && checkRect(d, 1, -1) && checkRect(c, -1, -1)) {
-					MoveLeft(theFormInp.a);
-					MoveUp(theFormInp.a);
-					MoveRight(theFormInp.d);
-					MoveDown(theFormInp.d);
-					MoveDown(theFormInp.c);
-					MoveLeft(theFormInp.c);
+					moveLeft(theFormInp.a);
+					moveUp(theFormInp.a);
+					moveRight(theFormInp.d);
+					moveDown(theFormInp.d);
+					moveDown(theFormInp.c);
+					moveLeft(theFormInp.c);
 					theFormInp.changeForm();
 					break;
 				}
 				break;
 			case "z":
 				if (theF == 1 && checkRect(b, 1, 1) && checkRect(c, -1, 1) && checkRect(d, -2, 0)) {
-					MoveUp(theFormInp.b);
-					MoveRight(theFormInp.b);
-					MoveLeft(theFormInp.c);
-					MoveUp(theFormInp.c);
-					MoveLeft(theFormInp.d);
-					MoveLeft(theFormInp.d);
+					moveUp(theFormInp.b);
+					moveRight(theFormInp.b);
+					moveLeft(theFormInp.c);
+					moveUp(theFormInp.c);
+					moveLeft(theFormInp.d);
+					moveLeft(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 2 && checkRect(b, -1, -1) && checkRect(c, 1, -1) && checkRect(d, 2, 0)) {
-					MoveDown(theFormInp.b);
-					MoveLeft(theFormInp.b);
-					MoveRight(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveRight(theFormInp.d);
-					MoveRight(theFormInp.d);
+					moveDown(theFormInp.b);
+					moveLeft(theFormInp.b);
+					moveRight(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveRight(theFormInp.d);
+					moveRight(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 3 && checkRect(b, 1, 1) && checkRect(c, -1, 1) && checkRect(d, -2, 0)) {
-					MoveUp(theFormInp.b);
-					MoveRight(theFormInp.b);
-					MoveLeft(theFormInp.c);
-					MoveUp(theFormInp.c);
-					MoveLeft(theFormInp.d);
-					MoveLeft(theFormInp.d);
+					moveUp(theFormInp.b);
+					moveRight(theFormInp.b);
+					moveLeft(theFormInp.c);
+					moveUp(theFormInp.c);
+					moveLeft(theFormInp.d);
+					moveLeft(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 4 && checkRect(b, -1, -1) && checkRect(c, 1, -1) && checkRect(d, 2, 0)) {
-					MoveDown(theFormInp.b);
-					MoveLeft(theFormInp.b);
-					MoveRight(theFormInp.c);
-					MoveDown(theFormInp.c);
-					MoveRight(theFormInp.d);
-					MoveRight(theFormInp.d);
+					moveDown(theFormInp.b);
+					moveLeft(theFormInp.b);
+					moveRight(theFormInp.c);
+					moveDown(theFormInp.c);
+					moveRight(theFormInp.d);
+					moveRight(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				break;
 			case "i":
 				if (theF == 1 && checkRect(a, 2, 2) && checkRect(b, 1, 1) && checkRect(d, -1, -1)) {
-					MoveUp(theFormInp.a);
-					MoveUp(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveUp(theFormInp.b);
-					MoveRight(theFormInp.b);
-					MoveDown(theFormInp.d);
-					MoveLeft(theFormInp.d);
+					moveUp(theFormInp.a);
+					moveUp(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveUp(theFormInp.b);
+					moveRight(theFormInp.b);
+					moveDown(theFormInp.d);
+					moveLeft(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 2 && checkRect(a, -2, -2) && checkRect(b, -1, -1) && checkRect(d, 1, 1)) {
-					MoveDown(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveDown(theFormInp.b);
-					MoveLeft(theFormInp.b);
-					MoveUp(theFormInp.d);
-					MoveRight(theFormInp.d);
+					moveDown(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveDown(theFormInp.b);
+					moveLeft(theFormInp.b);
+					moveUp(theFormInp.d);
+					moveRight(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 3 && checkRect(a, 2, 2) && checkRect(b, 1, 1) && checkRect(d, -1, -1)) {
-					MoveUp(theFormInp.a);
-					MoveUp(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveRight(theFormInp.a);
-					MoveUp(theFormInp.b);
-					MoveRight(theFormInp.b);
-					MoveDown(theFormInp.d);
-					MoveLeft(theFormInp.d);
+					moveUp(theFormInp.a);
+					moveUp(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveRight(theFormInp.a);
+					moveUp(theFormInp.b);
+					moveRight(theFormInp.b);
+					moveDown(theFormInp.d);
+					moveLeft(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				if (theF == 4 && checkRect(a, -2, -2) && checkRect(b, -1, -1) && checkRect(d, 1, 1)) {
-					MoveDown(theFormInp.a);
-					MoveDown(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveLeft(theFormInp.a);
-					MoveDown(theFormInp.b);
-					MoveLeft(theFormInp.b);
-					MoveUp(theFormInp.d);
-					MoveRight(theFormInp.d);
+					moveDown(theFormInp.a);
+					moveDown(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveLeft(theFormInp.a);
+					moveDown(theFormInp.b);
+					moveLeft(theFormInp.b);
+					moveUp(theFormInp.d);
+					moveRight(theFormInp.d);
 					theFormInp.changeForm();
 					break;
 				}
 				break;
+		}
+	}
+	
+	private void moveDownForm(Form form) {
+		if (form.a.getY() == MAXY - SIZE || form.b.getY() == MAXY - SIZE || form.c.getY() == MAXY - SIZE
+				|| form.d.getY() == MAXY - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
+			MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
+			MESH[(int) form.b.getX() / SIZE][(int) form.b.getY() / SIZE] = 1;
+			MESH[(int) form.c.getX() / SIZE][(int) form.c.getY() / SIZE] = 1;
+			MESH[(int) form.d.getX() / SIZE][(int) form.d.getY() / SIZE] = 1;
+			RemoveRows(theGroup);
+
+			Form a = nextObject;
+			nextObject = Controller.makeRect();
+			object = a;
+			theGroup.getChildren().addAll(a.a, a.b, a.c, a.d);
+			moveOnKeyPress(a);
+		}
+
+		if (form.a.getY() + MOVE < MAXY && form.b.getY() + MOVE < MAXY && form.c.getY() + MOVE < MAXY
+				&& form.d.getY() + MOVE < MAXY) {
+			int movea = MESH[(int) form.a.getX() / SIZE][((int) form.a.getY() / SIZE) + 1];
+			int moveb = MESH[(int) form.b.getX() / SIZE][((int) form.b.getY() / SIZE) + 1];
+			int movec = MESH[(int) form.c.getX() / SIZE][((int) form.c.getY() / SIZE) + 1];
+			int moved = MESH[(int) form.d.getX() / SIZE][((int) form.d.getY() / SIZE) + 1];
+			if (movea == 0 && movea == moveb && moveb == movec && movec == moved) {
+				form.a.setY(form.a.getY() + MOVE);
+				form.b.setY(form.b.getY() + MOVE);
+				form.c.setY(form.c.getY() + MOVE);
+				form.d.setY(form.d.getY() + MOVE);
+			}
+		}
+	}
+	
+	private boolean moveA(Form theForm) {
+		return (MESH[(int) theForm.a.getX() / SIZE][((int) theForm.a.getY() / SIZE) + 1] == 1);
+	}
+
+	private boolean moveB(Form theForm) {
+		return (MESH[(int) theForm.b.getX() / SIZE][((int) theForm.b.getY() / SIZE) + 1] == 1);
+	}
+
+	private boolean moveC(Form theForm) {
+		return (MESH[(int) theForm.c.getX() / SIZE][((int) theForm.c.getY() / SIZE) + 1] == 1);
+	}
+
+	private boolean moveD(Form theForm) {
+		return (MESH[(int) theForm.d.getX() / SIZE][((int) theForm.d.getY() / SIZE) + 1] == 1);
+	}
+	
+	private void moveDown(Rectangle rect) {
+		if (rect.getY() + MOVE < MAXY) {
+			rect.setY(rect.getY() + MOVE);
+		}
+	}
+
+	private void moveRight(Rectangle rect) {
+		if (rect.getX() + MOVE <= MAXX - SIZE) {
+			rect.setX(rect.getX() + MOVE);
+		}
+	}
+
+	private void moveLeft(Rectangle rect) {
+		if (rect.getX() - MOVE >= 0) {
+			rect.setX(rect.getX() - MOVE);
+		}
+	}
+
+	private void moveUp(Rectangle rect) {
+		if (rect.getY() - MOVE > 0) {
+			rect.setY(rect.getY() - MOVE);
 		}
 	}
 	
