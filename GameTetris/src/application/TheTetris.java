@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -7,6 +8,7 @@ import java.util.TimerTask;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -477,6 +479,97 @@ public class TheTetris extends Application {
 				form.c.setY(form.c.getY() + MOVE);
 				form.d.setY(form.d.getY() + MOVE);
 			}
+		}
+	}
+
+	private void RemoveRows(Pane thePane) {
+		ArrayList<Node> rects = new ArrayList<Node>();
+		ArrayList<Integer> lines = new ArrayList<Integer>();
+		ArrayList<Node> newRects = new ArrayList<Node>();
+		
+		int full = 0;
+		
+		for (int i = 0; i < MESH[0].length; ++i) {
+			for (int j = 0; j < MESH.length; ++j) {
+				if (MESH[j][i] == 1) {
+					++full;
+				}
+			}
+			if (full == MESH.length) {
+				lines.add((i + lines.size()));
+			} else {
+				full = 0;
+			}
+		}
+		
+		if (lines.size() > 0) {
+			
+			do {
+				
+				for (Node aNode : thePane.getChildren()) {
+					
+					if (aNode instanceof Rectangle) {
+						rects.add(aNode);
+					}
+					
+				}
+				
+				score += 50;
+				++linesNo;
+				
+				for (Node aNode : rects) {
+					
+					Rectangle a = (Rectangle) aNode;
+					
+					if (a.getY() == (lines.get(0) * SIZE)) {
+						MESH[(int) (a.getX() / SIZE)][(int) (a.getY() / SIZE)] = 0;
+						thePane.getChildren().remove(aNode);
+					} else {
+						newRects.add(aNode);
+					}
+					
+				}
+				
+				for (Node aNode : newRects) {
+					
+					Rectangle a = (Rectangle) aNode;
+					
+					if (a.getY() < (lines.get(0) * SIZE)) {
+						MESH[(int) (a.getX() / SIZE)][(int) (a.getY() / SIZE)] = 0;
+						thePane.getChildren().remove(aNode);
+						a.setY(a.getY() + SIZE);
+					}
+					
+				}
+				
+				lines.remove(0);
+				rects.clear();
+				newRects.clear();
+				
+				for (Node aNode : thePane.getChildren()) {
+					
+					if (aNode instanceof Rectangle) {
+						rects.add(aNode);
+					}
+					
+				}
+				
+				for (Node aNode : rects) {
+					
+					Rectangle a = (Rectangle) aNode;
+					
+					try {
+						MESH[(int) (a.getX() / SIZE)][(int) (a.getY() / SIZE)] = 1;
+					} catch (ArrayIndexOutOfBoundsException e) {
+						// ...!?
+					}
+					
+				}
+				
+				rects.clear();
+
+			} while (lines.size() > 0);
+			
 		}
 	}
 	
