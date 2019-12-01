@@ -1,6 +1,6 @@
 package application;
 
-import javafx.scene.shape.*;
+import javafx.scene.shape.Rectangle;
 
 public class Controller {
 	
