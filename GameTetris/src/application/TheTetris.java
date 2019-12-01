@@ -452,6 +452,7 @@ public class TheTetris extends Application {
 	}
 	
 	private void moveDownForm(Form form) {
+		// move if bottom is full
 		if (form.a.getY() == MAXY - SIZE || form.b.getY() == MAXY - SIZE || form.c.getY() == MAXY - SIZE
 				|| form.d.getY() == MAXY - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
 			MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
@@ -467,6 +468,7 @@ public class TheTetris extends Application {
 			moveOnKeyPress(a);
 		}
 
+		// move down is bottom is NOT full
 		if (form.a.getY() + MOVE < MAXY && form.b.getY() + MOVE < MAXY && form.c.getY() + MOVE < MAXY
 				&& form.d.getY() + MOVE < MAXY) {
 			int movea = MESH[(int) form.a.getX() / SIZE][((int) form.a.getY() / SIZE) + 1];
