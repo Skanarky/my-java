@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
