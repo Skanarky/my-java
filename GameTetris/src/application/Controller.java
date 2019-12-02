@@ -5,11 +5,11 @@ import javafx.scene.shape.Rectangle;
 public class Controller {
 	
 	// getting numbers and mesh from Tetris class
-	public static final int MOVE = Main.MOVE;
-	public static final int SIZE = Main.SIZE;
-	public static int MAXX = Main.MAXX;
-	public static int MAXY = Main.MAXY;
-	public static int [][] MESH = Main.MESH;
+	public static final int MOVE = TheTetris.MOVE;
+	public static final int SIZE = TheTetris.SIZE;
+	public static int MAXX = TheTetris.MAXX;
+	public static int MAXY = TheTetris.MAXY;
+	public static int [][] MESH = TheTetris.MESH;
 	
 	// moving the blocks, controls
 	public static void moveRight(Form form) {
