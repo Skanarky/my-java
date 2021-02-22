@@ -25,6 +25,10 @@ public class Main {
         System.out.println(hasSameLastDigit(41, 22, 71));
         System.out.println(hasSameLastDigit(23, 32, 42));
         System.out.println(hasSameLastDigit(99, 9, 999));
+
+        System.out.println(getGreatestCommonDivisor(12, 30));
+        System.out.println(getGreatestCommonDivisor(153, 81));
+        System.out.println(getGreatestCommonDivisor(5, 81));
     }
 
     public static long sumDigits(long num) {
@@ -101,5 +105,18 @@ public class Main {
      public static boolean hasSameLastHelper(int one, int two) {
          return (one % 10) == (two % 10);
      }
+
+    public static int getGreatestCommonDivisor(int first, int second) {
+        if (first < 10 || second < 10)
+            return -1;
+        int divider = 1;
+        int endCondition = (first > second) ? second : first;
+        for (int step = 2; step <= endCondition; ++step) {
+            if ((first % step) == 0 && (second % step) == 0) {
+                divider = step;
+            }
+        }
+        return divider;
+    }
 
 }
