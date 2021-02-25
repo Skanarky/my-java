@@ -17,6 +17,7 @@ public class Main {
         System.out.println(isPalindrome(505));
         System.out.println(isPalindrome(25));
         System.out.println(isPalindrome(20));
+        System.out.println(isPalindrome(100));
 
         System.out.println(hasSharedDigit(51, 15));
 
@@ -29,6 +30,13 @@ public class Main {
         System.out.println(getGreatestCommonDivisor(12, 30));
         System.out.println(getGreatestCommonDivisor(153, 81));
         System.out.println(getGreatestCommonDivisor(5, 81));
+
+        System.out.println(isPerfectNumber(6));
+        System.out.println(isPerfectNumber(8));
+        System.out.println(isPerfectNumber(10));
+
+        numberToWords(10);
+        numberToWords(1234554321);
     }
 
     public static long sumDigits(long num) {
@@ -109,14 +117,104 @@ public class Main {
     public static int getGreatestCommonDivisor(int first, int second) {
         if (first < 10 || second < 10)
             return -1;
+
         int divider = 1;
-        int endCondition = (first > second) ? second : first;
-        for (int step = 2; step <= endCondition; ++step) {
+        for (int step = (first > second) ? second : first; step >= 1; --step) {
             if ((first % step) == 0 && (second % step) == 0) {
                 divider = step;
+                break;
             }
         }
+
         return divider;
+    }
+
+    public static boolean isPerfectNumber(int number) {
+        if (number < 1) {
+            return false;
+        } else {
+            int cpNum = 1;
+            int sum = 0;
+            while (cpNum < number) {
+                if ((number % cpNum) == 0)
+                    sum += cpNum;
+                cpNum++;
+            }
+            return sum == number;
+        }
+    }
+
+    public static void numberToWords(int number) {
+        if (number < 0) {
+            System.out.println("Invalid Value");
+        } else if (number == 0) {
+            System.out.println("Zero");
+        } else {
+            StringBuffer str = new StringBuffer();
+            int newRevNum = reverse(number);
+            int compRevAndInit = (getDigitCount(number) - getDigitCount(newRevNum));
+            while (newRevNum != 0) {
+                switch ((newRevNum % 10)) {
+                    case 0:
+                        str.append("Zero ");
+                        break;
+                    case 1:
+                        str.append("One ");
+                        break;
+                    case 2:
+                        str.append("Two ");
+                        break;
+                    case 3:
+                        str.append("Three ");
+                        break;
+                    case 4:
+                        str.append("Four ");
+                        break;
+                    case 5:
+                        str.append("Five ");
+                        break;
+                    case 6:
+                        str.append("Six ");
+                        break;
+                    case 7:
+                        str.append("Seven ");
+                        break;
+                    case 8:
+                        str.append("Eight ");
+                        break;
+                    case 9:
+                        str.append("Nine ");
+                        break;
+                    default:
+                        System.out.println("Invalid Value");
+                        break;
+                }
+                newRevNum /= 10;
+            }
+            while (compRevAndInit > 0) {
+                str.append("Zero");
+                --compRevAndInit;
+            }
+            System.out.println(str.toString().trim());
+        }
+    }
+    public static int reverse(int number) {
+        int reverseNum = 0;
+        while (number != 0) {
+            reverseNum = (reverseNum * 10) + (number % 10);
+            number /= 10;
+        }
+        return reverseNum;
+    }
+    public static int getDigitCount(int number) {
+        if (number < 0)
+            return -1;
+        int count = 0;
+        while (number != 0) {
+            count++;
+            number /= 10;
+        }
+        return (count == 0) ? 1 : count;
     }
 
 }
